@@ -1,17 +1,26 @@
 package scottso.assist911;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 
 
-public class MyActivity extends Activity {
+public class MyActivity extends Activity implements View.OnClickListener{
+
+    private Button practice;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my);
+
+        practice = (Button) this.findViewById(R.id.practice_button);
+        practice.setOnClickListener(this);
+
     }
 
 
@@ -33,4 +42,24 @@ public class MyActivity extends Activity {
         }
         return super.onOptionsItemSelected(item);
     }
+
+    public void onClick(View v) {
+
+        switch(v.getId()) {
+
+            case R.id.practice_button:
+            goToPractice();
+            break;
+        }
+
+    }
+
+    public void goToPractice() {
+
+        Intent intent = new Intent(this, keypadActivity.class);
+        startActivity(intent);
+
+    }
+
+
 }

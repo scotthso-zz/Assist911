@@ -155,7 +155,7 @@
                 android:layout_width="@dimen/keypad_button_width"
                 android:layout_height="@dimen/keypad_button_height"
                 android:text="*"
-                android:id="@+id/button*"
+                android:id="@+id/button12"
                 android:background="@color/keypad_background"
 
                 android:layout_marginLeft="-7dp"
@@ -167,7 +167,7 @@
                 android:text="0"
                 android:textSize="@dimen/keypad_number_size"
                 android:textColor="@color/number_colour"
-                android:id="@+id/button0"
+                android:id="@+id/button13"
                 android:background="@color/keypad_background"
 
                 android:layout_marginLeft="-8dp"
@@ -178,7 +178,7 @@
                 android:layout_width="@dimen/keypad_button_width"
                 android:layout_height="@dimen/keypad_button_height"
                 android:text="#"
-                android:id="@+id/button#"
+                android:id="@+id/button11"
                 android:background="@color/keypad_background"
 
                 android:layout_marginLeft="-8dp"
