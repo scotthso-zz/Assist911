@@ -31,9 +31,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/practice_button"
         android:text="Videos"
-        android:id="@+id/button2"
-
-  />
+        android:id="@+id/button2"/>
 
     <Button
         android:layout_width="fill_parent"

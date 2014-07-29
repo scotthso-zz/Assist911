@@ -50,6 +50,7 @@ public class MyActivity extends Activity implements View.OnClickListener{
             case R.id.practice_button:
             goToPractice();
             break;
+
         }
 
     }
