@@ -13,7 +13,7 @@
         android:background="@color/textview_colour"
         android:layout_column="4" />
 
-        <EditText
+    <EditText
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:inputType="phone"
@@ -26,44 +26,44 @@
         android:id="@+id/table">
 
         <TableRow
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
-                android:layout_marginTop="-3dp"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_marginTop="-3dp"
             >
 
-                <Button
-                    android:layout_width="@dimen/keypad_button_width"
-                    android:layout_height="@dimen/keypad_button_height"
-                    android:text="1"
-                    android:textSize="@dimen/keypad_number_size"
-                    android:textColor="@color/number_colour"
-                    android:layout_column="1"
-                    android:layout_marginLeft="-7dp"
-                    android:background="@color/keypad_background"
-                    android:id="@+id/button" />
+            <Button
+                android:layout_width="@dimen/keypad_button_width"
+                android:layout_height="@dimen/keypad_button_height"
+                android:text="1"
+                android:textSize="@dimen/keypad_number_size"
+                android:textColor="@color/number_colour"
+                android:layout_column="1"
+                android:layout_marginLeft="-7dp"
+                android:background="@color/keypad_background"
+                android:id="@+id/button1" />
 
-                <Button
-                    android:layout_width="@dimen/keypad_button_width"
-                    android:layout_height="@dimen/keypad_button_height"
-                    android:text="2"
-                    android:textSize="@dimen/keypad_number_size"
-                    android:textColor="@color/number_colour"
-                    android:layout_marginLeft="-8dp"
-                    android:id="@+id/button2"
-                    android:background="@color/keypad_background"
-                    android:layout_column="2" />
+            <Button
+                android:layout_width="@dimen/keypad_button_width"
+                android:layout_height="@dimen/keypad_button_height"
+                android:text="2"
+                android:textSize="@dimen/keypad_number_size"
+                android:textColor="@color/number_colour"
+                android:layout_marginLeft="-8dp"
+                android:id="@+id/button2"
+                android:background="@color/keypad_background"
+                android:layout_column="2" />
 
-                <Button
-                    android:layout_width="@dimen/keypad_button_width"
-                    android:layout_height="@dimen/keypad_button_height"
-                    android:text="3"
-                    android:textSize="@dimen/keypad_number_size"
-                    android:textColor="@color/number_colour"
-                    android:id="@+id/button3"
-                    android:layout_marginLeft="-8dp"
-                    android:background="@color/keypad_background"
-                    android:layout_column="3" />
-            </TableRow>
+            <Button
+                android:layout_width="@dimen/keypad_button_width"
+                android:layout_height="@dimen/keypad_button_height"
+                android:text="3"
+                android:textSize="@dimen/keypad_number_size"
+                android:textColor="@color/number_colour"
+                android:id="@+id/button3"
+                android:layout_marginLeft="-8dp"
+                android:background="@color/keypad_background"
+                android:layout_column="3" />
+        </TableRow>
 
         <TableRow
             android:layout_width="match_parent"
@@ -155,9 +155,8 @@
                 android:layout_width="@dimen/keypad_button_width"
                 android:layout_height="@dimen/keypad_button_height"
                 android:text="*"
-                android:id="@+id/button12"
+                android:id="@+id/buttonstar"
                 android:background="@color/keypad_background"
-
                 android:layout_marginLeft="-7dp"
                 android:layout_column="1" />
 
@@ -167,9 +166,8 @@
                 android:text="0"
                 android:textSize="@dimen/keypad_number_size"
                 android:textColor="@color/number_colour"
-                android:id="@+id/button13"
+                android:id="@+id/buttonzero"
                 android:background="@color/keypad_background"
-
                 android:layout_marginLeft="-8dp"
                 android:layout_column="2" />
 
@@ -178,7 +176,7 @@
                 android:layout_width="@dimen/keypad_button_width"
                 android:layout_height="@dimen/keypad_button_height"
                 android:text="#"
-                android:id="@+id/button11"
+                android:id="@+id/buttonpound"
                 android:background="@color/keypad_background"
 
                 android:layout_marginLeft="-8dp"
@@ -193,6 +191,7 @@
         android:layout_marginTop="-2dp"
         android:background="@color/number_colour"
         android:id="@+id/button10" />
+
 
 
 </LinearLayout>

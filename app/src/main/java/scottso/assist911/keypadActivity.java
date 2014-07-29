@@ -16,15 +16,15 @@ import java.util.logging.Handler;
  */
 public class keypadActivity extends Activity implements View.OnClickListener {
 
-    Button one, two, three, four, five, six, seven, eight, nine;
-    EditText numbDisp;
+    Button one, two, three, four, five, six, seven, eight, nine, zero, star, pound;
+    TextView numbDisp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_keypad);
 
-        one = (Button)findViewById(R.id.button);
+        one = (Button)findViewById(R.id.button1);
         two = (Button)findViewById(R.id.button2);
         three = (Button)findViewById(R.id.button3);
         four = (Button)findViewById(R.id.button4);
@@ -34,7 +34,11 @@ public class keypadActivity extends Activity implements View.OnClickListener {
         eight = (Button)findViewById(R.id.button8);
         nine = (Button)findViewById(R.id.button9);
 
-        numbDisp = (EditText)findViewById(R.id.number_display);
+        zero = (Button)findViewById(R.id.buttonzero);
+        star = (Button)findViewById(R.id.buttonstar);
+        pound = (Button)findViewById(R.id.buttonpound);
+
+        numbDisp = (TextView)findViewById(R.id.number_display);
 
         one.setOnClickListener(this);
         two.setOnClickListener(this);
@@ -45,6 +49,10 @@ public class keypadActivity extends Activity implements View.OnClickListener {
         seven.setOnClickListener(this);
         eight.setOnClickListener(this);
         nine.setOnClickListener(this);
+        zero.setOnClickListener(this);
+
+        star.setOnClickListener(this);
+        pound.setOnClickListener(this);
 
 
     }
@@ -79,7 +87,7 @@ public class keypadActivity extends Activity implements View.OnClickListener {
 
         switch(view.getId()) {
 
-            case R.id.button:
+            case R.id.button1:
                 numbDisp.append("1");
                 break;
 
@@ -113,6 +121,18 @@ public class keypadActivity extends Activity implements View.OnClickListener {
 
             case R.id.button9:
                 numbDisp.append("9");
+                break;
+
+            case R.id.buttonzero:
+                numbDisp.append("0");
+                break;
+
+            case R.id.buttonstar:
+                numbDisp.append("*");
+                break;
+
+            case R.id.buttonpound:
+                numbDisp.append("#");
                 break;
         }
     }
