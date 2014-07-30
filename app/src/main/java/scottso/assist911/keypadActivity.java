@@ -16,7 +16,7 @@ import java.util.logging.Handler;
  */
 public class keypadActivity extends Activity implements View.OnClickListener {
 
-    Button one, two, three, four, five, six, seven, eight, nine, zero, star, pound;
+    Button one, two, three, four, five, six, seven, eight, nine, zero, star, pound, delete;
     TextView numbDisp;
 
     @Override
@@ -38,6 +38,8 @@ public class keypadActivity extends Activity implements View.OnClickListener {
         star = (Button)findViewById(R.id.buttonstar);
         pound = (Button)findViewById(R.id.buttonpound);
 
+        delete = (Button)findViewById(R.id.buttondelete);
+
         numbDisp = (TextView)findViewById(R.id.number_display);
 
         one.setOnClickListener(this);
@@ -54,6 +56,7 @@ public class keypadActivity extends Activity implements View.OnClickListener {
         star.setOnClickListener(this);
         pound.setOnClickListener(this);
 
+        delete.setOnClickListener(this);
 
     }
 
@@ -133,6 +136,17 @@ public class keypadActivity extends Activity implements View.OnClickListener {
 
             case R.id.buttonpound:
                 numbDisp.append("#");
+                break;
+
+            case R.id.buttondelete:
+
+                String str = numbDisp.getText().toString().trim();
+
+                if(str.length()!=0){
+                    str = str.substring(0, str.length() - 1 );
+                    numbDisp.setText ( str );
+                }
+
                 break;
         }
     }

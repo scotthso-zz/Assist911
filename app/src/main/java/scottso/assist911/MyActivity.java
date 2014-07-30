@@ -12,6 +12,7 @@ import android.widget.Button;
 public class MyActivity extends Activity implements View.OnClickListener{
 
     private Button practice;
+    private Button videos;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,6 +21,8 @@ public class MyActivity extends Activity implements View.OnClickListener{
 
         practice = (Button) this.findViewById(R.id.practice_button);
         practice.setOnClickListener(this);
+
+
 
     }
 
@@ -51,16 +54,22 @@ public class MyActivity extends Activity implements View.OnClickListener{
             goToPractice();
             break;
 
+            case R.id.videos_button:
+                goToVideos();
+                break;
         }
 
     }
 
     public void goToPractice() {
 
-        Intent intent = new Intent(this, keypadActivity.class);
-        startActivity(intent);
+        Intent keypad = new Intent(this, keypadActivity.class);
+        startActivity(keypad);
 
     }
 
-
+    public void goToVideos() {
+        Intent videos = new Intent(this, videosActivity.class);
+        startActivity(videos);
+    }
 }

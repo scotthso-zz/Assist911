@@ -9,10 +9,11 @@
     <style name="numbKey">
         <item name ="android:textColor">@color/number_colour</item>
         <item name ="android:textSize">@dimen/keypad_number_size</item>
-        <item name ="android:background">@color/keypad_background</item>
+        <item name ="android:background">@drawable/numb_bg</item>
         <item name ="android:layout_weight">1</item>
         <item name ="android:layout_height">@dimen/keypad_button_height</item>
-        <item name ="android:layout_width">wrap_content</item>
+
+
 
     </style>
 

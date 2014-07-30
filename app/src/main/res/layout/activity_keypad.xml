@@ -5,25 +5,36 @@
     android:layout_height="match_parent"
     android:id="@+id/l">
 
-    <TextView
-        android:layout_width="fill_parent"
-        android:layout_height="180dp"
-
-        android:id="@+id/textView"
-        android:background="@color/textview_colour"
-        android:layout_column="4" />
-
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:inputType="phone"
-        android:ems="10"
-        android:id="@+id/number_display" />
+   <TextView
+       android:layout_width="fill_parent"
+       android:layout_height="170dp" />
 
     <TableLayout
         android:layout_width="fill_parent"
-        android:layout_height="210dp"
+        android:layout_height="290dp"
         android:id="@+id/table">
+
+<TableRow
+    android:weightSum="2"
+    >
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:inputType="phone"
+                android:layout_weight="1.7"
+                android:textSize="12pt"
+                android:ems="10"
+                android:id="@+id/number_display" />
+
+            <Button
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/buttondelete"
+                android:layout_weight="1"
+                />
+
+</TableRow>
 
         <TableRow
             android:layout_width="fill_parent"
@@ -152,15 +163,15 @@
                 />
         </TableRow>
 
+
+
     </TableLayout>
 
     <Button
         android:layout_width="fill_parent"
         android:layout_height="80dp"
-        android:layout_marginTop="-2dp"
+        android:layout_marginTop="-18dp"
         android:background="@color/number_colour"
         android:id="@+id/button10" />
-
-
 
 </LinearLayout>
