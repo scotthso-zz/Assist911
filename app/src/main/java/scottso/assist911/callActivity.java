@@ -5,9 +5,9 @@ import android.os.Bundle;
 import android.view.Menu;
 
 /**
- * Created by scottso on 2014-07-30.
+ * Created by scottso on 2014-07-31.
  */
-public class videosActivity extends Activity {
+public class callActivity extends Activity {
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -16,5 +16,4 @@ public class videosActivity extends Activity {
     }
 
 
-
-    }
+}

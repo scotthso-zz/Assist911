@@ -1,7 +1,7 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="android:Theme.Holo.Light.DarkActionBar">
+    <style name="AppTheme" parent="android:Theme.Holo.Light.NoActionBar">
         <!-- Customize your theme here. -->
 
     </style>
@@ -12,9 +12,6 @@
         <item name ="android:background">@drawable/numb_bg</item>
         <item name ="android:layout_weight">1</item>
         <item name ="android:layout_height">@dimen/keypad_button_height</item>
-
-
-
     </style>
 
 </resources>
