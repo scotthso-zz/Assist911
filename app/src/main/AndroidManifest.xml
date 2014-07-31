@@ -24,6 +24,11 @@
             android:screenOrientation="portrait">
         </activity>
 
+        <activity
+            android:name=".videosActivity"
+            android:label="Assist911"
+            android:screenOrientation="portrait">
+        </activity>
 
 
     </application>

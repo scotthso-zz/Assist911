@@ -22,7 +22,8 @@ public class MyActivity extends Activity implements View.OnClickListener{
         practice = (Button) this.findViewById(R.id.practice_button);
         practice.setOnClickListener(this);
 
-
+        videos = (Button) this.findViewById(R.id.videos_button);
+        videos.setOnClickListener(this);
 
     }
 
@@ -69,7 +70,8 @@ public class MyActivity extends Activity implements View.OnClickListener{
     }
 
     public void goToVideos() {
-        Intent videos = new Intent(this, videosActivity.class);
-        startActivity(videos);
+
+        Intent video = new Intent(this, videosActivity.class);
+        startActivity(video);
     }
 }
