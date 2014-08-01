@@ -64,8 +64,8 @@ public class MyActivity extends Activity implements View.OnClickListener{
 
     public void goToPractice() {
 
-        Intent keypad = new Intent(this, keypadActivity.class);
-        startActivity(keypad);
+        Intent lock = new Intent(this, lockActivity.class);
+        startActivity(lock);
 
     }
 

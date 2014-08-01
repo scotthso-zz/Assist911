@@ -36,6 +36,12 @@
             android:screenOrientation="portrait">
         </activity>
 
+        <activity
+            android:name=".lockActivity"
+            android:label="Assist911"
+            android:screenOrientation="portrait">
+        </activity>
+
     </application>
 
 </manifest>

@@ -1,35 +1,20 @@
 package scottso.assist911;
 
 import android.app.Activity;
-import android.app.Fragment;
-import android.app.FragmentTransaction;
-import android.app.NotificationManager;
-import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
-import android.media.RingtoneManager;
-import android.net.Uri;
 import android.os.Bundle;
 import android.os.CountDownTimer;
-import android.speech.tts.TextToSpeech;
-import android.util.Log;
-import android.view.Menu;
-import android.view.MenuItem;
+
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.TextView;
 
-import android.speech.tts.TextToSpeech.Engine;
-
-import java.text.DecimalFormat;
-import java.util.Locale;
-import java.util.logging.Handler;
 
 /**
  * Created by scottso on 2014-07-21.
  */
-public class keypadActivity extends Activity implements View.OnClickListener, TextToSpeech.OnInitListener {
+public class keypadActivity extends Activity implements View.OnClickListener {
 
     private Button one, two, three, four, five, six, seven, eight, nine, zero, star, pound, delete, call;
 
@@ -44,8 +29,7 @@ public class keypadActivity extends Activity implements View.OnClickListener, Te
     private long startTime = 8 * 1000;
     private final long interval = 1 * 1000;
 
-    private static int TTS_DATA_CHECK = 1;
-    private TextToSpeech tts;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -91,7 +75,7 @@ public class keypadActivity extends Activity implements View.OnClickListener, Te
 
         call.setOnClickListener(this);
 
-        tts = new TextToSpeech(this, this);
+
 
         countDownTimer = new MyCountDownTimer(startTime, interval);
 
@@ -106,36 +90,6 @@ public class keypadActivity extends Activity implements View.OnClickListener, Te
 
     }
 
-    @Override
-    public void onDestroy() {
-        // Don't forget to shutdown tts!
-        if (tts != null) {
-            tts.stop();
-            tts.shutdown();
-        }
-        super.onDestroy();
-    }
-
-    @Override
-    public void onInit(int status) {
-        if (status == TextToSpeech.SUCCESS) {
-            int result = tts.setLanguage(Locale.US);
-            if (result == TextToSpeech.LANG_MISSING_DATA
-                    || result == TextToSpeech.LANG_NOT_SUPPORTED) {
-                Log.e("TTS", "This Language is not supported");
-            } else {
-                speakOut();
-            }
-        } else {
-            Log.e("TTS", "Initilization Failed!");
-        }
-    }
-
-    private void speakOut() {
-        String text = "Please pick up the phone";
-        tts.speak(text, TextToSpeech.QUEUE_FLUSH, null);
-    }
-
     public class MyCountDownTimer extends CountDownTimer {
 
         public MyCountDownTimer(long startTime, long interval) {
@@ -145,10 +99,7 @@ public class keypadActivity extends Activity implements View.OnClickListener, Te
         @Override
         public void onTick(long millisUntilFinished) {
 
-            if (millisUntilFinished/1000 == 7) {
-                speakOut();
-            }
-            else if (millisUntilFinished/1000 == 6) {
+               if (millisUntilFinished/1000 == 6) {
                 nine.setBackgroundColor(Color.rgb(247, 202, 24));
             } else if (millisUntilFinished/1000 == 5) {
                 nine.setBackgroundColor(Color.WHITE);
