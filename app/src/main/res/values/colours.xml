@@ -4,6 +4,8 @@
     <color name="keypad_background">#fff</color>
     <color name="keypad_pressed_background">#eee</color>
     <color name="number_colour">#4183D7</color>
+
+    <color name="dial_pressed_background">#3A539B</color>
     <color name="textview_colour">#EEEEEE</color>
 
 </resources>

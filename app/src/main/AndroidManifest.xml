@@ -29,9 +29,12 @@
             android:label="Assist911"
             android:screenOrientation="portrait">
         </activity>
-        
-        
 
+        <activity
+            android:name=".callActivity"
+            android:label="Assist911"
+            android:screenOrientation="portrait">
+        </activity>
 
     </application>
 

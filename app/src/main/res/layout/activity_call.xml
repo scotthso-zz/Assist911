@@ -5,10 +5,22 @@
     android:layout_height="match_parent"
     android:weightSum="1">
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/editText"
+        android:text="Dialing 911"
+        android:textSize="30pt"
+        android:layout_weight="0.03" />
+
     <Button
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:text="New Button"
+        android:layout_height="90dp"
+        android:text="END"
+        android:textColor="#fff"
+        android:textSize="20pt"
+        android:layout_marginTop="400dp"
+        android:background="#EF4836"
         android:id="@+id/button"
         android:layout_weight="0.03" />
 </LinearLayout>

@@ -11,7 +11,7 @@ public class callActivity extends Activity {
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_videos);
+        setContentView(R.layout.activity_call);
 
     }
 
