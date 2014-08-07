@@ -2,6 +2,7 @@ package scottso.assist911;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.CountDownTimer;
@@ -21,6 +22,7 @@ public class lockActivity extends Activity implements View.OnClickListener, Text
     private static int TTS_DATA_CHECK = 1;
     private TextToSpeech tts;
 
+
     private Button unlockButton;
 
     private CountDownTimer countDownTimer;
@@ -30,9 +32,11 @@ public class lockActivity extends Activity implements View.OnClickListener, Text
     private final long interval = 1 * 1000;
 
 
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lock);
+
 
         tts = new TextToSpeech(this, this);
 
@@ -78,7 +82,7 @@ public class lockActivity extends Activity implements View.OnClickListener, Text
     }
 
     private void speakPickUp() {
-        String text = "Please pick up the phone";
+        String text = "Please pick up the phone. Stay calm.";
         tts.speak(text, TextToSpeech.QUEUE_FLUSH, null);
     }
 

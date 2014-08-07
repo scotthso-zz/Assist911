@@ -2,6 +2,7 @@ package scottso.assist911;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -14,6 +15,9 @@ public class MyActivity extends Activity implements View.OnClickListener{
     private Button practice;
     private Button videos;
 
+    private int timesOpenedTemp;
+    private int timesOpened;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -24,6 +28,8 @@ public class MyActivity extends Activity implements View.OnClickListener{
 
         videos = (Button) this.findViewById(R.id.videos_button);
         videos.setOnClickListener(this);
+
+
 
     }
 
@@ -53,6 +59,30 @@ public class MyActivity extends Activity implements View.OnClickListener{
 
             case R.id.practice_button:
             goToPractice();
+                SharedPreferences settings = getApplicationContext().getSharedPreferences("settings", 0);
+                SharedPreferences.Editor editor = settings.edit();
+
+                timesOpenedTemp = settings.getInt("timesOpened",0);
+
+                if (timesOpenedTemp == 0) {
+                    timesOpenedTemp++;
+                    timesOpenedTemp = 1;
+                    editor.putInt("timesOpened", timesOpenedTemp);
+                    editor.apply();
+                    editor.commit();
+                    timesOpened = settings.getInt("timesOpened", 0);
+                    System.out.println("It equals 0");
+
+                }else {
+                    timesOpened++;
+                    editor.putInt("timesOpened", timesOpened);
+                    editor.apply();
+                    editor.commit();
+                    timesOpened = settings.getInt("timesOpened", 0);
+                }
+
+                System.out.println(timesOpened);
+
             break;
 
             case R.id.videos_button:
