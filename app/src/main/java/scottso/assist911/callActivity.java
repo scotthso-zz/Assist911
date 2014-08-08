@@ -75,7 +75,7 @@ public class callActivity extends Activity implements View.OnClickListener, Text
     }
 
     public void ambulanceQuestion() {
-        String text = "Amublance is on their way. Where are you located?";
+        String text = "E M S is on their way. Where are you located?";
         tts.speak(text, TextToSpeech.QUEUE_FLUSH, null);
     }
 
@@ -144,6 +144,7 @@ public class callActivity extends Activity implements View.OnClickListener, Text
             Log.d(TAG, "onEvent " + eventType);
         }
     }
+
 
     public void onClick(View v) {
         if (v.getId() == R.id.btn_speak) {

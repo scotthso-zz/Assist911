@@ -14,8 +14,9 @@
         android:layout_weight="0.03" />
 
     <ImageView
-        android:layout_width="wrap_content"
+        android:layout_width="fill_parent"
         android:layout_height="310dp"
+        android:background="#6C7A89"
         android:id="@+id/imageView"
         android:layout_weight="0.03" />
 

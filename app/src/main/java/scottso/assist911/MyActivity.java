@@ -3,7 +3,9 @@ package scottso.assist911;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.SharedPreferences.Editor;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -15,73 +17,67 @@ public class MyActivity extends Activity implements View.OnClickListener{
     private Button practice;
     private Button videos;
 
-    private int timesOpenedTemp;
-    private int timesOpened;
+     int timesOpenedTemp;
+     int timesOpened;
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_my);
+    SharedPreferences pref;
 
-        practice = (Button) this.findViewById(R.id.practice_button);
-        practice.setOnClickListener(this);
+    Editor editor;
 
-        videos = (Button) this.findViewById(R.id.videos_button);
-        videos.setOnClickListener(this);
+                @Override
+                protected void onCreate(Bundle savedInstanceState) {
+                super.onCreate(savedInstanceState);
+                setContentView(R.layout.activity_my);
+
+                practice = (Button) this.findViewById(R.id.practice_button);
+                practice.setOnClickListener(this);
+
+                videos = (Button) this.findViewById(R.id.videos_button);
+                videos.setOnClickListener(this);
+
+                     pref = getApplicationContext().getSharedPreferences("MyPref", 0);
+                    editor = pref.edit();
+
+                    timesOpened = pref.getInt("timesOpened", 2);
+
+            }
 
 
+            @Override
+            public boolean onCreateOptionsMenu(Menu menu) {
+                // Inflate the menu; this adds items to the action bar if it is present.
+                getMenuInflater().inflate(R.menu.my, menu);
+                return true;
+            }
 
-    }
-
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.my, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-        if (id == R.id.action_settings) {
-            return true;
-        }
-        return super.onOptionsItemSelected(item);
-    }
-
-    public void onClick(View v) {
-
-        switch(v.getId()) {
-
-            case R.id.practice_button:
-            goToPractice();
-                SharedPreferences settings = getApplicationContext().getSharedPreferences("settings", 0);
-                SharedPreferences.Editor editor = settings.edit();
-
-                timesOpenedTemp = settings.getInt("timesOpened",0);
-
-                if (timesOpenedTemp == 0) {
-                    timesOpenedTemp++;
-                    timesOpenedTemp = 1;
-                    editor.putInt("timesOpened", timesOpenedTemp);
-                    editor.apply();
-                    editor.commit();
-                    timesOpened = settings.getInt("timesOpened", 0);
-                    System.out.println("It equals 0");
-
-                }else {
-                    timesOpened++;
-                    editor.putInt("timesOpened", timesOpened);
-                    editor.apply();
-                    editor.commit();
-                    timesOpened = settings.getInt("timesOpened", 0);
+            @Override
+            public boolean onOptionsItemSelected(MenuItem item) {
+                // Handle action bar item clicks here. The action bar will
+                // automatically handle clicks on the Home/Up button, so long
+                // as you specify a parent activity in AndroidManifest.xml.
+                int id = item.getItemId();
+                if (id == R.id.action_settings) {
+                    return true;
                 }
+                return super.onOptionsItemSelected(item);
+            }
 
-                System.out.println(timesOpened);
+        public void onClick(View v) {
+
+
+
+            switch(v.getId()) {
+
+
+                case R.id.practice_button:
+                    goToPractice();
+
+                        timesOpened++;
+                        editor.putInt("timesOpened", timesOpened);
+                        editor.commit();
+
+
+                System.out.println(pref.getInt("timesOpened",2));
 
             break;
 
