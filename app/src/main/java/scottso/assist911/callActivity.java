@@ -36,9 +36,14 @@ public class callActivity extends Activity implements View.OnClickListener, Text
 
         tts = new TextToSpeech(this, this);
 
+        Button endButton = (Button) findViewById(R.id.endButton);
         Button speakButton = (Button) findViewById(R.id.btn_speak);
+
         mText = (TextView) findViewById(R.id.textView1);
+
         speakButton.setOnClickListener(this);
+        endButton.setOnClickListener(this);
+
         sr = SpeechRecognizer.createSpeechRecognizer(this);
         sr.setRecognitionListener(new listener());
 
@@ -155,10 +160,20 @@ public class callActivity extends Activity implements View.OnClickListener, Text
             intent.putExtra(RecognizerIntent.EXTRA_MAX_RESULTS, 5);
             sr.startListening(intent);
             Log.i("111111", "11111111");
+        } else if (v.getId() == R.id.endButton) {
+
+            goToKeypad();
         }
 
     }
 
+    public void goToKeypad() {
+
+        Intent keypad = new Intent(this, keypadActivity.class);
+        startActivity(keypad);
+
     }
+    }
+
 
 

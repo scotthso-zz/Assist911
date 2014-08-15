@@ -14,15 +14,16 @@ import android.widget.Button;
 
 public class MyActivity extends Activity implements View.OnClickListener{
 
+
     private Button practice;
     private Button videos;
+    private Button settings;
 
      int timesOpenedTemp;
      int timesOpened;
 
-    SharedPreferences pref;
-
-    Editor editor;
+    public SharedPreferences pref;
+    public Editor editor;
 
                 @Override
                 protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +35,9 @@ public class MyActivity extends Activity implements View.OnClickListener{
 
                 videos = (Button) this.findViewById(R.id.videos_button);
                 videos.setOnClickListener(this);
+
+                settings = (Button) this.findViewById(R.id.settings_button);
+                settings.setOnClickListener(this);
 
                      pref = getApplicationContext().getSharedPreferences("MyPref", 0);
                     editor = pref.edit();
@@ -64,10 +68,7 @@ public class MyActivity extends Activity implements View.OnClickListener{
 
         public void onClick(View v) {
 
-
-
             switch(v.getId()) {
-
 
                 case R.id.practice_button:
                     goToPractice();
@@ -84,20 +85,26 @@ public class MyActivity extends Activity implements View.OnClickListener{
             case R.id.videos_button:
                 goToVideos();
                 break;
+
+            case R.id.settings_button:
+                goToSettings();
+                break;
         }
 
     }
 
     public void goToPractice() {
-
         Intent lock = new Intent(this, lockActivity.class);
         startActivity(lock);
-
     }
 
     public void goToVideos() {
-
         Intent video = new Intent(this, videosActivity.class);
         startActivity(video);
+    }
+
+    public void goToSettings() {
+        Intent settings = new Intent(this, settingsActivity.class);
+        startActivity(settings);
     }
 }

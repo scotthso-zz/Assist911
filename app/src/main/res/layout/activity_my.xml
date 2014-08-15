@@ -54,7 +54,7 @@
         android:layout_height="wrap_content"
         android:text="Settings"
         android:textSize="14pt"
-        android:id="@+id/button3"
+        android:id="@+id/settings_button"
         android:layout_below="@+id/button2"
         android:layout_weight="1"
         android:layout_alignParentLeft="true"
