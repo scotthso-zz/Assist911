@@ -20,7 +20,6 @@ public class MyActivity extends Activity implements View.OnClickListener{
     private Button settings;
     private Button report;
 
-     int timesOpenedTemp;
      int timesOpened;
 
     public SharedPreferences pref;

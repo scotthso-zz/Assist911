@@ -84,6 +84,12 @@ public class callActivity extends Activity implements View.OnClickListener, Text
         tts.speak(text, TextToSpeech.QUEUE_FLUSH, null);
     }
 
+    public void policeQuestion() {
+        String text = "Police is on their way. Where are you located?";
+        tts.speak(text, TextToSpeech.QUEUE_FLUSH, null);
+
+    }
+
     @Override
     public void onDestroy() {
         // Don't forget to shutdown tts!
@@ -134,6 +140,8 @@ public class callActivity extends Activity implements View.OnClickListener, Text
                 fireQuestion();
             } else if (String.valueOf(data.get(0)).trim().toLowerCase().contains("ing")) {
                 ambulanceQuestion();
+            } else if (String.valueOf(data.get(0)).trim().toLowerCase().contains("ice")) {
+                policeQuestion();
             }
 
 
