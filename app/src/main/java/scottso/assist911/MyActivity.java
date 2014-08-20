@@ -18,6 +18,7 @@ public class MyActivity extends Activity implements View.OnClickListener{
     private Button practice;
     private Button videos;
     private Button settings;
+    private Button report;
 
      int timesOpenedTemp;
      int timesOpened;
@@ -38,6 +39,9 @@ public class MyActivity extends Activity implements View.OnClickListener{
 
                 settings = (Button) this.findViewById(R.id.settings_button);
                 settings.setOnClickListener(this);
+
+                report = (Button) this.findViewById(R.id.report_button);
+                report.setOnClickListener(this);
 
                      pref = getApplicationContext().getSharedPreferences("MyPref", 0);
                     editor = pref.edit();
@@ -89,6 +93,10 @@ public class MyActivity extends Activity implements View.OnClickListener{
             case R.id.settings_button:
                 goToSettings();
                 break;
+
+            case R.id.report_button:
+                goToReport();
+                break;
         }
 
     }
@@ -107,4 +115,12 @@ public class MyActivity extends Activity implements View.OnClickListener{
         Intent settings = new Intent(this, settingsActivity.class);
         startActivity(settings);
     }
+
+    public void goToReport() {
+        Intent report = new Intent(this, reportActivity.class);
+        startActivity(report);
+    }
+
 }
+
+

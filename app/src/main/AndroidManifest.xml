@@ -53,6 +53,12 @@
             android:screenOrientation="portrait">
         </activity>
 
+        <activity android:name=".reportActivity"
+            android:label="Assist911"
+            android:screenOrientation="portrait">
+
+            </activity>
+
     </application>
 
 </manifest>
