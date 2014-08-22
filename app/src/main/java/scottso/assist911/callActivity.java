@@ -1,6 +1,7 @@
 package scottso.assist911;
 
 import android.app.Activity;
+import android.app.DialogFragment;
 import android.content.Intent;
 import android.os.Bundle;
 import android.speech.RecognitionListener;
@@ -21,6 +22,7 @@ import java.util.Locale;
  */
 
 public class callActivity extends Activity implements View.OnClickListener, TextToSpeech.OnInitListener {
+
 
     private TextView mText;
     private SpeechRecognizer sr;
@@ -47,9 +49,7 @@ public class callActivity extends Activity implements View.OnClickListener, Text
         sr = SpeechRecognizer.createSpeechRecognizer(this);
         sr.setRecognitionListener(new listener());
 
-
         firstQuestion();
-
 
 
     }
@@ -62,7 +62,9 @@ public class callActivity extends Activity implements View.OnClickListener, Text
                     || result == TextToSpeech.LANG_NOT_SUPPORTED) {
                 Log.e("TTS", "This Language is not supported");
             } else {
+
                 firstQuestion();
+
             }
         } else {
             Log.e("TTS", "Initilization Failed!");
@@ -70,7 +72,7 @@ public class callActivity extends Activity implements View.OnClickListener, Text
     }
 
     private void firstQuestion() {
-            String text = "911 state your emergency";
+        String text = "911 state your emergency";
         tts.speak(text, TextToSpeech.QUEUE_FLUSH, null);
     }
 
@@ -87,7 +89,6 @@ public class callActivity extends Activity implements View.OnClickListener, Text
     public void policeQuestion() {
         String text = "Police is on their way. Where are you located?";
         tts.speak(text, TextToSpeech.QUEUE_FLUSH, null);
-
     }
 
     @Override
@@ -181,7 +182,15 @@ public class callActivity extends Activity implements View.OnClickListener, Text
         startActivity(keypad);
 
         }
+
+    public void onPrompt() {
+        DialogFragment newFragment = new promptDialogFragment();
+        newFragment.show(getFragmentManager(), "PromptDialogFragment");
     }
+
+    }
+
+
 
 
 

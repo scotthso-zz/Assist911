@@ -11,14 +11,18 @@ import android.widget.Button;
  */
 public class settingsActivity extends Activity implements View.OnClickListener {
 
-    Button resetButton;
-    SharedPreferences.Editor editor;
+
+    SharedPreferences.Editor editor = MyActivity.editor;
+
+    int timesOpened = MyActivity.timesOpened;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
 
-        MyActivity myactivity = new MyActivity();
+        Button resetButton = (Button)findViewById(R.id.button_reset);
+        resetButton.setOnClickListener(this);
+
     }
 
     public void onClick(View v) {
@@ -29,6 +33,9 @@ public class settingsActivity extends Activity implements View.OnClickListener {
 
         editor.clear();
         editor.commit();
+
+
+                break;
 
         }
 

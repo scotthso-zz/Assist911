@@ -20,10 +20,10 @@ public class MyActivity extends Activity implements View.OnClickListener{
     private Button settings;
     private Button report;
 
-     int timesOpened;
+    static int timesOpened;
 
-    public SharedPreferences pref;
-    public Editor editor;
+    static SharedPreferences pref;
+    static Editor editor;
 
                 @Override
                 protected void onCreate(Bundle savedInstanceState) {
