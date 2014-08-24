@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -20,10 +19,10 @@ public class MyActivity extends Activity implements View.OnClickListener{
     private Button settings;
     private Button report;
 
-    static int timesOpened;
+    public static int TIMES_OPENED;
 
-    static SharedPreferences pref;
-    static Editor editor;
+     public static SharedPreferences PREF;
+     public static Editor EDITOR;
 
                 @Override
                 protected void onCreate(Bundle savedInstanceState) {
@@ -42,10 +41,10 @@ public class MyActivity extends Activity implements View.OnClickListener{
                 report = (Button) this.findViewById(R.id.report_button);
                 report.setOnClickListener(this);
 
-                     pref = getApplicationContext().getSharedPreferences("MyPref", 0);
-                    editor = pref.edit();
+                     PREF = getApplicationContext().getSharedPreferences("MyPref", MODE_WORLD_READABLE);
+                    EDITOR = PREF.edit();
 
-                    timesOpened = pref.getInt("timesOpened", 2);
+                    TIMES_OPENED = PREF.getInt("TIMES_OPENED", 0);
 
             }
 
@@ -76,21 +75,32 @@ public class MyActivity extends Activity implements View.OnClickListener{
                 case R.id.practice_button:
                     goToPractice();
 
-                        timesOpened++;
-                        editor.putInt("timesOpened", timesOpened);
-                        editor.commit();
+                        TIMES_OPENED++;
+                        EDITOR.putInt("TIMES_OPENED", TIMES_OPENED);
+                    EDITOR.commit();
 
 
-                System.out.println(pref.getInt("timesOpened",2));
+                    System.out.println(PREF.getInt("TIMES_OPENED", 0));
+
 
             break;
 
             case R.id.videos_button:
+
+
                 goToVideos();
+
+                System.out.println(PREF.getInt("TIMES_OPENED", 0));
+
                 break;
 
             case R.id.settings_button:
+
+
+
                 goToSettings();
+
+
                 break;
 
             case R.id.report_button:
@@ -101,22 +111,22 @@ public class MyActivity extends Activity implements View.OnClickListener{
     }
 
     public void goToPractice() {
-        Intent lock = new Intent(this, lockActivity.class);
+        Intent lock = new Intent(this, LockActivity.class);
         startActivity(lock);
     }
 
     public void goToVideos() {
-        Intent video = new Intent(this, videosActivity.class);
+        Intent video = new Intent(this, VideosActivity.class);
         startActivity(video);
     }
 
     public void goToSettings() {
-        Intent settings = new Intent(this, settingsActivity.class);
+        Intent settings = new Intent(this, SettingsActivity.class);
         startActivity(settings);
     }
 
     public void goToReport() {
-        Intent report = new Intent(this, reportActivity.class);
+        Intent report = new Intent(this, ReportActivity.class);
         startActivity(report);
     }
 

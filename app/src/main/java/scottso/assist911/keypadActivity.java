@@ -14,7 +14,7 @@ import android.widget.TextView;
 /**
  * Created by scottso on 2014-07-21.
  */
-public class keypadActivity extends Activity implements View.OnClickListener {
+public class KeypadActivity extends Activity implements View.OnClickListener {
 
     private Button one, two, three, four, five, six, seven, eight, nine, zero, star, pound, delete, call;
 
@@ -217,7 +217,7 @@ public class keypadActivity extends Activity implements View.OnClickListener {
 
     public void goToCall() {
 
-        Intent call = new Intent(this, callActivity.class);
+        Intent call = new Intent(this, CallActivity.class);
         startActivity(call);
 
     }

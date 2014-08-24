@@ -2,22 +2,19 @@ package scottso.assist911;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.content.SharedPreferences;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.speech.tts.TextToSpeech;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.Switch;
 
 import java.util.Locale;
 
 /**
  * Created by scottso on 2014-08-01.
  */
-public class lockActivity extends Activity implements View.OnClickListener, TextToSpeech.OnInitListener {
+public class LockActivity extends Activity implements View.OnClickListener, TextToSpeech.OnInitListener {
 
     private static int TTS_DATA_CHECK = 1;
     private TextToSpeech tts;
@@ -127,7 +124,7 @@ public class lockActivity extends Activity implements View.OnClickListener, Text
 
     public void goToDialpad() {
 
-        Intent dial = new Intent(this, keypadActivity.class);
+        Intent dial = new Intent(this, KeypadActivity.class);
         startActivity(dial);
 
         }

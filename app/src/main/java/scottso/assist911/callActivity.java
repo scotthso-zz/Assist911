@@ -1,7 +1,6 @@
 package scottso.assist911;
 
 import android.app.Activity;
-import android.app.DialogFragment;
 import android.content.Intent;
 import android.os.Bundle;
 import android.speech.RecognitionListener;
@@ -21,7 +20,7 @@ import java.util.Locale;
  * Created by scottso on 2014-07-31.
  */
 
-public class callActivity extends Activity implements View.OnClickListener, TextToSpeech.OnInitListener {
+public class CallActivity extends Activity implements View.OnClickListener, TextToSpeech.OnInitListener {
 
 
     private TextView mText;
@@ -178,15 +177,12 @@ public class callActivity extends Activity implements View.OnClickListener, Text
 
     public void goToKeypad() {
 
-        Intent keypad = new Intent(this, keypadActivity.class);
+        Intent keypad = new Intent(this, KeypadActivity.class);
         startActivity(keypad);
 
         }
 
-    public void onPrompt() {
-        DialogFragment newFragment = new promptDialogFragment();
-        newFragment.show(getFragmentManager(), "PromptDialogFragment");
-    }
+
 
     }
 

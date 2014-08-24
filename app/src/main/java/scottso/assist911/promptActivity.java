@@ -14,7 +14,7 @@ import java.util.Locale;
 /**
  * Created by scottso on 2014-07-25.
  */
-public class promptActivity extends Activity {
+public class PromptActivity extends Activity {
 
     TextToSpeech ttobj;
     private EditText write;

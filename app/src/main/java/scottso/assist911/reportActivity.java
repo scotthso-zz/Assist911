@@ -5,7 +5,7 @@ import android.app.Activity;
 /**
  * Created by scottso on 2014-08-20.
  */
-public class reportActivity extends Activity {
+public class ReportActivity extends Activity {
 
 
 

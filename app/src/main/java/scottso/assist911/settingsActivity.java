@@ -1,20 +1,11 @@
 package scottso.assist911;
 
 import android.app.Activity;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-/**
- * Created by scottso on 2014-08-08.
- */
-public class settingsActivity extends Activity implements View.OnClickListener {
-
-
-    SharedPreferences.Editor editor = MyActivity.editor;
-
-    int timesOpened = MyActivity.timesOpened;
+public class SettingsActivity extends Activity implements View.OnClickListener {
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,13 +22,11 @@ public class settingsActivity extends Activity implements View.OnClickListener {
 
             case R.id.button_reset:
 
-        editor.clear();
-        editor.commit();
-
+                MyActivity.EDITOR.clear();
+                MyActivity.EDITOR.commit();
+                MyActivity.TIMES_OPENED = 0;
 
                 break;
-
-        }
-
-    }
 }
+        }
+        }
