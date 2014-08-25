@@ -10,6 +10,7 @@ import android.os.CountDownTimer;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
 /**
@@ -137,6 +138,7 @@ public class KeypadActivity extends Activity implements View.OnClickListener {
                         contactDisp.append(" - Emergency");
                     }
 
+
                     break;
 
                 case R.id.button2:
@@ -209,7 +211,8 @@ public class KeypadActivity extends Activity implements View.OnClickListener {
                         goToCall();
 
                     } else {
-
+                        Toast toast = Toast.makeText(getApplicationContext(), "Try Again", Toast.LENGTH_SHORT);
+                        toast.show();
                         TRIES++;
                     }
                     break;
