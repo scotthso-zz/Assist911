@@ -22,6 +22,7 @@ public class MyActivity extends Activity implements View.OnClickListener{
     private Button report;
 
     public static int TIMES_OPENED;
+    public static boolean REMOVED_TEXT_PROMPT = false;
 
     public static SharedPreferences PREF;
     public static Editor EDITOR;
@@ -43,10 +44,16 @@ public class MyActivity extends Activity implements View.OnClickListener{
                 report = (Button) this.findViewById(R.id.report_button);
                 report.setOnClickListener(this);
 
-                     PREF = getApplicationContext().getSharedPreferences("MyPref", MODE_WORLD_READABLE);
-                    EDITOR = PREF.edit();
+                PREF = getApplicationContext().getSharedPreferences("MyPref", MODE_WORLD_READABLE);
+                EDITOR = PREF.edit();
 
                     TIMES_OPENED = PREF.getInt("TIMES_OPENED", 0);
+                    REMOVED_TEXT_PROMPT = PREF.getBoolean("REMOVED_TEXT_PROMPT", false);
+
+
+
+
+
 
             }
 

@@ -40,8 +40,22 @@ public class LockActivity extends Activity implements View.OnClickListener, Text
 
         gDetect = new GestureDetectorCompat(this, new GestureListener());
 
-        DialogFragment newFragment = new PromptUnlockDialog();
-        newFragment.show(getFragmentManager(), "PromptDialog");
+        if(MyActivity.TIMES_OPENED > 5 && MyActivity.REMOVED_TEXT_PROMPT == false) {
+
+            DialogFragment newFragment = new PromptRemovedDialog();
+            newFragment.show(getFragmentManager(), "PromptDialog");
+
+            MyActivity.REMOVED_TEXT_PROMPT = true;
+            MyActivity.EDITOR.putBoolean("REMOVED_TEXT_PROMPT", true);
+            MyActivity.EDITOR.commit();
+
+        }
+
+
+        if (MyActivity.TIMES_OPENED <= 5) {
+            DialogFragment newFragment = new PromptUnlockDialog();
+            newFragment.show(getFragmentManager(), "PromptDialog");
+        }
 
         tts = new TextToSpeech(this, this);
 

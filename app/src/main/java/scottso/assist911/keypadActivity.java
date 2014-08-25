@@ -77,9 +77,10 @@ public class KeypadActivity extends Activity implements View.OnClickListener {
 
         call.setOnClickListener(this);
 
-        DialogFragment newFragment = new PromptDialDialog();
-        newFragment.show(getFragmentManager(), "PromptDialog");
-
+        if (MyActivity.TIMES_OPENED <= 5) {
+            DialogFragment newFragment = new PromptDialDialog();
+            newFragment.show(getFragmentManager(), "PromptDialog");
+        }
 
         countDownTimer = new MyCountDownTimer(startTime, interval);
 

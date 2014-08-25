@@ -38,8 +38,10 @@ public class CallActivity extends Activity implements View.OnClickListener, Text
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_call);
 
-        DialogFragment newFragment = new PromptCallDialog();
-        newFragment.show(getFragmentManager(), "PromptDialog");
+        if(MyActivity.TIMES_OPENED <= 5) {
+            DialogFragment newFragment = new PromptCallDialog();
+            newFragment.show(getFragmentManager(), "PromptDialog");
+        }
 
         tts = new TextToSpeech(this, this);
 

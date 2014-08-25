@@ -21,6 +21,14 @@
         android:gravity="center"
         android:id="@+id/tries" />
 
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="100dp"
+        android:text="Removed Dialog"
+        android:textSize="12pt"
+        android:gravity="center"
+        android:id="@+id/removed_dialog" />
+
 
     <Button
         android:layout_width="fill_parent"
