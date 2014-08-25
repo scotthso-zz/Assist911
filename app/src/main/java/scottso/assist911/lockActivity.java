@@ -6,7 +6,10 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.speech.tts.TextToSpeech;
+import android.support.v4.view.GestureDetectorCompat;
 import android.util.Log;
+import android.view.GestureDetector;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 
@@ -29,12 +32,13 @@ public class LockActivity extends Activity implements View.OnClickListener, Text
     private long startTime = 10 * 1000;
     private final long interval = 1 * 1000;
 
-
+    private GestureDetectorCompat gDetect;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lock);
 
+        gDetect = new GestureDetectorCompat(this, new GestureListener());
 
         DialogFragment newFragment = new PromptUnlockDialog();
         newFragment.show(getFragmentManager(), "PromptDialog");
@@ -57,6 +61,62 @@ public class LockActivity extends Activity implements View.OnClickListener, Text
         }
 
     }
+
+
+    @Override
+    public boolean onTouchEvent(MotionEvent event){
+        this.gDetect.onTouchEvent(event);
+        return super.onTouchEvent(event);
+    }
+
+    public class GestureListener extends GestureDetector.SimpleOnGestureListener {
+//class content
+
+        private float flingMin = 100;
+        private float velocityMin = 100;
+
+        //user will move right through messages on fling up or left
+        boolean right = false;
+
+        @Override
+        public boolean onDown(MotionEvent event) {
+            return true;
+        }
+
+        @Override
+        public boolean onFling(MotionEvent event1, MotionEvent event2,
+                               float velocityX, float velocityY) {
+            //determine what happens on fling events
+            //calculate the change in X position within the fling gesture
+            float horizontalDiff = event2.getX() - event1.getX();
+//calculate the change in Y position within the fling gesture
+            float verticalDiff = event2.getY() - event1.getY();
+
+            float absHDiff = Math.abs(horizontalDiff);
+            float absVDiff = Math.abs(verticalDiff);
+            float absVelocityX = Math.abs(velocityX);
+            float absVelocityY = Math.abs(velocityY);
+
+            if(absHDiff>absVDiff && absHDiff>flingMin && absVelocityX>velocityMin){
+//move right or backward
+                if(horizontalDiff<0)
+                 right =true;
+            } else if(absVDiff>flingMin && absVelocityY>velocityMin){
+                if(verticalDiff<0)
+                 right =true;
+            }
+
+            if(right){
+                goToDialpad();
+               System.out.println("FORWARD");
+            }
+//user is cycling backwards through messages
+
+
+            return true;
+        }
+    }
+
 
     public void onClick(View view) {
 
