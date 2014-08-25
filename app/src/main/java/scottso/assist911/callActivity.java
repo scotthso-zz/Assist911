@@ -29,6 +29,8 @@ public class CallActivity extends Activity implements View.OnClickListener, Text
 
     private TextToSpeech tts;
 
+
+
     ArrayList data;
     private static final String TAG = "MyStt3Activity";
 

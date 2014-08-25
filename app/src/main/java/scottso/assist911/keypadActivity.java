@@ -30,7 +30,7 @@ public class KeypadActivity extends Activity implements View.OnClickListener {
     private long startTime = 8 * 1000;
     private final long interval = 1 * 1000;
 
-
+    public static int TRIES;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -133,11 +133,9 @@ public class KeypadActivity extends Activity implements View.OnClickListener {
 
                     String estr = contactDisp.getText().toString().trim();
 
-
                     if (estr.equals(emergency)) {
                         contactDisp.append(" - Emergency");
                     }
-
 
                     break;
 
@@ -210,6 +208,9 @@ public class KeypadActivity extends Activity implements View.OnClickListener {
                     if (numbDisp.getText().toString().equals(emergency)) {
                         goToCall();
 
+                    } else {
+
+                        TRIES++;
                     }
                     break;
 
