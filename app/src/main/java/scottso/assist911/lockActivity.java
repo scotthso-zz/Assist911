@@ -49,6 +49,15 @@ public class LockActivity extends Activity implements View.OnClickListener, Text
             MyActivity.EDITOR.putBoolean("REMOVED_TEXT_PROMPT", true);
             MyActivity.EDITOR.commit();
 
+        } else if (MyActivity.TIMES_OPENED > 10 && MyActivity.REMOVED_AUDIO_PROMPT == false) {
+
+            DialogFragment newFragment = new AudioPromptRemovedDialog();
+            newFragment.show(getFragmentManager(), "PromptDialog");
+
+            MyActivity.REMOVED_AUDIO_PROMPT = true;
+            MyActivity.EDITOR.putBoolean("REMOVED_AUDIO_PROMPT", true);
+            MyActivity.EDITOR.commit();
+
         }
 
 
@@ -150,7 +159,6 @@ public class LockActivity extends Activity implements View.OnClickListener, Text
                     || result == TextToSpeech.LANG_NOT_SUPPORTED) {
                 Log.e("TTS", "This Language is not supported");
             } else {
-                speakPickUp();
             }
         } else {
             Log.e("TTS", "Initilization Failed!");
@@ -186,10 +194,12 @@ public class LockActivity extends Activity implements View.OnClickListener, Text
         @Override
         public void onTick(long millisUntilFinished) {
 
-            if (millisUntilFinished/1000 == 8) {
+            if (millisUntilFinished/1000 == 8 && MyActivity.TIMES_OPENED < 10) {
                 speakPickUp();
-            } else if (millisUntilFinished/1000 == 4) {
+            } else if (millisUntilFinished/1000 == 4 && MyActivity.TIMES_OPENED < 10) {
                 speakUnlock();
+            } else {
+
             }
 
         }

@@ -23,6 +23,8 @@ public class SettingsActivity extends Activity implements View.OnClickListener {
         tries.setText("Tries: " + String.valueOf(KeypadActivity.TRIES));
 
         TextView removedDialog = (TextView)findViewById(R.id.removed_dialog);
+        TextView removedAudioDialog = (TextView)findViewById(R.id.removed_audio_dialog);
+
         if (MyActivity.REMOVED_TEXT_PROMPT == true) {
 
             removedDialog.setText("Removed: TRUE");
@@ -30,6 +32,15 @@ public class SettingsActivity extends Activity implements View.OnClickListener {
         } else {
 
             removedDialog.setText("Removed: FALSE");
+        }
+
+        if (MyActivity.REMOVED_AUDIO_PROMPT == true) {
+
+            removedAudioDialog.setText("Removed Audio: TRUE");
+
+        } else {
+
+            removedAudioDialog.setText("Removed Audio: FALSE");
         }
     }
 
@@ -41,6 +52,7 @@ public class SettingsActivity extends Activity implements View.OnClickListener {
                 MyActivity.TIMES_OPENED = 0;
 
                 MyActivity.REMOVED_TEXT_PROMPT = false;
+                MyActivity.REMOVED_AUDIO_PROMPT = false;
 
                 finish();
                 startActivity(getIntent());

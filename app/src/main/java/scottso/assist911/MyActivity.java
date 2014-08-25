@@ -24,6 +24,8 @@ public class MyActivity extends Activity implements View.OnClickListener{
     public static int TIMES_OPENED;
     public static boolean REMOVED_TEXT_PROMPT = false;
 
+    public static boolean REMOVED_AUDIO_PROMPT = false;
+
     public static SharedPreferences PREF;
     public static Editor EDITOR;
 
@@ -50,7 +52,7 @@ public class MyActivity extends Activity implements View.OnClickListener{
                     TIMES_OPENED = PREF.getInt("TIMES_OPENED", 0);
                     REMOVED_TEXT_PROMPT = PREF.getBoolean("REMOVED_TEXT_PROMPT", false);
 
-
+                    REMOVED_AUDIO_PROMPT = PREF.getBoolean("REMOVED_AUDIO_PROMPT", false);
 
 
 
