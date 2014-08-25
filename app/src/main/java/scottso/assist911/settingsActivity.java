@@ -29,6 +29,8 @@ public class SettingsActivity extends Activity implements View.OnClickListener {
                 MyActivity.EDITOR.clear();
                 MyActivity.EDITOR.commit();
                 MyActivity.TIMES_OPENED = 0;
+                finish();
+                startActivity(getIntent());
                 break;
         }
     }
