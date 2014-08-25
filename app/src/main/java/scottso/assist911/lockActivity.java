@@ -1,6 +1,7 @@
 package scottso.assist911;
 
 import android.app.Activity;
+import android.app.DialogFragment;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.CountDownTimer;
@@ -35,6 +36,9 @@ public class LockActivity extends Activity implements View.OnClickListener, Text
         setContentView(R.layout.activity_lock);
 
 
+        DialogFragment newFragment = new PromptUnlockDialog();
+        newFragment.show(getFragmentManager(), "PromptDialog");
+
         tts = new TextToSpeech(this, this);
 
         unlockButton = (Button) findViewById(R.id.lock_button);
@@ -51,6 +55,7 @@ public class LockActivity extends Activity implements View.OnClickListener, Text
             countDownTimer.cancel();
             timerHasStarted = false;
         }
+
     }
 
     public void onClick(View view) {

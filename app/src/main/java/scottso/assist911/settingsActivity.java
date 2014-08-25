@@ -17,16 +17,13 @@ public class SettingsActivity extends Activity implements View.OnClickListener {
     }
 
     public void onClick(View v) {
-
         switch (v.getId()) {
-
             case R.id.button_reset:
-
                 MyActivity.EDITOR.clear();
                 MyActivity.EDITOR.commit();
                 MyActivity.TIMES_OPENED = 0;
 
                 break;
+        }
+    }
 }
-        }
-        }

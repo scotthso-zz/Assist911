@@ -4,10 +4,13 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <EditText
+    <TextView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/editText1" />
+        android:layout_height="200px"
+        android:text="Press the speech button and answer the verbal prompts"
+        android:textSize="12pt"
+        android:gravity="center"
+        android:id="@+id/textView"/>
 
 
 </LinearLayout>

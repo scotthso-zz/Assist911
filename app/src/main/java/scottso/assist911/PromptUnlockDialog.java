@@ -7,10 +7,9 @@ import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.TextView;
 
 
-public class PromptDialog extends DialogFragment {
+public class PromptUnlockDialog extends DialogFragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
 
@@ -25,23 +24,15 @@ public class PromptDialog extends DialogFragment {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         LayoutInflater inflater = getActivity().getLayoutInflater();
 
-        View v = inflater.inflate(R.layout.dialog_prompt, null);
+        View v = inflater.inflate(R.layout.dialog_prompt_unlock, null);
         builder.setView(v);
 
-        final TextView text = (TextView) v.findViewById(R.id.textView);
-
-        builder.setPositiveButton("Add", new DialogInterface.OnClickListener() {
+        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int id) {
-
+                PromptUnlockDialog.this.getDialog().cancel();
             }
-        });
-        builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog, int id) {
 
-                PromptDialog.this.getDialog().cancel();
-
-            }
         });
         return builder.create();
     }

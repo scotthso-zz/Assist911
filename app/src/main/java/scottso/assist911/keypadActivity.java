@@ -1,6 +1,7 @@
 package scottso.assist911;
 
 import android.app.Activity;
+import android.app.DialogFragment;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -75,6 +76,8 @@ public class KeypadActivity extends Activity implements View.OnClickListener {
 
         call.setOnClickListener(this);
 
+        DialogFragment newFragment = new PromptDialDialog();
+        newFragment.show(getFragmentManager(), "PromptDialog");
 
 
         countDownTimer = new MyCountDownTimer(startTime, interval);

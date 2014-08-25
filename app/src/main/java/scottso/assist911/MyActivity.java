@@ -1,6 +1,8 @@
 package scottso.assist911;
 
 import android.app.Activity;
+import android.app.Dialog;
+import android.app.DialogFragment;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
@@ -21,8 +23,8 @@ public class MyActivity extends Activity implements View.OnClickListener{
 
     public static int TIMES_OPENED;
 
-     public static SharedPreferences PREF;
-     public static Editor EDITOR;
+    public static SharedPreferences PREF;
+    public static Editor EDITOR;
 
                 @Override
                 protected void onCreate(Bundle savedInstanceState) {
@@ -76,7 +78,7 @@ public class MyActivity extends Activity implements View.OnClickListener{
                     goToPractice();
 
                         TIMES_OPENED++;
-                        EDITOR.putInt("TIMES_OPENED", TIMES_OPENED);
+                    EDITOR.putInt("TIMES_OPENED", TIMES_OPENED);
                     EDITOR.commit();
 
 
@@ -111,8 +113,8 @@ public class MyActivity extends Activity implements View.OnClickListener{
     }
 
     public void goToPractice() {
-        Intent lock = new Intent(this, LockActivity.class);
-        startActivity(lock);
+       Intent practice = new Intent(this, LockActivity.class);
+        startActivity(practice);
     }
 
     public void goToVideos() {
@@ -129,7 +131,6 @@ public class MyActivity extends Activity implements View.OnClickListener{
         Intent report = new Intent(this, ReportActivity.class);
         startActivity(report);
     }
-
 }
 
 

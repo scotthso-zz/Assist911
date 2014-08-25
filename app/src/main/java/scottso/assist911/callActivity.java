@@ -1,6 +1,7 @@
 package scottso.assist911;
 
 import android.app.Activity;
+import android.app.DialogFragment;
 import android.content.Intent;
 import android.os.Bundle;
 import android.speech.RecognitionListener;
@@ -34,6 +35,9 @@ public class CallActivity extends Activity implements View.OnClickListener, Text
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_call);
+
+        DialogFragment newFragment = new PromptCallDialog();
+        newFragment.show(getFragmentManager(), "PromptDialog");
 
         tts = new TextToSpeech(this, this);
 
