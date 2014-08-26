@@ -9,9 +9,16 @@
     <color name="textview_colour">#EEEEEE</color>
 
     <color name="practice_background">#3FC380</color>
+    <color name="practice_background_pressed">#00B16A</color>
+
     <color name="videos_background">#C0392B</color>
-    <color name="settings_background">#6C7A89</color>
+    <color name="videos_background_pressed">#96281B</color>
+
+    <color name="settings_background">#ABB7B7</color>
+    <color name="settings_background_pressed">#95A5A6</color>
+
     <color name="report_background">#81CFE0</color>
+    <color name="report_background_pressed">#58bfd6</color>
 
     <color name="text_color">#fff</color>
 
