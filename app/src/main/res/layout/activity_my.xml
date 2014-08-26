@@ -24,7 +24,7 @@
             android:id="@+id/textView"
             android:layout_weight="1"/>
     <Button
-        android:text="Practice"
+        android:text="PRACTICE"
         android:id="@+id/practice_button"
         android:layout_below="@+id/textView"
         android:layout_alignParentLeft="true"
@@ -34,21 +34,21 @@
 
     <Button
         android:layout_below="@+id/practice_button"
-        android:text="Videos"
+        android:text="VIDEOS"
         android:layout_weight="1"
         android:background="@drawable/videos_bg"
         android:id="@+id/videos_button"
         style="@style/menu_buttons"/>
 
     <Button
-        android:text="Settings"
+        android:text="SETTINGS"
         android:id="@+id/settings_button"
         android:layout_below="@+id/button2"
         android:background="@drawable/settings_bg"
         style="@style/menu_buttons"/>
 
     <Button
-        android:text= "Report Card"
+        android:text= "REPORT CARD"
         android:id="@+id/report_button"
         android:background="@drawable/report_bg"
     android:layout_below="@+id/button3"

@@ -37,7 +37,6 @@
         android:text="END"
         android:textColor="#fff"
         android:textSize="20pt"
-
         android:background="#EF4836"
         android:id="@+id/endButton"
         android:layout_weight="0.03" />

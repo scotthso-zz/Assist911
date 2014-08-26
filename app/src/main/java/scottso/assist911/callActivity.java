@@ -12,6 +12,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.Locale;
@@ -132,6 +133,10 @@ public class CallActivity extends Activity implements View.OnClickListener, Text
         public void onError(int error) {
             Log.d(TAG, "error " + error);
             mText.setText("error " + error);
+
+                Toast toast = Toast.makeText(getApplicationContext(), "Try Again", Toast.LENGTH_SHORT);
+                toast.show();
+
         }
 
         public void onResults(Bundle results) {
@@ -144,13 +149,16 @@ public class CallActivity extends Activity implements View.OnClickListener, Text
             }
 
             //Cases
-            if (String.valueOf(data.get(0)).trim().toLowerCase().contains("fire")) {
+            if (String.valueOf(data.get(0)).trim().toLowerCase().contains("fire") || String.valueOf(data.get(0)).trim().toLowerCase().contains("moke")) {
                 fireQuestion();
-            } else if (String.valueOf(data.get(0)).trim().toLowerCase().contains("ing")) {
+            } else if (String.valueOf(data.get(0)).trim().toLowerCase().contains("ing") || String.valueOf(data.get(0)).trim().toLowerCase().contains("assed")) {
                 ambulanceQuestion();
-            } else if (String.valueOf(data.get(0)).trim().toLowerCase().contains("ice")) {
+            } else if (String.valueOf(data.get(0)).trim().toLowerCase().contains("roke") || String.valueOf(data.get(0)).trim().toLowerCase().contains("ole")) {
                 policeQuestion();
             }
+
+
+            //Errors
 
 
             mText.setText("results: " + String.valueOf(data.get(0)));
