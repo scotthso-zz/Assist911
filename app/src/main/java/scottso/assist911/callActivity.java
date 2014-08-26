@@ -42,6 +42,9 @@ public class CallActivity extends Activity implements View.OnClickListener, Text
         if(MyActivity.TIMES_OPENED <= 5) {
             DialogFragment newFragment = new PromptCallDialog();
             newFragment.show(getFragmentManager(), "PromptDialog");
+
+            DialogFragment hintFragment = new HintProblemDialog();
+            hintFragment.show(getFragmentManager(), "PromptDialog");
         }
 
         tts = new TextToSpeech(this, this);
@@ -56,9 +59,6 @@ public class CallActivity extends Activity implements View.OnClickListener, Text
 
         sr = SpeechRecognizer.createSpeechRecognizer(this);
         sr.setRecognitionListener(new listener());
-
-        firstQuestion();
-
 
     }
 
@@ -82,6 +82,8 @@ public class CallActivity extends Activity implements View.OnClickListener, Text
     private void firstQuestion() {
         String text = "911 state your emergency";
         tts.speak(text, TextToSpeech.QUEUE_FLUSH, null);
+
+
     }
 
     public void fireQuestion() {
@@ -186,17 +188,19 @@ public class CallActivity extends Activity implements View.OnClickListener, Text
             Log.i("111111", "11111111");
         } else if (v.getId() == R.id.endButton) {
 
-            goToKeypad();
+            goToResults();
+
         }
 
     }
 
-    public void goToKeypad() {
-
-        Intent keypad = new Intent(this, KeypadActivity.class);
-        startActivity(keypad);
+    public void goToResults() {
+        Intent results = new Intent(this, ResultsActivity.class);
+        startActivity(results);
 
         }
+
+
 
 
 

@@ -38,4 +38,12 @@
         android:gravity="center"
         android:id="@+id/removed_audio_dialog" />
 
+    <Button
+        android:layout_width="fill_parent"
+        android:layout_height="100dp"
+        android:text="Back To Menu"
+        android:textSize="22dp"
+
+        android:id="@+id/button_back" />
+
 </LinearLayout>

@@ -50,6 +50,11 @@
             android:label="Assist911"
             android:screenOrientation="portrait" >
         </activity>
+        <activity
+            android:name=".ResultsActivity"
+            android:label="Assist911"
+            android:screenOrientation="portrait" >
+        </activity>
     </application>
 
     <!-- To access Google+ APIs: -->
