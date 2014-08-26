@@ -8,4 +8,13 @@
     <color name="dial_pressed_background">#3A539B</color>
     <color name="textview_colour">#EEEEEE</color>
 
+    <color name="practice_background">#3FC380</color>
+    <color name="videos_background">#C0392B</color>
+    <color name="settings_background">#6C7A89</color>
+    <color name="report_background">#81CFE0</color>
+
+    <color name="text_color">#fff</color>
+
+
+
 </resources>
