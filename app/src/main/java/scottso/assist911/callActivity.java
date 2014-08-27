@@ -11,6 +11,7 @@ import android.speech.tts.TextToSpeech;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -53,8 +54,8 @@ public class CallActivity extends Activity implements View.OnClickListener, Text
 
         tts = new TextToSpeech(this, this);
 
-        Button endButton = (Button) findViewById(R.id.endButton);
-        Button speakButton = (Button) findViewById(R.id.btn_speak);
+        ImageButton endButton = (ImageButton) findViewById(R.id.endButton);
+        ImageButton speakButton = (ImageButton) findViewById(R.id.btn_speak);
         Button hintButton = (Button) findViewById(R.id.btn_hint);
 
         mText = (TextView) findViewById(R.id.textView1);

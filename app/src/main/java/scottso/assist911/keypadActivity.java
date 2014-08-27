@@ -9,6 +9,7 @@ import android.os.CountDownTimer;
 
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -18,7 +19,8 @@ import android.widget.Toast;
  */
 public class KeypadActivity extends Activity implements View.OnClickListener {
 
-    private Button one, two, three, four, five, six, seven, eight, nine, zero, star, pound, delete, call;
+    private Button one, two, three, four, five, six, seven, eight, nine, zero, star, pound;
+    private ImageButton delete, call;
 
     private TextView contactDisp;
     private TextView numbDisp;
@@ -52,9 +54,8 @@ public class KeypadActivity extends Activity implements View.OnClickListener {
         star = (Button) findViewById(R.id.buttonstar);
         pound = (Button) findViewById(R.id.buttonpound);
 
-        delete = (Button) findViewById(R.id.buttondelete);
-
-        call = (Button) findViewById(R.id.buttoncall);
+        delete = (ImageButton) findViewById(R.id.buttondelete);
+        call = (ImageButton) findViewById(R.id.buttoncall);
 
         numbDisp = (TextView) findViewById(R.id.number_display);
         contactDisp = (TextView) findViewById(R.id.contact_display);
@@ -210,7 +211,6 @@ public class KeypadActivity extends Activity implements View.OnClickListener {
 
                     if (numbDisp.getText().toString().equals(emergency)) {
                         goToCall();
-
                     } else {
                         Toast toast = Toast.makeText(getApplicationContext(), "Try Again", Toast.LENGTH_SHORT);
                         toast.show();

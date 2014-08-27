@@ -10,7 +10,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/textView1"
         android:text="Dialing 911"
-        android:textSize="28pt"
+        android:textSize="26pt"
         android:layout_weight="0.03" />
 
     <ImageView
