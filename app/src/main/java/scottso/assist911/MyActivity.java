@@ -12,6 +12,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 
+import java.util.Random;
+
 
 public class MyActivity extends Activity implements View.OnClickListener{
 
@@ -20,6 +22,8 @@ public class MyActivity extends Activity implements View.OnClickListener{
     private Button videos;
     private Button settings;
     private Button report;
+
+    String[] videoArray = {"flame","smoke","passed","car"};
 
     public static int TIMES_OPENED;
     public static boolean REMOVED_TEXT_PROMPT = false;
@@ -82,7 +86,6 @@ public class MyActivity extends Activity implements View.OnClickListener{
             switch(v.getId()) {
 
                 case R.id.practice_button:
-                    goToPractice();
 
                     TIMES_OPENED++;
                     EDITOR.putInt("TIMES_OPENED", TIMES_OPENED);
@@ -90,7 +93,11 @@ public class MyActivity extends Activity implements View.OnClickListener{
 
                     System.out.println(PREF.getInt("TIMES_OPENED", 0));
 
-                    
+                    int index = new Random().nextInt(videoArray.length);
+                    VideosActivity.VIDEO_NAME = (videoArray[index]);
+
+                    //goToPractice();
+                    goToVideoPlayer();
 
             break;
 
@@ -133,6 +140,10 @@ public class MyActivity extends Activity implements View.OnClickListener{
         startActivity(report);
     }
 
+    public void goToVideoPlayer() {
+        Intent videoPlayer = new Intent(this, PlayVideoActivity.class);
+        startActivity(videoPlayer);
+    }
 }
 
 
