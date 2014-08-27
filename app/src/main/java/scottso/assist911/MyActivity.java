@@ -141,7 +141,7 @@ public class MyActivity extends Activity implements View.OnClickListener{
     }
 
     public void goToVideoPlayer() {
-        Intent videoPlayer = new Intent(this, PlayVideoActivity.class);
+        Intent videoPlayer = new Intent(this, PracticePlayVideoActivity.class);
         startActivity(videoPlayer);
     }
 }
