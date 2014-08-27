@@ -130,12 +130,10 @@ public class LockActivity extends Activity implements View.OnClickListener, Text
             }
 
             if(right){
-                goToDialpad();
+               goToDialpad();
                System.out.println("FORWARD");
             }
 //user is cycling backwards through messages
-
-
             return true;
         }
     }

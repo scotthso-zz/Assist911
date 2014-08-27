@@ -55,8 +55,6 @@ public class MyActivity extends Activity implements View.OnClickListener{
                     REMOVED_AUDIO_PROMPT = PREF.getBoolean("REMOVED_AUDIO_PROMPT", false);
 
 
-
-
             }
 
 
@@ -86,18 +84,15 @@ public class MyActivity extends Activity implements View.OnClickListener{
                 case R.id.practice_button:
                     goToPractice();
 
-                        TIMES_OPENED++;
+                    TIMES_OPENED++;
                     EDITOR.putInt("TIMES_OPENED", TIMES_OPENED);
                     EDITOR.commit();
 
-
                     System.out.println(PREF.getInt("TIMES_OPENED", 0));
-
 
             break;
 
             case R.id.videos_button:
-
 
                 goToVideos();
 
@@ -106,12 +101,7 @@ public class MyActivity extends Activity implements View.OnClickListener{
                 break;
 
             case R.id.settings_button:
-
-
-
                 goToSettings();
-
-
                 break;
 
             case R.id.report_button:
@@ -140,6 +130,7 @@ public class MyActivity extends Activity implements View.OnClickListener{
         Intent report = new Intent(this, ReportActivity.class);
         startActivity(report);
     }
+
 }
 
 

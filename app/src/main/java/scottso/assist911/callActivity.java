@@ -30,7 +30,11 @@ public class CallActivity extends Activity implements View.OnClickListener, Text
 
     private TextToSpeech tts;
 
+    DialogFragment newFragment = new PromptCallDialog();
+    DialogFragment hintProblemFragment = new HintProblemDialog();
+    DialogFragment hintLocationFragment = new HintLocationDialog();
 
+    int level = 0;
 
     ArrayList data;
     private static final String TAG = "MyStt3Activity";
@@ -40,22 +44,24 @@ public class CallActivity extends Activity implements View.OnClickListener, Text
         setContentView(R.layout.activity_call);
 
         if(MyActivity.TIMES_OPENED <= 5) {
-            DialogFragment newFragment = new PromptCallDialog();
+
             newFragment.show(getFragmentManager(), "PromptDialog");
 
-            DialogFragment hintFragment = new HintProblemDialog();
-            hintFragment.show(getFragmentManager(), "PromptDialog");
+
+            hintProblemFragment.show(getFragmentManager(), "PromptDialog");
         }
 
         tts = new TextToSpeech(this, this);
 
         Button endButton = (Button) findViewById(R.id.endButton);
         Button speakButton = (Button) findViewById(R.id.btn_speak);
+        Button hintButton = (Button) findViewById(R.id.btn_hint);
 
         mText = (TextView) findViewById(R.id.textView1);
 
         speakButton.setOnClickListener(this);
         endButton.setOnClickListener(this);
+        hintButton.setOnClickListener(this);
 
         sr = SpeechRecognizer.createSpeechRecognizer(this);
         sr.setRecognitionListener(new listener());
@@ -89,16 +95,19 @@ public class CallActivity extends Activity implements View.OnClickListener, Text
     public void fireQuestion() {
         String text = "Fire team is on their way. Where are you located?";
         tts.speak(text, TextToSpeech.QUEUE_FLUSH, null);
+        hintLocationFragment.show(getFragmentManager(), "PromptDialog");
     }
 
     public void ambulanceQuestion() {
         String text = "E M S is on their way. Where are you located?";
         tts.speak(text, TextToSpeech.QUEUE_FLUSH, null);
+        hintLocationFragment.show(getFragmentManager(), "PromptDialog");
     }
 
     public void policeQuestion() {
         String text = "Police is on their way. Where are you located?";
         tts.speak(text, TextToSpeech.QUEUE_FLUSH, null);
+        hintLocationFragment.show(getFragmentManager(), "PromptDialog");
     }
 
     @Override
@@ -151,12 +160,18 @@ public class CallActivity extends Activity implements View.OnClickListener, Text
             }
 
             //Cases
-            if (String.valueOf(data.get(0)).trim().toLowerCase().contains("fire") || String.valueOf(data.get(0)).trim().toLowerCase().contains("moke")) {
+            if (String.valueOf(data.get(0)).trim().toLowerCase().contains("fire") || String.valueOf(data.get(0)).trim().toLowerCase().contains("moke") || String.valueOf(data.get(0)).trim().toLowerCase().contains("ame")) {
                 fireQuestion();
+                level = 2;
+
             } else if (String.valueOf(data.get(0)).trim().toLowerCase().contains("ing") || String.valueOf(data.get(0)).trim().toLowerCase().contains("assed")) {
                 ambulanceQuestion();
+                level = 2;
+
             } else if (String.valueOf(data.get(0)).trim().toLowerCase().contains("roke") || String.valueOf(data.get(0)).trim().toLowerCase().contains("ole")) {
                 policeQuestion();
+                level = 2;
+
             }
 
 
@@ -190,6 +205,13 @@ public class CallActivity extends Activity implements View.OnClickListener, Text
 
             goToResults();
 
+        } else if (v.getId() == R.id.btn_hint) {
+
+            if (level == 0) {
+                hintProblemFragment.show(getFragmentManager(), "PromptDialog");
+            } else {
+                hintLocationFragment.show(getFragmentManager(), "PromptDialog");
+            }
         }
 
     }

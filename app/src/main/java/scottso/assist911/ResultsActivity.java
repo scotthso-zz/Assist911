@@ -19,10 +19,8 @@ public class ResultsActivity extends Activity implements View.OnClickListener {
         Button backButton = (Button) findViewById(R.id.button_back);
         backButton.setOnClickListener(this);
 
-
-
         TextView tries = (TextView) findViewById(R.id.tries);
-        tries.setText("Tries: " + String.valueOf(KeypadActivity.TRIES));
+        tries.setText("Mistakes: " + String.valueOf(KeypadActivity.TRIES));
 
         TextView removedDialog = (TextView) findViewById(R.id.removed_dialog);
         TextView removedAudioDialog = (TextView) findViewById(R.id.removed_audio_dialog);
