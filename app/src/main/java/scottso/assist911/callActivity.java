@@ -161,7 +161,7 @@ public class CallActivity extends Activity implements View.OnClickListener, Text
             }
 
             //Cases
-            if (String.valueOf(data.get(0)).trim().toLowerCase().contains("fire") || String.valueOf(data.get(0)).trim().toLowerCase().contains("moke") || String.valueOf(data.get(0)).trim().toLowerCase().contains("ame")) {
+            if (String.valueOf(data.get(0)).trim().toLowerCase().contains("flame") || String.valueOf(data.get(0)).trim().toLowerCase().contains("moke") || String.valueOf(data.get(0)).trim().toLowerCase().contains("ame")) {
                 fireQuestion();
                 level = 2;
 

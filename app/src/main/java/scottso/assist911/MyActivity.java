@@ -90,6 +90,8 @@ public class MyActivity extends Activity implements View.OnClickListener{
 
                     System.out.println(PREF.getInt("TIMES_OPENED", 0));
 
+                    
+
             break;
 
             case R.id.videos_button:

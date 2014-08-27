@@ -55,6 +55,10 @@
             android:label="Assist911"
             android:screenOrientation="portrait" >
         </activity>
+        <activity android:name=".PlayVideoActivity"
+            android:label="Assist911"
+            android:screenOrientation="landscape" >
+            </activity>
     </application>
 
     <!-- To access Google+ APIs: -->

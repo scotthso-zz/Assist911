@@ -6,4 +6,15 @@
     <string name="action_settings">Settings</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
+    <string-array name="videos_array">
+        <item>Flames</item>
+        <item>Smoke</item>
+        <item>Car Thief</item>
+        <item>Stolen Purse</item>
+        <item>Passing Out</item>
+        <item>Drowning</item>
+        <item>A</item>
+        <item>B</item>
+    </string-array>
+
 </resources>
