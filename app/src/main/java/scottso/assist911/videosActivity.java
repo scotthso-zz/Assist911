@@ -16,6 +16,7 @@ import android.widget.Spinner;
 public class VideosActivity extends Activity implements AdapterView.OnItemSelectedListener, View.OnClickListener {
 
     public static String VIDEO_NAME;
+    public static Boolean EMERGENCY;
 
     private Spinner spinner;
 

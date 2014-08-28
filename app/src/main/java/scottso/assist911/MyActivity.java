@@ -27,7 +27,6 @@ public class MyActivity extends Activity implements View.OnClickListener{
 
     public static int TIMES_OPENED;
     public static boolean REMOVED_TEXT_PROMPT = false;
-
     public static boolean REMOVED_AUDIO_PROMPT = false;
 
     public static SharedPreferences PREF;
@@ -95,6 +94,13 @@ public class MyActivity extends Activity implements View.OnClickListener{
 
                     int index = new Random().nextInt(videoArray.length);
                     VideosActivity.VIDEO_NAME = (videoArray[index]);
+
+                    if (VideosActivity.VIDEO_NAME.equals("flame") || VideosActivity.VIDEO_NAME.equals("car") ||
+                            VideosActivity.VIDEO_NAME.equals("smoke") || VideosActivity.VIDEO_NAME.equals("passed"))  {
+                        VideosActivity.EMERGENCY = true;
+                    } else {
+                        VideosActivity.EMERGENCY = false;
+                    }
 
                     //goToPractice();
                     goToVideoPlayer();
