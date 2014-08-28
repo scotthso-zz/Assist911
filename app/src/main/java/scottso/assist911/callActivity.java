@@ -89,8 +89,6 @@ public class CallActivity extends Activity implements View.OnClickListener, Text
     private void firstQuestion() {
         String text = "911 state your emergency";
         tts.speak(text, TextToSpeech.QUEUE_FLUSH, null);
-
-
     }
 
     public void fireQuestion() {
@@ -107,6 +105,12 @@ public class CallActivity extends Activity implements View.OnClickListener, Text
 
     public void policeQuestion() {
         String text = "Police is on their way. Where are you located?";
+        tts.speak(text, TextToSpeech.QUEUE_FLUSH, null);
+        hintLocationFragment.show(getFragmentManager(), "PromptDialog");
+    }
+
+    public void finalQuestion() {
+        String text = "We will be right there, stay calm.";
         tts.speak(text, TextToSpeech.QUEUE_FLUSH, null);
         hintLocationFragment.show(getFragmentManager(), "PromptDialog");
     }
