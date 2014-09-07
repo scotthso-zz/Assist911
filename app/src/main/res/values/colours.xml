@@ -22,6 +22,8 @@
 
     <color name="text_color">#fff</color>
 
+    <color name="tutorial_background">#44004354</color>
+
 
 
 </resources>

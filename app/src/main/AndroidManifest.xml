@@ -63,6 +63,11 @@
             android:label="Assist911"
             android:screenOrientation="landscape" >
         </activity>
+        <activity android:name=".TutorialActivity"
+            android:label="Assist911"
+            android:screenOrientation="portrait"
+            android:theme="@style/TutorialTheme">
+        </activity>
     </application>
 
     <!-- To access Google+ APIs: -->

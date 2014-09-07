@@ -45,5 +45,11 @@
 
         android:id="@+id/button_reset" />
 
+    <Button
+        android:id="@+id/button_showtutorial"
+        android:layout_width="fill_parent"
+        android:layout_height="50dp"
+        android:text="Show Tutorial"/>
+
 
 </LinearLayout>

@@ -6,6 +6,11 @@
 
     </style>
 
+    <style name="TutorialTheme" parent="android:Theme.Holo.Light.NoActionBar">
+        <item name="android:background">@color/tutorial_background</item>
+
+    </style>
+
     <style name="numbKey">
         <item name ="android:textColor">@color/number_colour</item>
         <item name ="android:textSize">@dimen/keypad_number_size</item>

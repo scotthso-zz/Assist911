@@ -1,6 +1,7 @@
 package scottso.assist911;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.speech.tts.TextToSpeech;
 import android.view.View;
@@ -24,6 +25,9 @@ public class SettingsActivity extends Activity implements View.OnClickListener {
 
         TextView removedDialog = (TextView)findViewById(R.id.removed_dialog);
         TextView removedAudioDialog = (TextView)findViewById(R.id.removed_audio_dialog);
+
+        Button tutorialButton = (Button) findViewById(R.id.button_showtutorial);
+        tutorialButton.setOnClickListener(this);
 
         if (MyActivity.REMOVED_TEXT_PROMPT == true) {
 
@@ -57,6 +61,10 @@ public class SettingsActivity extends Activity implements View.OnClickListener {
                 finish();
                 startActivity(getIntent());
 
+                break;
+            case R.id.button_showtutorial:
+                Intent tutorialIntent = new Intent(this, TutorialActivity.class);
+                startActivity(tutorialIntent);
                 break;
         }
     }
