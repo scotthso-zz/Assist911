@@ -35,7 +35,9 @@ public class CallActivity extends Activity implements View.OnClickListener, Text
     DialogFragment hintProblemFragment = new HintProblemDialog();
     DialogFragment hintLocationFragment = new HintLocationDialog();
 
-    int level = 0;
+    String location;
+    String service;
+    int level = 1;
 
     ArrayList data;
     private static final String TAG = "MyStt3Activity";
@@ -47,8 +49,6 @@ public class CallActivity extends Activity implements View.OnClickListener, Text
         if(MyActivity.TIMES_OPENED <= 5) {
 
             newFragment.show(getFragmentManager(), "PromptDialog");
-
-
             hintProblemFragment.show(getFragmentManager(), "PromptDialog");
         }
 
@@ -87,7 +87,17 @@ public class CallActivity extends Activity implements View.OnClickListener, Text
     }
 
     private void firstQuestion() {
-        String text = "911 state your emergency";
+        String text = "911 do you need police, fire or ambulance";
+        tts.speak(text, TextToSpeech.QUEUE_FLUSH, null);
+    }
+
+    public void locationQuestion() {
+        String text = "Where are you located?";
+        tts.speak(text, TextToSpeech.QUEUE_FLUSH, null);
+    }
+
+    public void locationConfirmationQuestion() {
+        String text = "You are at" + location;
         tts.speak(text, TextToSpeech.QUEUE_FLUSH, null);
     }
 
@@ -150,9 +160,8 @@ public class CallActivity extends Activity implements View.OnClickListener, Text
             Log.d(TAG, "error " + error);
             mText.setText("error " + error);
 
-                Toast toast = Toast.makeText(getApplicationContext(), "Try Again", Toast.LENGTH_SHORT);
-                toast.show();
-
+            Toast toast = Toast.makeText(getApplicationContext(), "Try Again", Toast.LENGTH_SHORT);
+            toast.show();
         }
 
         public void onResults(Bundle results) {
@@ -164,24 +173,16 @@ public class CallActivity extends Activity implements View.OnClickListener, Text
                 str += data.get(i);
             }
 
-            //Cases
-            if (String.valueOf(data.get(0)).trim().toLowerCase().contains("flame") || String.valueOf(data.get(0)).trim().toLowerCase().contains("moke") || String.valueOf(data.get(0)).trim().toLowerCase().contains("ame")) {
-                fireQuestion();
+            if (String.valueOf(data.get(0)).trim().toLowerCase().contains("police")) {
+                locationQuestion();
                 level = 2;
-
             } else if (String.valueOf(data.get(0)).trim().toLowerCase().contains("ing") || String.valueOf(data.get(0)).trim().toLowerCase().contains("assed")) {
                 ambulanceQuestion();
                 level = 2;
-
             } else if (String.valueOf(data.get(0)).trim().toLowerCase().contains("roke") || String.valueOf(data.get(0)).trim().toLowerCase().contains("ole")) {
                 policeQuestion();
                 level = 2;
-
             }
-
-
-            //Errors
-
 
             mText.setText("results: " + String.valueOf(data.get(0)));
             //mText.setText("results: " + String.valueOf(data.size()));
@@ -212,7 +213,7 @@ public class CallActivity extends Activity implements View.OnClickListener, Text
 
         } else if (v.getId() == R.id.btn_hint) {
 
-            if (level == 0) {
+            if (level == 1) {
                 hintProblemFragment.show(getFragmentManager(), "PromptDialog");
             } else {
                 hintLocationFragment.show(getFragmentManager(), "PromptDialog");

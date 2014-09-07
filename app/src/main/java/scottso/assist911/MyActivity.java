@@ -52,14 +52,11 @@ public class MyActivity extends Activity implements View.OnClickListener{
                 PREF = getApplicationContext().getSharedPreferences("MyPref", MODE_WORLD_READABLE);
                 EDITOR = PREF.edit();
 
-                    TIMES_OPENED = PREF.getInt("TIMES_OPENED", 0);
-                    REMOVED_TEXT_PROMPT = PREF.getBoolean("REMOVED_TEXT_PROMPT", false);
-
-                    REMOVED_AUDIO_PROMPT = PREF.getBoolean("REMOVED_AUDIO_PROMPT", false);
-
+                TIMES_OPENED = PREF.getInt("TIMES_OPENED", 0);
+                REMOVED_TEXT_PROMPT = PREF.getBoolean("REMOVED_TEXT_PROMPT", false);
+                REMOVED_AUDIO_PROMPT = PREF.getBoolean("REMOVED_AUDIO_PROMPT", false);
 
             }
-
 
             @Override
             public boolean onCreateOptionsMenu(Menu menu) {
@@ -101,18 +98,13 @@ public class MyActivity extends Activity implements View.OnClickListener{
                     } else {
                         VideosActivity.EMERGENCY = false;
                     }
-
                     //goToPractice();
                     goToVideoPlayer();
-
             break;
 
             case R.id.videos_button:
-
                 goToVideos();
-
                 System.out.println(PREF.getInt("TIMES_OPENED", 0));
-
                 break;
 
             case R.id.settings_button:
