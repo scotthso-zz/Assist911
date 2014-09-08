@@ -30,4 +30,5 @@ dependencies {
     compile 'com.android.support:support-v4:19.+'
     compile 'com.google.android.gms:play-services:4.2.42'
     compile 'com.viewpagerindicator:library:2.4.1@aar'
+    compile 'uk.co.chrisjenx:calligraphy:0.7.+'
 }

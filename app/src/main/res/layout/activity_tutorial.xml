@@ -21,5 +21,6 @@
         android:background="@android:color/transparent"
         android:layout_alignParentBottom="true"
         app:fillColor="#ffffffff"
-        app:strokeColor="#ffffffff"/>
+        app:strokeColor="#ffffffff"
+        app:radius="5dp"/>
 </RelativeLayout>

@@ -35,7 +35,7 @@ public class TutorialActivity extends FragmentActivity {
 
         @Override
         public int getCount() {
-            return 2;
+            return 3;
         }
 
         @Override
@@ -45,6 +45,8 @@ public class TutorialActivity extends FragmentActivity {
                     return new FirstTutorialFragment();
                 case 1:
                     return new SecondTutorialFragment();
+                case 2:
+                    return new FinalTutorialFragment();
                 default:
                     return new FirstTutorialFragment();
             }
