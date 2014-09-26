@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.DialogFragment;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.speech.RecognitionListener;
 import android.speech.RecognizerIntent;
 import android.speech.SpeechRecognizer;
@@ -25,11 +26,16 @@ import java.util.Locale;
 
 public class CallActivity extends Activity implements View.OnClickListener, TextToSpeech.OnInitListener {
 
-
     private TextView mText;
     private SpeechRecognizer sr;
 
     private TextToSpeech tts;
+
+    private CountDownTimer countDownTimer;
+    private boolean timerHasStarted = false;
+
+    private long startTime = 6 * 1000;
+    private final long interval = 1 * 1000;
 
     DialogFragment newFragment = new PromptCallDialog();
     DialogFragment hintProblemFragment = new HintProblemDialog();
@@ -66,7 +72,6 @@ public class CallActivity extends Activity implements View.OnClickListener, Text
 
         sr = SpeechRecognizer.createSpeechRecognizer(this);
         sr.setRecognitionListener(new listener());
-
     }
 
     @Override
@@ -77,18 +82,27 @@ public class CallActivity extends Activity implements View.OnClickListener, Text
                     || result == TextToSpeech.LANG_NOT_SUPPORTED) {
                 Log.e("TTS", "This Language is not supported");
             } else {
-
                 firstQuestion();
-
             }
         } else {
-            Log.e("TTS", "Initilization Failed!");
+            Log.e("TTS", "Initialization Failed!");
         }
     }
 
     private void firstQuestion() {
         String text = "911 do you need police, fire or ambulance";
         tts.speak(text, TextToSpeech.QUEUE_FLUSH, null);
+
+        countDownTimer = new MyCountDownTimer(startTime, interval);
+
+        if (!timerHasStarted) {
+            countDownTimer.start();
+            timerHasStarted = true;
+
+        } else {
+            countDownTimer.cancel();
+            timerHasStarted = false;
+        }
     }
 
     public void locationQuestion() {
@@ -200,13 +214,7 @@ public class CallActivity extends Activity implements View.OnClickListener, Text
 
     public void onClick(View v) {
         if (v.getId() == R.id.btn_speak) {
-            Intent intent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
-            intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL, RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
-            intent.putExtra(RecognizerIntent.EXTRA_CALLING_PACKAGE, "voice.recognition.test");
-
-            intent.putExtra(RecognizerIntent.EXTRA_MAX_RESULTS, 5);
-            sr.startListening(intent);
-            Log.i("111111", "11111111");
+            activateSpeechRecognition();
         } else if (v.getId() == R.id.endButton) {
 
             goToResults();
@@ -222,6 +230,16 @@ public class CallActivity extends Activity implements View.OnClickListener, Text
 
     }
 
+    private void activateSpeechRecognition() {
+        Intent intent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
+        intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL, RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
+        intent.putExtra(RecognizerIntent.EXTRA_CALLING_PACKAGE, "voice.recognition.test");
+
+        intent.putExtra(RecognizerIntent.EXTRA_MAX_RESULTS, 5);
+        sr.startListening(intent);
+        Log.i("111111", "11111111");
+    }
+
     public void goToResults() {
         Intent results = new Intent(this, ResultsActivity.class);
         startActivity(results);
@@ -229,7 +247,30 @@ public class CallActivity extends Activity implements View.OnClickListener, Text
         }
 
 
+    public class MyCountDownTimer extends CountDownTimer {
 
+        public MyCountDownTimer(long startTime, long interval) {
+            super(startTime, interval);
+        }
+
+        @Override
+        public void onTick(long millisUntilFinished) {
+            Log.e(TAG, Long.toString(millisUntilFinished));
+            if (millisUntilFinished/1000 == 1) {
+                Log.e(TAG, "activate!!");
+                activateSpeechRecognition();
+            } else {
+
+            }
+
+        }
+
+        @Override
+        public void onFinish() {
+
+        }
+
+    }
 
 
     }
