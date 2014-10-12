@@ -5,9 +5,17 @@
     android:layout_height="match_parent">
 
 
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="25dp"
+        android:text="Username"
+        android:textSize="10pt"
+        android:gravity="center"
+        android:id="@+id/display_username"/>
+
   <TextView
       android:layout_width="fill_parent"
-      android:layout_height="100dp"
+      android:layout_height="50dp"
       android:text="Times Opened"
       android:textSize="12pt"
       android:gravity="center"
@@ -44,6 +52,12 @@
         android:textSize="22dp"
 
         android:id="@+id/button_reset" />
+
+    <Button
+        android:id="@+id/button_logout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Logout"/>
 
 
 </LinearLayout>

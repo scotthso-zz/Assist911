@@ -46,8 +46,8 @@ public class LockActivity extends Activity implements View.OnClickListener, Text
             newFragment.show(getFragmentManager(), "PromptDialog");
 
             MyActivity.REMOVED_TEXT_PROMPT = true;
-            MyActivity.EDITOR.putBoolean("REMOVED_TEXT_PROMPT", true);
-            MyActivity.EDITOR.commit();
+            LoginActivity.EDITOR.putBoolean("REMOVED_TEXT_PROMPT", true);
+            LoginActivity.EDITOR.commit();
 
         } else if (MyActivity.TIMES_OPENED > 10 && MyActivity.REMOVED_AUDIO_PROMPT == false) {
 
@@ -55,8 +55,8 @@ public class LockActivity extends Activity implements View.OnClickListener, Text
             newFragment.show(getFragmentManager(), "PromptDialog");
 
             MyActivity.REMOVED_AUDIO_PROMPT = true;
-            MyActivity.EDITOR.putBoolean("REMOVED_AUDIO_PROMPT", true);
-            MyActivity.EDITOR.commit();
+            LoginActivity.EDITOR.putBoolean("REMOVED_AUDIO_PROMPT", true);
+            LoginActivity.EDITOR.commit();
 
         }
 

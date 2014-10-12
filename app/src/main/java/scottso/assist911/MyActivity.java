@@ -17,7 +17,6 @@ import java.util.Random;
 
 public class MyActivity extends Activity implements View.OnClickListener{
 
-
     private Button practice;
     private Button videos;
     private Button settings;
@@ -28,9 +27,6 @@ public class MyActivity extends Activity implements View.OnClickListener{
     public static int TIMES_OPENED;
     public static boolean REMOVED_TEXT_PROMPT = false;
     public static boolean REMOVED_AUDIO_PROMPT = false;
-
-    public static SharedPreferences PREF;
-    public static Editor EDITOR;
 
                 @Override
                 protected void onCreate(Bundle savedInstanceState) {
@@ -49,12 +45,9 @@ public class MyActivity extends Activity implements View.OnClickListener{
                 report = (Button) this.findViewById(R.id.report_button);
                 report.setOnClickListener(this);
 
-                PREF = getApplicationContext().getSharedPreferences("MyPref", MODE_WORLD_READABLE);
-                EDITOR = PREF.edit();
-
-                TIMES_OPENED = PREF.getInt("TIMES_OPENED", 0);
-                REMOVED_TEXT_PROMPT = PREF.getBoolean("REMOVED_TEXT_PROMPT", false);
-                REMOVED_AUDIO_PROMPT = PREF.getBoolean("REMOVED_AUDIO_PROMPT", false);
+                TIMES_OPENED = LoginActivity.PREF.getInt(LoginActivity.TIMES_OPENED, 0);
+                REMOVED_TEXT_PROMPT = LoginActivity.PREF.getBoolean("REMOVED_TEXT_PROMPT", false);
+                REMOVED_AUDIO_PROMPT = LoginActivity.PREF.getBoolean("REMOVED_AUDIO_PROMPT", false);
 
             }
 
@@ -84,10 +77,10 @@ public class MyActivity extends Activity implements View.OnClickListener{
                 case R.id.practice_button:
 
                     TIMES_OPENED++;
-                    EDITOR.putInt("TIMES_OPENED", TIMES_OPENED);
-                    EDITOR.commit();
+                    LoginActivity.EDITOR.putInt(LoginActivity.TIMES_OPENED, TIMES_OPENED);
+                    LoginActivity.EDITOR.commit();
 
-                    System.out.println(PREF.getInt("TIMES_OPENED", 0));
+                    System.out.println(LoginActivity.PREF.getInt(LoginActivity.TIMES_OPENED, 0));
 
                     int index = new Random().nextInt(videoArray.length);
                     VideosActivity.VIDEO_NAME = (videoArray[index]);
@@ -104,7 +97,7 @@ public class MyActivity extends Activity implements View.OnClickListener{
 
             case R.id.videos_button:
                 goToVideos();
-                System.out.println(PREF.getInt("TIMES_OPENED", 0));
+                System.out.println(LoginActivity.PREF.getInt(LoginActivity.TIMES_OPENED, 0));
                 break;
 
             case R.id.settings_button:
