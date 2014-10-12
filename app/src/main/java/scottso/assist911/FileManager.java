@@ -32,6 +32,9 @@ public class FileManager  {
         }
 
         Log.d("test", "save called: " + account.getAccountName());
+        for (int i = 0; i < accountCount; i++) {
+            Log.d("test", "current accounts: "+ fileNames[i]);
+        }
 
         refreshFiles(context);
     }
@@ -73,9 +76,6 @@ public class FileManager  {
         context.deleteFile(username);
         refreshFiles(context);
         Log.d("test", "delete called: " + username);
-        for (int i = 0; i < accountCount; i++) {
-            Log.d("test", "files left: "+ fileNames[i]);
-        }
     }
 
     public static void refreshFiles(Context context) {
