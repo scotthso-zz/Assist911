@@ -224,10 +224,10 @@ public class KeypadActivity extends Activity implements View.OnClickListener {
         }
 
     public void goToCall() {
-
+        LoginActivity.EDITOR.putInt(LoginActivity.ACCOUNT_TRIES, TRIES);
+        LoginActivity.EDITOR.commit();
         Intent call = new Intent(this, CallActivity.class);
         startActivity(call);
-
     }
 
 
