@@ -3,6 +3,7 @@ package scottso.assist911;
 import android.app.Activity;
 import android.app.Dialog;
 import android.app.DialogFragment;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
@@ -14,8 +15,11 @@ import android.widget.Button;
 
 import java.util.Random;
 
+import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
+import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
-public class MyActivity extends Activity implements View.OnClickListener{
+
+public class MyActivity extends SimKidsActivity implements View.OnClickListener{
 
 
     private Button practice;
@@ -35,6 +39,7 @@ public class MyActivity extends Activity implements View.OnClickListener{
                 @Override
                 protected void onCreate(Bundle savedInstanceState) {
                 super.onCreate(savedInstanceState);
+
                 setContentView(R.layout.activity_my);
 
                 practice = (Button) this.findViewById(R.id.practice_button);
@@ -55,6 +60,8 @@ public class MyActivity extends Activity implements View.OnClickListener{
                 TIMES_OPENED = PREF.getInt("TIMES_OPENED", 0);
                 REMOVED_TEXT_PROMPT = PREF.getBoolean("REMOVED_TEXT_PROMPT", false);
                 REMOVED_AUDIO_PROMPT = PREF.getBoolean("REMOVED_AUDIO_PROMPT", false);
+
+
 
             }
 
@@ -141,6 +148,11 @@ public class MyActivity extends Activity implements View.OnClickListener{
     public void goToVideoPlayer() {
         Intent videoPlayer = new Intent(this, PracticePlayVideoActivity.class);
         startActivity(videoPlayer);
+    }
+
+    @Override
+    protected void attachBaseContext(Context newBase) {
+        super.attachBaseContext(new CalligraphyContextWrapper(newBase));
     }
 }
 

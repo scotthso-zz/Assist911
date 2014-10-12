@@ -19,6 +19,7 @@
         <item name ="android:textSize">16pt</item>
         <item name ="android:layout_weight">1</item>
         <item name ="android:layout_width">300dp</item>
+        <item name="fontPath">fonts/Montserrat-Regular.ttf</item>
         <item name ="android:layout_height">wrap_content</item>
 
 
