@@ -1,20 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+    xmlns:fbutton="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical" android:layout_width="match_parent" android:background="@color/color_carrot"
     android:layout_height="match_parent">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Sim Kids"
+        android:textSize="80dp"
+        android:id="@+id/textView"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="59dp" />
 
     <EditText
         android:id="@+id/username"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+       android:layout_centerHorizontal="true"
+        android:singleLine="true"
+        android:hint="Name"
+        android:textAllCaps="true"
+        android:gravity="center"
+        android:background="@drawable/rounded_edittext"
         android:layout_centerVertical="true"/>
 
-    <Button
+    <info.hoang8f.widget.FButton
+        fbutton:buttonColor="@color/color_emerald"
+        fbutton:shadowColor="@color/color_nephritis"
+        fbutton:shadowEnabled="true"
+        fbutton:shadowHeight="10dp"
+        fbutton:cornerRadius="12dp"
+
         android:id="@+id/button_login"
-        android:layout_width="wrap_content"
+        android:layout_width="100dp"
         android:layout_height="wrap_content"
         android:text="Login"
+        android:layout_marginTop="50dp"
         android:layout_below="@id/username"
         android:layout_centerHorizontal="true"/>
 
