@@ -19,7 +19,7 @@
         <TextView
             android:layout_width="fill_parent"
             android:layout_height="80dp"
-            android:text="Sim Kids"
+            android:text="SIM KIDS"
             android:textSize="30pt"
             android:gravity="center"
             android:id="@+id/textView"
@@ -27,7 +27,10 @@
             android:layout_alignParentLeft="true"
             android:layout_marginLeft="0dp"
             android:layout_alignParentTop="true"
-            android:layout_marginTop="0dp" />
+            android:layout_marginTop="20dp"
+
+            style="@style/TextViewCustomFont"
+            />
 
        <info.hoang8f.widget.FButton
            fbutton:buttonColor="@color/color_emerald"
@@ -58,7 +61,6 @@
             android:layout_marginTop="200dp"
             style="@style/menu_buttons"
             android:layout_centerHorizontal="true"
-
             />
 
         <info.hoang8f.widget.FButton
@@ -68,9 +70,9 @@
             fbutton:shadowHeight="8dp"
             fbutton:cornerRadius="12dp"
 
-            android:text="SETTINGS"
+            android:text="PROFILE"
             android:textColor="#3B3B3B"
-            android:id="@+id/settings_button"
+            android:id="@+id/profile_button"
             android:layout_gravity="center"
             android:layout_marginTop="305dp"
             style="@style/menu_buttons"

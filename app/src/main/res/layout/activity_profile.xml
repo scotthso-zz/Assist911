@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="Username"
+        android:textSize="16pt"
+        android:gravity="center"
+        android:id="@+id/display_username"
+        android:layout_marginTop="30dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+  <TextView
+      android:layout_width="fill_parent"
+      android:layout_height="50dp"
+      android:text="Times Opened"
+      android:textSize="12pt"
+      android:gravity="center"
+      android:id="@+id/times_opened"
+
+      android:layout_below="@+id/display_username"
+      android:layout_alignParentLeft="true"
+      android:layout_alignParentStart="true"
+       />
+
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="Tries"
+        android:textSize="12pt"
+        android:gravity="center"
+        android:id="@+id/tries"
+
+        android:layout_below="@+id/times_opened"
+        android:layout_alignParentLeft="true"
+        />
+
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="Removed Dialog"
+        android:textSize="12pt"
+        android:gravity="center"
+        android:id="@+id/removed_dialog"
+        android:layout_centerVertical="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="100dp"
+        android:text="Removed Audio"
+        android:textSize="12pt"
+        android:gravity="center"
+        android:id="@+id/removed_audio_dialog"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="0dp"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="825dp" />
+
+    <Button
+        android:layout_width="fill_parent"
+        android:layout_height="70dp"
+        android:text="Reset"
+        android:textSize="22dp"
+
+        android:id="@+id/button_reset"
+        android:layout_above="@+id/button_logout"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <Button
+        android:id="@+id/button_logout"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:text="LOGOUT"
+        android:textSize="30dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+
+</RelativeLayout>

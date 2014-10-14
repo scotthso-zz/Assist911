@@ -9,7 +9,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
-public class LoginActivity extends Activity {
+public class LoginActivity extends SimKidsActivity {
     private Button loginButton;
     private EditText usernameET;
 
@@ -69,4 +69,6 @@ public class LoginActivity extends Activity {
         Intent intent = new Intent(this, MyActivity.class);
         startActivity(intent);
     }
+
+
 }

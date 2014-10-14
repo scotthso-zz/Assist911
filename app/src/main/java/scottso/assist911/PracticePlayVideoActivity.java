@@ -11,7 +11,7 @@ import android.widget.VideoView;
 /**
  * Created by scottso on 2014-08-27.
  */
-public class PracticePlayVideoActivity extends Activity implements View.OnClickListener {
+public class PracticePlayVideoActivity extends SimKidsActivity implements View.OnClickListener {
 
 
 
@@ -21,7 +21,7 @@ public class PracticePlayVideoActivity extends Activity implements View.OnClickL
         setContentView(R.layout.activity_practice_play_video);
 
 
-        Button ok = (Button)findViewById(R.id.btn_ok);
+        Button ok = (Button)findViewById(R.id.btn_emergency);
         ok.setOnClickListener(this);
 
         int videoResource = getResources().
@@ -38,10 +38,15 @@ public class PracticePlayVideoActivity extends Activity implements View.OnClickL
 
         switch (view.getId()) {
 
-            case R.id.btn_ok:
+            case R.id.btn_emergency:
                 goToPractice();
+                break;
+
+            case R.id.btn_not_emergency:
+                break;
 
         }
+
     }
 
     public void goToPractice() {

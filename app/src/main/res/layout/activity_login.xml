@@ -6,40 +6,56 @@
     android:layout_height="match_parent">
 
     <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Sim Kids"
-        android:textSize="80dp"
+        android:layout_width="fill_parent"
+        android:layout_height="80dp"
+        android:text="SIM KIDS"
+
+        android:textSize="30pt"
+        android:gravity="center"
         android:id="@+id/textView"
+
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="0dp"
         android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="59dp" />
+        android:layout_marginTop="50dp"
+
+        style="@style/TextViewCustomFont"
+        />
 
     <EditText
         android:id="@+id/username"
         android:layout_width="300dp"
         android:layout_height="50dp"
        android:layout_centerHorizontal="true"
+        android:layout_marginTop="200dp"
         android:singleLine="true"
         android:hint="Name"
-        android:textAllCaps="true"
+        android:inputType="textCapCharacters"
         android:gravity="center"
         android:background="@drawable/rounded_edittext"
-        android:layout_centerVertical="true"/>
+        style="@style/TextViewCustomFont"
+    />
 
     <info.hoang8f.widget.FButton
         fbutton:buttonColor="@color/color_emerald"
         fbutton:shadowColor="@color/color_nephritis"
         fbutton:shadowEnabled="true"
-        fbutton:shadowHeight="10dp"
+        fbutton:shadowHeight="8dp"
         fbutton:cornerRadius="12dp"
 
         android:id="@+id/button_login"
-        android:layout_width="100dp"
+        android:layout_width="120dp"
         android:layout_height="wrap_content"
-        android:text="Login"
+        android:text="LOGIN"
+        android:textSize="12pt"
+        android:textColor="#1E824C"
+        android:layout_gravity="center"
+
+        style="@style/TextViewCustomFont"
+
         android:layout_marginTop="50dp"
         android:layout_below="@id/username"
+
         android:layout_centerHorizontal="true"/>
 
 </RelativeLayout>
