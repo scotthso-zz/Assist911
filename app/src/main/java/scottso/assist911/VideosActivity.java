@@ -13,7 +13,7 @@ import android.widget.Spinner;
 /**
  * Created by scottso on 2014-07-30.
  */
-public class VideosActivity extends Activity implements AdapterView.OnItemSelectedListener, View.OnClickListener {
+public class VideosActivity extends SimKidsActivity implements AdapterView.OnItemSelectedListener, View.OnClickListener {
 
     public static String VIDEO_NAME;
     public static Boolean EMERGENCY;
