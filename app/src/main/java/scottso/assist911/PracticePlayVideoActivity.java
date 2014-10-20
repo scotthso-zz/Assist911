@@ -6,6 +6,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 import android.widget.VideoView;
 
 /**
@@ -23,6 +24,9 @@ public class PracticePlayVideoActivity extends SimKidsActivity implements View.O
 
         Button ok = (Button)findViewById(R.id.btn_emergency);
         ok.setOnClickListener(this);
+
+        Button no = (Button)findViewById(R.id.btn_not_emergency);
+        no.setOnClickListener(this);
 
         int videoResource = getResources().
                 getIdentifier(VideosActivity.VIDEO_NAME, "raw", getPackageName());
@@ -43,14 +47,24 @@ public class PracticePlayVideoActivity extends SimKidsActivity implements View.O
                 break;
 
             case R.id.btn_not_emergency:
+               goToMainMenu();
                 break;
 
         }
 
     }
 
+
     public void goToPractice() {
         Intent practice = new Intent(this, LockActivity.class);
         startActivity(practice);
+    }
+
+    public void goToMainMenu() {
+        Toast toast = Toast.makeText(getApplicationContext(), "You are correct!", Toast.LENGTH_SHORT);
+        toast.show();
+        Intent mainMenu = new Intent(this, MyActivity.class);
+        startActivity(mainMenu);
+
     }
 }
