@@ -19,7 +19,7 @@ public class MyActivity extends SimKidsActivity implements View.OnClickListener{
     private Button settings;
     private Button report;
 
-    String[] videoArray = {"flame","smoke","passed","car"};
+    String[] videoArray = {"flame","smoke","passed","car", "drowning", "a", "b"};
 
     public static int TIMES_OPENED;
     public static boolean REMOVED_TEXT_PROMPT = false;
@@ -46,10 +46,6 @@ public class MyActivity extends SimKidsActivity implements View.OnClickListener{
                 TIMES_OPENED = LoginActivity.PREF.getInt(LoginActivity.TIMES_OPENED, 0);
                 REMOVED_TEXT_PROMPT = LoginActivity.PREF.getBoolean("REMOVED_TEXT_PROMPT", false);
                 REMOVED_AUDIO_PROMPT = LoginActivity.PREF.getBoolean("REMOVED_AUDIO_PROMPT", false);
-
-
-
-
 
             }
 
@@ -88,9 +84,9 @@ public class MyActivity extends SimKidsActivity implements View.OnClickListener{
                     VideosActivity.VIDEO_NAME = (videoArray[index]);
 
                     if (VideosActivity.VIDEO_NAME.equals("flame") || VideosActivity.VIDEO_NAME.equals("car") ||
-                            VideosActivity.VIDEO_NAME.equals("smoke") || VideosActivity.VIDEO_NAME.equals("passed"))  {
+                            VideosActivity.VIDEO_NAME.equals("smoke") || VideosActivity.VIDEO_NAME.equals("passed") || VideosActivity.VIDEO_NAME.equals("drowning"))  {
                         VideosActivity.EMERGENCY = true;
-                    } else {
+                    } else if (VideosActivity.VIDEO_NAME.equals("a") || VideosActivity.VIDEO_NAME.equals("b")){
                         VideosActivity.EMERGENCY = false;
                     }
                     //goToPractice();
@@ -111,11 +107,6 @@ public class MyActivity extends SimKidsActivity implements View.OnClickListener{
                 break;
         }
 
-    }
-
-    public void goToPractice() {
-       Intent practice = new Intent(this, LockActivity.class);
-        startActivity(practice);
     }
 
     public void goToVideos() {

@@ -70,6 +70,12 @@ public class VideosActivity extends SimKidsActivity implements AdapterView.OnIte
                  VIDEO_NAME = "car";
              } else if (String.valueOf(spinner.getSelectedItem()).equals("Passing Out")) {
                  VIDEO_NAME = "passed";
+             } else if (String.valueOf(spinner.getSelectedItem()).equals("Drowning")) {
+                 VIDEO_NAME = "drowning";
+             } else if (String.valueOf(spinner.getSelectedItem()).equals("Children Biking")) {
+                 VIDEO_NAME = "a";
+             } else if (String.valueOf(spinner.getSelectedItem()).equals("Family Playing Soccer")) {
+                 VIDEO_NAME = "b";
              }
 
 //             System.out.println(VIDEO_NAME);

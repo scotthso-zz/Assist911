@@ -43,17 +43,24 @@ public class PracticePlayVideoActivity extends SimKidsActivity implements View.O
         switch (view.getId()) {
 
             case R.id.btn_emergency:
-                goToPractice();
+                if(VideosActivity.EMERGENCY = true ) {
+                    goToPractice();
+                } else {
+                    // Make method to display error
+                }
                 break;
 
             case R.id.btn_not_emergency:
-               goToMainMenu();
+               if (VideosActivity.EMERGENCY = false) {
+                   goToMainMenu();
+               } else {
+                   // Make method to display error
+               }
                 break;
 
         }
 
     }
-
 
     public void goToPractice() {
         Intent practice = new Intent(this, LockActivity.class);
