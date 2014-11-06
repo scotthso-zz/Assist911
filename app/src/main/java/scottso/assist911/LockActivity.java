@@ -12,6 +12,9 @@ import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
+
+import net.frakbot.glowpadbackport.GlowPadView;
 
 import java.util.Locale;
 
@@ -25,6 +28,7 @@ public class LockActivity extends Activity implements View.OnClickListener, Text
 
 
     private Button unlockButton;
+    private GlowPadView mGlowPadView;
 
     private CountDownTimer countDownTimer;
     private boolean timerHasStarted = false;
@@ -40,37 +44,66 @@ public class LockActivity extends Activity implements View.OnClickListener, Text
 
         gDetect = new GestureDetectorCompat(this, new GestureListener());
 
-        if(MyActivity.TIMES_OPENED > 5 && MyActivity.REMOVED_TEXT_PROMPT == false) {
-
-            DialogFragment newFragment = new PromptRemovedDialog();
-            newFragment.show(getFragmentManager(), "PromptDialog");
-
-            MyActivity.REMOVED_TEXT_PROMPT = true;
-            LoginActivity.EDITOR.putBoolean("REMOVED_TEXT_PROMPT", true);
-            LoginActivity.EDITOR.commit();
-
-        } else if (MyActivity.TIMES_OPENED > 10 && MyActivity.REMOVED_AUDIO_PROMPT == false) {
-
-            DialogFragment newFragment = new AudioPromptRemovedDialog();
-            newFragment.show(getFragmentManager(), "PromptDialog");
-
-            MyActivity.REMOVED_AUDIO_PROMPT = true;
-            LoginActivity.EDITOR.putBoolean("REMOVED_AUDIO_PROMPT", true);
-            LoginActivity.EDITOR.commit();
-
-        }
-
-
-        if (MyActivity.TIMES_OPENED <= 5) {
-            DialogFragment newFragment = new PromptUnlockDialog();
-            newFragment.show(getFragmentManager(), "PromptDialog");
-        }
+//        if(MyActivity.TIMES_OPENED > 5 && MyActivity.REMOVED_TEXT_PROMPT == false) {
+//
+//            DialogFragment newFragment = new PromptRemovedDialog();
+//            newFragment.show(getFragmentManager(), "PromptDialog");
+//
+//            MyActivity.REMOVED_TEXT_PROMPT = true;
+//            LoginActivity.EDITOR.putBoolean("REMOVED_TEXT_PROMPT", true);
+//            LoginActivity.EDITOR.commit();
+//
+//        } else if (MyActivity.TIMES_OPENED > 10 && MyActivity.REMOVED_AUDIO_PROMPT == false) {
+//
+//            DialogFragment newFragment = new AudioPromptRemovedDialog();
+//            newFragment.show(getFragmentManager(), "PromptDialog");
+//
+//            MyActivity.REMOVED_AUDIO_PROMPT = true;
+//            LoginActivity.EDITOR.putBoolean("REMOVED_AUDIO_PROMPT", true);
+//            LoginActivity.EDITOR.commit();
+//
+//        }
+//
+//
+//        if (MyActivity.TIMES_OPENED <= 5) {
+//            DialogFragment newFragment = new PromptUnlockDialog();
+//            newFragment.show(getFragmentManager(), "PromptDialog");
+//        }
 
         tts = new TextToSpeech(this, this);
 
         unlockButton = (Button) findViewById(R.id.lock_button);
-
         unlockButton.setOnClickListener(this);
+
+        mGlowPadView = (GlowPadView) findViewById(R.id.glow_pad_view);
+        mGlowPadView.setOnTriggerListener(new GlowPadView.OnTriggerListener() {
+            @Override
+            public void onGrabbed(View v, int handle) {
+                // Do nothing
+            }
+
+            @Override
+            public void onReleased(View v, int handle) {
+                // Do nothing
+            }
+
+            @Override
+            public void onTrigger(View v, int target) {
+                Toast.makeText(LockActivity.this, "Target triggered! ID=" + target, Toast.LENGTH_SHORT).show();
+                mGlowPadView.reset(true);
+            }
+
+            @Override
+            public void onGrabbedStateChange(View v, int handle) {
+                // Do nothing
+            }
+
+            @Override
+            public void onFinishFinalAnimation() {
+                // Do nothing
+            }
+        });
+
 
         countDownTimer = new MyCountDownTimer(startTime, interval);
 
@@ -215,6 +248,8 @@ public class LockActivity extends Activity implements View.OnClickListener, Text
         startActivity(dial);
 
         }
+
+
 
     }
 
