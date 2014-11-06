@@ -5,15 +5,16 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="bottom"
+    android:background="#000"
     >
 
-    <net.sebastianopoggi.ui.GlowPadBackport.GlowPadView
+    <net.frakbot.glowpadbackport.GlowPadView
         android:id="@+id/glow_pad_view"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
+        android:layout_below="@+id/btn_toggle_padmult"
         android:layout_marginTop="-10dp"
         android:layout_marginBottom="-46dp"
-        android:background="@android:color/black"
         android:visibility="visible"
         android:gravity="top"
 

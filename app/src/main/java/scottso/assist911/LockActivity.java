@@ -18,9 +18,6 @@ import net.frakbot.glowpadbackport.GlowPadView;
 
 import java.util.Locale;
 
-/**
- * Created by scottso on 2014-08-01.
- */
 public class LockActivity extends Activity implements View.OnClickListener, TextToSpeech.OnInitListener {
 
     private static int TTS_DATA_CHECK = 1;
@@ -44,31 +41,31 @@ public class LockActivity extends Activity implements View.OnClickListener, Text
 
         gDetect = new GestureDetectorCompat(this, new GestureListener());
 
-//        if(MyActivity.TIMES_OPENED > 5 && MyActivity.REMOVED_TEXT_PROMPT == false) {
-//
-//            DialogFragment newFragment = new PromptRemovedDialog();
-//            newFragment.show(getFragmentManager(), "PromptDialog");
-//
-//            MyActivity.REMOVED_TEXT_PROMPT = true;
-//            LoginActivity.EDITOR.putBoolean("REMOVED_TEXT_PROMPT", true);
-//            LoginActivity.EDITOR.commit();
-//
-//        } else if (MyActivity.TIMES_OPENED > 10 && MyActivity.REMOVED_AUDIO_PROMPT == false) {
-//
-//            DialogFragment newFragment = new AudioPromptRemovedDialog();
-//            newFragment.show(getFragmentManager(), "PromptDialog");
-//
-//            MyActivity.REMOVED_AUDIO_PROMPT = true;
-//            LoginActivity.EDITOR.putBoolean("REMOVED_AUDIO_PROMPT", true);
-//            LoginActivity.EDITOR.commit();
-//
-//        }
-//
-//
-//        if (MyActivity.TIMES_OPENED <= 5) {
-//            DialogFragment newFragment = new PromptUnlockDialog();
-//            newFragment.show(getFragmentManager(), "PromptDialog");
-//        }
+        if(MyActivity.TIMES_OPENED > 5 && MyActivity.REMOVED_TEXT_PROMPT == false) {
+
+            DialogFragment newFragment = new PromptRemovedDialog();
+            newFragment.show(getFragmentManager(), "PromptDialog");
+
+            MyActivity.REMOVED_TEXT_PROMPT = true;
+            LoginActivity.EDITOR.putBoolean("REMOVED_TEXT_PROMPT", true);
+            LoginActivity.EDITOR.commit();
+
+        } else if (MyActivity.TIMES_OPENED > 10 && MyActivity.REMOVED_AUDIO_PROMPT == false) {
+
+            DialogFragment newFragment = new AudioPromptRemovedDialog();
+            newFragment.show(getFragmentManager(), "PromptDialog");
+
+            MyActivity.REMOVED_AUDIO_PROMPT = true;
+            LoginActivity.EDITOR.putBoolean("REMOVED_AUDIO_PROMPT", true);
+            LoginActivity.EDITOR.commit();
+
+        }
+
+
+        if (MyActivity.TIMES_OPENED <= 5) {
+            DialogFragment newFragment = new PromptUnlockDialog();
+            newFragment.show(getFragmentManager(), "PromptDialog");
+        }
 
         tts = new TextToSpeech(this, this);
 

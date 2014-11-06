@@ -66,6 +66,10 @@ public class SettingsActivity extends Activity implements View.OnClickListener {
                 startActivity(getIntent());
 
                 break;
+//            case R.id.button_showtutorial:
+//                Intent tutorialIntent = new Intent(this, TutorialActivity.class);
+//                startActivity(tutorialIntent);
+//                break;
             case R.id.button_logout:
                 AccountItem account = new AccountItem(LoginActivity.PREF.getString(LoginActivity.USERNAME,""),
                 LoginActivity.PREF.getInt(LoginActivity.ACCOUNT_TRIES, 0),
@@ -76,6 +80,7 @@ public class SettingsActivity extends Activity implements View.OnClickListener {
                 LoginActivity.IS_LOGGED_IN = false;
                 finish();
                 startActivity(loginIntent);
+                break;
         }
     }
 }
