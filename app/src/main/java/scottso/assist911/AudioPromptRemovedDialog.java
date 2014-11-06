@@ -8,13 +8,9 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 
-/**
- * Created by scottso on 2014-08-25.
- */
 public class AudioPromptRemovedDialog extends DialogFragment {
 
     public Dialog onCreateDialog(Bundle savedInstanceState) {
-
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         LayoutInflater inflater = getActivity().getLayoutInflater();
 
@@ -30,5 +26,4 @@ public class AudioPromptRemovedDialog extends DialogFragment {
         });
         return builder.create();
     }
-
 }

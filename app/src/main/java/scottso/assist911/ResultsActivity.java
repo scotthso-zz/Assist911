@@ -7,9 +7,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-/**
- * Created by scottso on 2014-08-26.
- */
 public class ResultsActivity extends Activity implements View.OnClickListener {
 
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,24 +22,17 @@ public class ResultsActivity extends Activity implements View.OnClickListener {
         TextView removedDialog = (TextView) findViewById(R.id.removed_dialog);
         TextView removedAudioDialog = (TextView) findViewById(R.id.removed_audio_dialog);
 
-        if (MyActivity.REMOVED_TEXT_PROMPT == true) {
-
+        if (MainMenuActivity.IS_REMOVE_TEXT_PROMPT == true) {
             removedDialog.setText("Removed: TRUE");
-
         } else {
-
             removedDialog.setText("Removed: FALSE");
         }
 
-        if (MyActivity.REMOVED_AUDIO_PROMPT == true) {
-
+        if (MainMenuActivity.IS_REMOVE_AUDIO_PROMPT == true) {
             removedAudioDialog.setText("Removed Audio: TRUE");
-
         } else {
-
             removedAudioDialog.setText("Removed Audio: FALSE");
         }
-
     }
 
     public void onClick(View v) {
@@ -54,7 +44,7 @@ public class ResultsActivity extends Activity implements View.OnClickListener {
     }
 
     public void goToMenu() {
-        Intent menu = new Intent(this, MyActivity.class);
+        Intent menu = new Intent(this, MainMenuActivity.class);
         startActivity(menu);
     }
 }

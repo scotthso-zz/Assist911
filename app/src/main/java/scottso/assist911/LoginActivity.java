@@ -1,6 +1,5 @@
 package scottso.assist911;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -13,9 +12,12 @@ public class LoginActivity extends SimKidsActivity {
     private Button loginButton;
     private EditText usernameET;
 
-    public static String USERNAME = "USERNAME";
-    public static String TIMES_OPENED = "TIMES_OPENED";
-    public static String ACCOUNT_TRIES = "ACCOUNT_TRIES";
+    public static final String USERNAME = "USERNAME";
+    public static final String TIMES_OPENED = "TIMES_OPENED";
+    public static final String ACCOUNT_TRIES = "ACCOUNT_TRIES";
+
+    public static final String REMOVE_TEXT_PROMPT = "REMOVE_TEXT_PROMPT";
+    public static final String REMOVE_AUDIO_PROMPT = "REMOVE_AUDIO_PROMPT";
 
     public static Boolean IS_LOGGED_IN = false;
 
@@ -42,7 +44,7 @@ public class LoginActivity extends SimKidsActivity {
 
             IS_LOGGED_IN = true;
         } else {
-            Intent intent = new Intent(this, MyActivity.class);
+            Intent intent = new Intent(this, MainMenuActivity.class);
             startActivity(intent);
         }
     }
@@ -66,7 +68,7 @@ public class LoginActivity extends SimKidsActivity {
             Log.d("test", "Creating " + PREF.getString(USERNAME, "") + PREF.getInt(TIMES_OPENED,0) + PREF.getInt(ACCOUNT_TRIES,0) );
         }
 
-        Intent intent = new Intent(this, MyActivity.class);
+        Intent intent = new Intent(this, MainMenuActivity.class);
         startActivity(intent);
     }
 

@@ -8,9 +8,6 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 
-/**
- * Created by scottso on 2014-08-26.
- */
 public class HintProblemDialog extends DialogFragment {
 
     @Override

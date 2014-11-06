@@ -41,28 +41,28 @@ public class LockActivity extends Activity implements View.OnClickListener, Text
 
         gDetect = new GestureDetectorCompat(this, new GestureListener());
 
-        if(MyActivity.TIMES_OPENED > 5 && MyActivity.REMOVED_TEXT_PROMPT == false) {
+        if(MainMenuActivity.TIMES_OPENED > 5 && MainMenuActivity.IS_REMOVE_TEXT_PROMPT == false) {
 
             DialogFragment newFragment = new PromptRemovedDialog();
             newFragment.show(getFragmentManager(), "PromptDialog");
 
-            MyActivity.REMOVED_TEXT_PROMPT = true;
-            LoginActivity.EDITOR.putBoolean("REMOVED_TEXT_PROMPT", true);
+            MainMenuActivity.IS_REMOVE_TEXT_PROMPT = true;
+            LoginActivity.EDITOR.putBoolean(LoginActivity.REMOVE_TEXT_PROMPT, true);
             LoginActivity.EDITOR.commit();
 
-        } else if (MyActivity.TIMES_OPENED > 10 && MyActivity.REMOVED_AUDIO_PROMPT == false) {
+        } else if (MainMenuActivity.TIMES_OPENED > 10 && MainMenuActivity.IS_REMOVE_AUDIO_PROMPT == false) {
 
             DialogFragment newFragment = new AudioPromptRemovedDialog();
             newFragment.show(getFragmentManager(), "PromptDialog");
 
-            MyActivity.REMOVED_AUDIO_PROMPT = true;
-            LoginActivity.EDITOR.putBoolean("REMOVED_AUDIO_PROMPT", true);
+            MainMenuActivity.IS_REMOVE_AUDIO_PROMPT = true;
+            LoginActivity.EDITOR.putBoolean(LoginActivity.REMOVE_AUDIO_PROMPT, true);
             LoginActivity.EDITOR.commit();
 
         }
 
 
-        if (MyActivity.TIMES_OPENED <= 5) {
+        if (MainMenuActivity.TIMES_OPENED <= 5) {
             DialogFragment newFragment = new PromptUnlockDialog();
             newFragment.show(getFragmentManager(), "PromptDialog");
         }
@@ -153,15 +153,15 @@ public class LockActivity extends Activity implements View.OnClickListener, Text
             if(absHDiff>absVDiff && absHDiff>flingMin && absVelocityX>velocityMin){
 //move right or backward
                 if(horizontalDiff<0)
-                 right =true;
+                    right =true;
             } else if(absVDiff>flingMin && absVelocityY>velocityMin){
                 if(verticalDiff<0)
-                 right =true;
+                    right =true;
             }
 
             if(right){
-               goToDialpad();
-               System.out.println("FORWARD");
+                goToDialpad();
+                System.out.println("FORWARD");
             }
 //user is cycling backwards through messages
             return true;
@@ -171,12 +171,12 @@ public class LockActivity extends Activity implements View.OnClickListener, Text
 
     public void onClick(View view) {
 
-       switch (view.getId()) {
+        switch (view.getId()) {
 
-           case R.id.lock_button:
-               goToDialpad();
-               break;
-       }
+            case R.id.lock_button:
+                goToDialpad();
+                break;
+        }
 
     }
     @Override
@@ -221,32 +221,21 @@ public class LockActivity extends Activity implements View.OnClickListener, Text
 
         @Override
         public void onTick(long millisUntilFinished) {
-
-            if (millisUntilFinished/1000 == 8 && MyActivity.TIMES_OPENED < 10) {
+            if (millisUntilFinished/1000 == 8 && MainMenuActivity.TIMES_OPENED < 10) {
                 speakPickUp();
-            } else if (millisUntilFinished/1000 == 4 && MyActivity.TIMES_OPENED < 10) {
+            } else if (millisUntilFinished/1000 == 4 && MainMenuActivity.TIMES_OPENED < 10) {
                 speakUnlock();
             } else {
-
             }
-
         }
 
         @Override
         public void onFinish() {
-
         }
-
     }
 
     public void goToDialpad() {
-
         Intent dial = new Intent(this, KeypadActivity.class);
         startActivity(dial);
-
-        }
-
-
-
     }
-
+}

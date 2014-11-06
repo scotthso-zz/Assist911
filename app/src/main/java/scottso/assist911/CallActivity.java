@@ -19,16 +19,11 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.Locale;
 
-
-/**
- * Created by scottso on 2014-07-31.
- */
-
 public class CallActivity extends Activity implements View.OnClickListener, TextToSpeech.OnInitListener {
 
     private TextView mText;
-    private SpeechRecognizer sr;
 
+    private SpeechRecognizer sr;
     private TextToSpeech tts;
 
     private CountDownTimer countDownTimer;
@@ -52,7 +47,7 @@ public class CallActivity extends Activity implements View.OnClickListener, Text
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_call);
 
-        if(MyActivity.TIMES_OPENED <= 5) {
+        if(MainMenuActivity.TIMES_OPENED <= 5) {
 
             newFragment.show(getFragmentManager(), "PromptDialog");
             hintProblemFragment.show(getFragmentManager(), "PromptDialog");
@@ -244,7 +239,7 @@ public class CallActivity extends Activity implements View.OnClickListener, Text
         Intent results = new Intent(this, ResultsActivity.class);
         startActivity(results);
 
-        }
+    }
 
 
     public class MyCountDownTimer extends CountDownTimer {
@@ -264,18 +259,8 @@ public class CallActivity extends Activity implements View.OnClickListener, Text
             }
 
         }
-
         @Override
         public void onFinish() {
-
         }
-
     }
-
-
-    }
-
-
-
-
-
+}

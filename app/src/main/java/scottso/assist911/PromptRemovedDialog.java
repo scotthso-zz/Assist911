@@ -8,9 +8,6 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 
-/**
- * Created by scottso on 2014-08-25.
- */
 public class PromptRemovedDialog extends DialogFragment {
 
     public Dialog onCreateDialog(Bundle savedInstanceState) {

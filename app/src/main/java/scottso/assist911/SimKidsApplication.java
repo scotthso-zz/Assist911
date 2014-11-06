@@ -4,9 +4,6 @@ import android.app.Application;
 
 import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
 
-/**
- * Created by scottso on 2014-10-12.
- */
 public class SimKidsApplication extends Application{
 
     @Override

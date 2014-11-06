@@ -13,10 +13,6 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
-
-/**
- * Created by scottso on 2014-07-21.
- */
 public class KeypadActivity extends Activity implements View.OnClickListener {
 
     private Button one, two, three, four, five, six, seven, eight, nine, zero, star, pound;
@@ -78,7 +74,7 @@ public class KeypadActivity extends Activity implements View.OnClickListener {
 
         call.setOnClickListener(this);
 
-        if (MyActivity.TIMES_OPENED <= 5) {
+        if (MainMenuActivity.TIMES_OPENED <= 5) {
             DialogFragment newFragment = new PromptDialDialog();
             newFragment.show(getFragmentManager(), "PromptDialog");
         }
@@ -105,7 +101,7 @@ public class KeypadActivity extends Activity implements View.OnClickListener {
         @Override
         public void onTick(long millisUntilFinished) {
 
-               if (millisUntilFinished/1000 == 6) {
+            if (millisUntilFinished/1000 == 6) {
                 nine.setBackgroundColor(Color.rgb(247, 202, 24));
             } else if (millisUntilFinished/1000 == 5) {
                 nine.setBackgroundColor(Color.WHITE);
@@ -127,101 +123,101 @@ public class KeypadActivity extends Activity implements View.OnClickListener {
     @Override
     public void onClick(View view) {
 
-            switch (view.getId()) {
+        switch (view.getId()) {
 
-                case R.id.button1:
-                    numbDisp.append("1");
-                    contactDisp.append("1");
-                    one.setBackgroundColor(Color.rgb(238, 238, 238));
+            case R.id.button1:
+                numbDisp.append("1");
+                contactDisp.append("1");
+                one.setBackgroundColor(Color.rgb(238, 238, 238));
 
-                    String estr = contactDisp.getText().toString().trim();
+                String estr = contactDisp.getText().toString().trim();
 
-                    if (estr.equals(emergency)) {
-                        contactDisp.append(" - Emergency");
-                    }
+                if (estr.equals(emergency)) {
+                    contactDisp.append(" - Emergency");
+                }
 
 
-                    break;
+                break;
 
-                case R.id.button2:
-                    numbDisp.append("2");
-                    contactDisp.append("2");
-                    break;
+            case R.id.button2:
+                numbDisp.append("2");
+                contactDisp.append("2");
+                break;
 
-                case R.id.button3:
-                    numbDisp.append("3");
-                    contactDisp.append("3");
-                    break;
+            case R.id.button3:
+                numbDisp.append("3");
+                contactDisp.append("3");
+                break;
 
-                case R.id.button4:
-                    numbDisp.append("4");
-                    contactDisp.append("4");
-                    break;
+            case R.id.button4:
+                numbDisp.append("4");
+                contactDisp.append("4");
+                break;
 
-                case R.id.button5:
-                    numbDisp.append("5");
-                    contactDisp.append("5");
-                    break;
+            case R.id.button5:
+                numbDisp.append("5");
+                contactDisp.append("5");
+                break;
 
-                case R.id.button6:
-                    numbDisp.append("6");
-                    contactDisp.append("6");
-                    break;
+            case R.id.button6:
+                numbDisp.append("6");
+                contactDisp.append("6");
+                break;
 
-                case R.id.button7:
-                    numbDisp.append("7");
-                    contactDisp.append("7");
-                    break;
+            case R.id.button7:
+                numbDisp.append("7");
+                contactDisp.append("7");
+                break;
 
-                case R.id.button8:
-                    numbDisp.append("8");
-                    contactDisp.append("8");
-                    break;
+            case R.id.button8:
+                numbDisp.append("8");
+                contactDisp.append("8");
+                break;
 
-                case R.id.button9:
-                    numbDisp.append("9");
-                    contactDisp.append("9");
-                    break;
+            case R.id.button9:
+                numbDisp.append("9");
+                contactDisp.append("9");
+                break;
 
-                case R.id.buttonzero:
-                    numbDisp.append("0");
-                    contactDisp.append("0");
-                    break;
+            case R.id.buttonzero:
+                numbDisp.append("0");
+                contactDisp.append("0");
+                break;
 
-                case R.id.buttonstar:
-                    numbDisp.append("*");
-                    contactDisp.append("*");
-                    break;
+            case R.id.buttonstar:
+                numbDisp.append("*");
+                contactDisp.append("*");
+                break;
 
-                case R.id.buttonpound:
-                    numbDisp.append("#");
-                    contactDisp.append("#");
-                    break;
+            case R.id.buttonpound:
+                numbDisp.append("#");
+                contactDisp.append("#");
+                break;
 
-                case R.id.buttondelete:
-                    String str = numbDisp.getText().toString().trim();
-                    if (str.length() != 0) {
-                        str = str.substring(0, str.length() - 1);
-                        numbDisp.setText(str);
-                        contactDisp.setText(str);
-                    }
-                    break;
+            case R.id.buttondelete:
+                String str = numbDisp.getText().toString().trim();
+                if (str.length() != 0) {
+                    str = str.substring(0, str.length() - 1);
+                    numbDisp.setText(str);
+                    contactDisp.setText(str);
+                }
+                break;
 
-                case R.id.buttoncall:
+            case R.id.buttoncall:
 
-                    if (numbDisp.getText().toString().equals(emergency)) {
-                        goToCall();
-                    } else {
-                        Toast toast = Toast.makeText(getApplicationContext(), "Try Again", Toast.LENGTH_SHORT);
-                        toast.show();
-                        TRIES++;
-                    }
-                    break;
-
-            }
-            one.setBackgroundColor(Color.WHITE);
+                if (numbDisp.getText().toString().equals(emergency)) {
+                    goToCall();
+                } else {
+                    Toast toast = Toast.makeText(getApplicationContext(), "Try Again", Toast.LENGTH_SHORT);
+                    toast.show();
+                    TRIES++;
+                }
+                break;
 
         }
+        one.setBackgroundColor(Color.WHITE);
+
+    }
 
     public void goToCall() {
         LoginActivity.EDITOR.putInt(LoginActivity.ACCOUNT_TRIES, TRIES);
@@ -229,6 +225,4 @@ public class KeypadActivity extends Activity implements View.OnClickListener {
         Intent call = new Intent(this, CallActivity.class);
         startActivity(call);
     }
-
-
 }

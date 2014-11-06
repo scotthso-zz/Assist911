@@ -1,6 +1,5 @@
 package scottso.assist911;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -51,15 +50,13 @@ public class PracticePlayVideoActivity extends SimKidsActivity implements View.O
                 break;
 
             case R.id.btn_not_emergency:
-               if (VideosActivity.EMERGENCY = false) {
-                   goToMainMenu();
-               } else {
-                   // Make method to display error
-               }
+                if (VideosActivity.EMERGENCY = false) {
+                    goToMainMenu();
+                } else {
+                    // Make method to display error
+                }
                 break;
-
         }
-
     }
 
     public void goToPractice() {
@@ -70,7 +67,7 @@ public class PracticePlayVideoActivity extends SimKidsActivity implements View.O
     public void goToMainMenu() {
         Toast toast = Toast.makeText(getApplicationContext(), "You are correct!", Toast.LENGTH_SHORT);
         toast.show();
-        Intent mainMenu = new Intent(this, MyActivity.class);
+        Intent mainMenu = new Intent(this, MainMenuActivity.class);
         startActivity(mainMenu);
 
     }

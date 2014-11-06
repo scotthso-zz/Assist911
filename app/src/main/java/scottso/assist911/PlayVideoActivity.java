@@ -5,9 +5,6 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.widget.VideoView;
 
-/**
- * Created by scottso on 2014-08-27.
- */
 public class PlayVideoActivity extends Activity{
 
     @Override
