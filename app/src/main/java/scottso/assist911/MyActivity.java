@@ -46,7 +46,6 @@ public class MyActivity extends SimKidsActivity implements View.OnClickListener{
                 TIMES_OPENED = LoginActivity.PREF.getInt(LoginActivity.TIMES_OPENED, 0);
                 REMOVED_TEXT_PROMPT = LoginActivity.PREF.getBoolean("REMOVED_TEXT_PROMPT", false);
                 REMOVED_AUDIO_PROMPT = LoginActivity.PREF.getBoolean("REMOVED_AUDIO_PROMPT", false);
-
             }
 
             @Override
