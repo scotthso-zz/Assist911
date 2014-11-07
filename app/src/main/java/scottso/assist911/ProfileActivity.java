@@ -7,9 +7,10 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-public class SettingsActivity extends Activity implements View.OnClickListener {
+public class ProfileActivity extends Activity implements View.OnClickListener {
 
     private TextView usernameTV;
+    private TextView highScoreTV;
     private TextView timesOpened;
     private TextView tries;
     private TextView removedDialog;
@@ -29,6 +30,9 @@ public class SettingsActivity extends Activity implements View.OnClickListener {
 
         usernameTV = (TextView) findViewById(R.id.display_username);
         usernameTV.setText("Username: " + LoginActivity.PREF.getString(LoginActivity.USERNAME,""));
+
+        highScoreTV = (TextView) findViewById(R.id.high_score);
+        highScoreTV.setText("High Score: " + LoginActivity.PREF.getInt(LoginActivity.HIGH_SCORE,0));
 
         timesOpened = (TextView) findViewById(R.id.times_opened);
         timesOpened.setText("Times Opened: " + String.valueOf(MainMenuActivity.TIMES_OPENED));

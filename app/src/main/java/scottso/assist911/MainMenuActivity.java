@@ -107,7 +107,7 @@ public class MainMenuActivity extends SimKidsActivity implements View.OnClickLis
     }
 
     public void goToSettings() {
-        Intent settings = new Intent(this, SettingsActivity.class);
+        Intent settings = new Intent(this, ProfileActivity.class);
         startActivity(settings);
     }
 

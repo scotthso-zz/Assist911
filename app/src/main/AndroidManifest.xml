@@ -47,7 +47,7 @@
             android:screenOrientation="portrait" >
         </activity>
         <activity
-            android:name=".SettingsActivity"
+            android:name=".ProfileActivity"
             android:label="Assist911"
             android:screenOrientation="portrait" >
         </activity>

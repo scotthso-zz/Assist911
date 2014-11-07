@@ -4,7 +4,6 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-
     <TextView
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
@@ -16,18 +15,29 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 
-  <TextView
-      android:layout_width="fill_parent"
-      android:layout_height="50dp"
-      android:text="Times Opened"
-      android:textSize="12pt"
-      android:gravity="center"
-      android:id="@+id/times_opened"
+    <TextView
+        android:id="@+id/high_score"
+        android:layout_width="fill_parent"
+        android:layout_height="50dp"
+        android:text="High Score"
+        android:textSize="12pt"
+        android:gravity="center"
+        android:layout_below="@+id/display_username"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        />
 
-      android:layout_below="@+id/display_username"
-      android:layout_alignParentLeft="true"
-      android:layout_alignParentStart="true"
-       />
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="50dp"
+        android:text="Times Opened"
+        android:textSize="12pt"
+        android:gravity="center"
+        android:id="@+id/times_opened"
+        android:layout_below="@+id/high_score"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        />
 
     <TextView
         android:layout_width="fill_parent"
@@ -84,6 +94,5 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
-
 
 </RelativeLayout>
