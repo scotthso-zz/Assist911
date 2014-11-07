@@ -5,14 +5,12 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="bottom"
-    android:background="#000"
-    >
+    android:background="#33333333">
 
     <net.frakbot.glowpadbackport.GlowPadView
         android:id="@+id/glow_pad_view"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:layout_below="@+id/btn_toggle_padmult"
         android:layout_marginTop="-10dp"
         android:layout_marginBottom="-46dp"
         android:visibility="visible"
@@ -28,13 +26,5 @@
         app:feedbackCount="1"
         app:glowRadius="@dimen/glowpadview_glow_radius"
         app:pointDrawable="@drawable/ic_lockscreen_glowdot"/>
-
-    <Button
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:text="UNLOCK"
-        android:textSize="20pt"
-        android:id="@+id/lock_button"
-        android:gravity="center" />
 
 </LinearLayout>

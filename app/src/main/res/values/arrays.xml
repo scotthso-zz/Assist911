@@ -6,8 +6,5 @@
      -->
     <array name="incoming_call_widget_2way_targets">
         <item>@drawable/ic_lockscreen_answer</item>
-        <item>@null</item>
-        <item>@drawable/ic_lockscreen_decline</item>
-        <item>@null</item>"
     </array>
 </resources>

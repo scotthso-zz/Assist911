@@ -6,25 +6,18 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.speech.tts.TextToSpeech;
-import android.support.v4.view.GestureDetectorCompat;
 import android.util.Log;
-import android.view.GestureDetector;
-import android.view.MotionEvent;
 import android.view.View;
-import android.widget.Button;
-import android.widget.Toast;
 
 import net.frakbot.glowpadbackport.GlowPadView;
 
 import java.util.Locale;
 
-public class LockActivity extends Activity implements View.OnClickListener, TextToSpeech.OnInitListener {
+public class LockActivity extends Activity implements TextToSpeech.OnInitListener {
 
     private static int TTS_DATA_CHECK = 1;
     private TextToSpeech tts;
 
-
-    private Button unlockButton;
     private GlowPadView mGlowPadView;
 
     private CountDownTimer countDownTimer;
@@ -33,16 +26,11 @@ public class LockActivity extends Activity implements View.OnClickListener, Text
     private long startTime = 10 * 1000;
     private final long interval = 1 * 1000;
 
-    private GestureDetectorCompat gDetect;
-
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lock);
 
-        gDetect = new GestureDetectorCompat(this, new GestureListener());
-
         if(MainMenuActivity.TIMES_OPENED > 5 && MainMenuActivity.IS_REMOVE_TEXT_PROMPT == false) {
-
             DialogFragment newFragment = new PromptRemovedDialog();
             newFragment.show(getFragmentManager(), "PromptDialog");
 
@@ -51,16 +39,13 @@ public class LockActivity extends Activity implements View.OnClickListener, Text
             LoginActivity.EDITOR.commit();
 
         } else if (MainMenuActivity.TIMES_OPENED > 10 && MainMenuActivity.IS_REMOVE_AUDIO_PROMPT == false) {
-
             DialogFragment newFragment = new AudioPromptRemovedDialog();
             newFragment.show(getFragmentManager(), "PromptDialog");
 
             MainMenuActivity.IS_REMOVE_AUDIO_PROMPT = true;
             LoginActivity.EDITOR.putBoolean(LoginActivity.REMOVE_AUDIO_PROMPT, true);
             LoginActivity.EDITOR.commit();
-
         }
-
 
         if (MainMenuActivity.TIMES_OPENED <= 5) {
             DialogFragment newFragment = new PromptUnlockDialog();
@@ -68,9 +53,6 @@ public class LockActivity extends Activity implements View.OnClickListener, Text
         }
 
         tts = new TextToSpeech(this, this);
-
-        unlockButton = (Button) findViewById(R.id.lock_button);
-        unlockButton.setOnClickListener(this);
 
         mGlowPadView = (GlowPadView) findViewById(R.id.glow_pad_view);
         mGlowPadView.setOnTriggerListener(new GlowPadView.OnTriggerListener() {
@@ -86,8 +68,9 @@ public class LockActivity extends Activity implements View.OnClickListener, Text
 
             @Override
             public void onTrigger(View v, int target) {
-                Toast.makeText(LockActivity.this, "Target triggered! ID=" + target, Toast.LENGTH_SHORT).show();
-                mGlowPadView.reset(true);
+                goToDialpad();
+                //Toast.makeText(LockActivity.this, "Target triggered! ID=" + target, Toast.LENGTH_SHORT).show();
+               // mGlowPadView.reset(true);
             }
 
             @Override
@@ -101,90 +84,22 @@ public class LockActivity extends Activity implements View.OnClickListener, Text
             }
         });
 
-
         countDownTimer = new MyCountDownTimer(startTime, interval);
 
         if (!timerHasStarted) {
             countDownTimer.start();
             timerHasStarted = true;
-
         } else {
             countDownTimer.cancel();
             timerHasStarted = false;
         }
-
     }
 
-
-    @Override
-    public boolean onTouchEvent(MotionEvent event){
-        this.gDetect.onTouchEvent(event);
-        return super.onTouchEvent(event);
-    }
-
-    public class GestureListener extends GestureDetector.SimpleOnGestureListener {
-//class content
-
-        private float flingMin = 100;
-        private float velocityMin = 100;
-
-        //user will move right through messages on fling up or left
-        boolean right = false;
-
-        @Override
-        public boolean onDown(MotionEvent event) {
-            return true;
-        }
-
-        @Override
-        public boolean onFling(MotionEvent event1, MotionEvent event2,
-                               float velocityX, float velocityY) {
-            //determine what happens on fling events
-            //calculate the change in X position within the fling gesture
-            float horizontalDiff = event2.getX() - event1.getX();
-//calculate the change in Y position within the fling gesture
-            float verticalDiff = event2.getY() - event1.getY();
-
-            float absHDiff = Math.abs(horizontalDiff);
-            float absVDiff = Math.abs(verticalDiff);
-            float absVelocityX = Math.abs(velocityX);
-            float absVelocityY = Math.abs(velocityY);
-
-            if(absHDiff>absVDiff && absHDiff>flingMin && absVelocityX>velocityMin){
-//move right or backward
-                if(horizontalDiff<0)
-                    right =true;
-            } else if(absVDiff>flingMin && absVelocityY>velocityMin){
-                if(verticalDiff<0)
-                    right =true;
-            }
-
-            if(right){
-                goToDialpad();
-                System.out.println("FORWARD");
-            }
-//user is cycling backwards through messages
-            return true;
-        }
-    }
-
-
-    public void onClick(View view) {
-
-        switch (view.getId()) {
-
-            case R.id.lock_button:
-                goToDialpad();
-                break;
-        }
-
-    }
     @Override
     public void onInit(int status) {
         if (status == TextToSpeech.SUCCESS) {
             int result = tts.setLanguage(Locale.US);
-            if (result == TextToSpeech.LANG_MISSING_DATA
-                    || result == TextToSpeech.LANG_NOT_SUPPORTED) {
+            if (result == TextToSpeech.LANG_MISSING_DATA || result == TextToSpeech.LANG_NOT_SUPPORTED) {
                 Log.e("TTS", "This Language is not supported");
             } else {
             }
@@ -214,11 +129,9 @@ public class LockActivity extends Activity implements View.OnClickListener, Text
     }
 
     public class MyCountDownTimer extends CountDownTimer {
-
         public MyCountDownTimer(long startTime, long interval) {
             super(startTime, interval);
         }
-
         @Override
         public void onTick(long millisUntilFinished) {
             if (millisUntilFinished/1000 == 8 && MainMenuActivity.TIMES_OPENED < 10) {

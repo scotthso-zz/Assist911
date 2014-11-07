@@ -13,7 +13,7 @@
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android">
     <item>
         <shape xmlns:android="http://schemas.android.com/apk/res/android" android:shape="oval">
-            <solid android:color="#99cc00"/>
+            <solid android:color="#ffffff"/>
             <size
                 android:width="@dimen/incoming_call_widget_circle_size"
                 android:height="@dimen/incoming_call_widget_circle_size" />
@@ -24,5 +24,5 @@
         android:right="@dimen/incoming_call_widget_asset_margin"
         android:bottom="@dimen/incoming_call_widget_asset_margin"
         android:left="@dimen/incoming_call_widget_asset_margin"
-        android:drawable="@drawable/ic_lockscreen_answer_activated" />
+        android:drawable="@drawable/ic_unlock" />
 </layer-list>
