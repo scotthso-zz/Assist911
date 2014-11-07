@@ -222,7 +222,6 @@ public class CallActivity extends Activity implements View.OnClickListener, Text
                 hintLocationFragment.show(getFragmentManager(), "PromptDialog");
             }
         }
-
     }
 
     private void activateSpeechRecognition() {
@@ -238,7 +237,8 @@ public class CallActivity extends Activity implements View.OnClickListener, Text
     public void goToResults() {
         Intent results = new Intent(this, ResultsActivity.class);
         startActivity(results);
-
+        finish();
+        MainMenuActivity.CURRENT_TRY_SCORE++;
     }
 
 

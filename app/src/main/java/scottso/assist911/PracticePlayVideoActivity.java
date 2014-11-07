@@ -8,18 +8,12 @@ import android.widget.Button;
 import android.widget.Toast;
 import android.widget.VideoView;
 
-/**
- * Created by scottso on 2014-08-27.
- */
 public class PracticePlayVideoActivity extends SimKidsActivity implements View.OnClickListener {
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_practice_play_video);
-
 
         Button ok = (Button)findViewById(R.id.btn_emergency);
         ok.setOnClickListener(this);
@@ -38,12 +32,11 @@ public class PracticePlayVideoActivity extends SimKidsActivity implements View.O
 
     @Override
     public void onClick(View view) {
-
         switch (view.getId()) {
-
             case R.id.btn_emergency:
-                if(VideosActivity.EMERGENCY = true ) {
+                if(VideosActivity.EMERGENCY = true) {
                     goToPractice();
+
                 } else {
                     // Make method to display error
                 }
@@ -62,6 +55,8 @@ public class PracticePlayVideoActivity extends SimKidsActivity implements View.O
     public void goToPractice() {
         Intent practice = new Intent(this, LockActivity.class);
         startActivity(practice);
+        finish();
+        MainMenuActivity.CURRENT_TRY_SCORE++;
     }
 
     public void goToMainMenu() {
@@ -69,6 +64,6 @@ public class PracticePlayVideoActivity extends SimKidsActivity implements View.O
         toast.show();
         Intent mainMenu = new Intent(this, MainMenuActivity.class);
         startActivity(mainMenu);
-
+        finish();
     }
 }

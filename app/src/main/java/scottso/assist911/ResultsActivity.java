@@ -16,11 +16,23 @@ public class ResultsActivity extends Activity implements View.OnClickListener {
         Button backButton = (Button) findViewById(R.id.button_back);
         backButton.setOnClickListener(this);
 
-        TextView tries = (TextView) findViewById(R.id.tries);
+        final TextView newHighScore = (TextView) findViewById(R.id.new_high_score);
+        if (MainMenuActivity.CURRENT_TRY_SCORE > LoginActivity.PREF.getInt(LoginActivity.HIGH_SCORE, 0)) {
+            LoginActivity.EDITOR.putInt(LoginActivity.HIGH_SCORE,MainMenuActivity.CURRENT_TRY_SCORE);
+            LoginActivity.EDITOR.commit();
+            newHighScore.setVisibility(View.VISIBLE);
+        } else {
+            newHighScore.setVisibility(View.GONE);
+        }
+
+        final TextView points = (TextView) findViewById(R.id.points);
+        points.setText("Score: " + String.valueOf(MainMenuActivity.CURRENT_TRY_SCORE));
+
+        final TextView tries = (TextView) findViewById(R.id.tries);
         tries.setText("Mistakes: " + String.valueOf(KeypadActivity.TRIES));
 
-        TextView removedDialog = (TextView) findViewById(R.id.removed_dialog);
-        TextView removedAudioDialog = (TextView) findViewById(R.id.removed_audio_dialog);
+        final TextView removedDialog = (TextView) findViewById(R.id.removed_dialog);
+        final TextView removedAudioDialog = (TextView) findViewById(R.id.removed_audio_dialog);
 
         if (MainMenuActivity.IS_REMOVE_TEXT_PROMPT == true) {
             removedDialog.setText("Removed: TRUE");
@@ -44,7 +56,9 @@ public class ResultsActivity extends Activity implements View.OnClickListener {
     }
 
     public void goToMenu() {
+
         Intent menu = new Intent(this, MainMenuActivity.class);
         startActivity(menu);
+        finish();
     }
 }

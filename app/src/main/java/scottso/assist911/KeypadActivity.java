@@ -21,7 +21,7 @@ public class KeypadActivity extends Activity implements View.OnClickListener {
     private TextView contactDisp;
     private TextView numbDisp;
 
-    String emergency = "911";
+    private final String emergency = "911";
 
     private CountDownTimer countDownTimer;
     private boolean timerHasStarted = false;
@@ -84,16 +84,13 @@ public class KeypadActivity extends Activity implements View.OnClickListener {
         if (!timerHasStarted) {
             countDownTimer.start();
             timerHasStarted = true;
-
         } else {
             countDownTimer.cancel();
             timerHasStarted = false;
         }
-
     }
 
     public class MyCountDownTimer extends CountDownTimer {
-
         public MyCountDownTimer(long startTime, long interval) {
             super(startTime, interval);
         }
@@ -111,20 +108,17 @@ public class KeypadActivity extends Activity implements View.OnClickListener {
             } else if (millisUntilFinished/1000 == 2) {
                 one.setBackgroundColor(Color.rgb(247, 202, 24));
             }
-
         }
 
         @Override
         public void onFinish() {
             one.setBackgroundColor(Color.WHITE);
-
         }
     }
+
     @Override
     public void onClick(View view) {
-
         switch (view.getId()) {
-
             case R.id.button1:
                 numbDisp.append("1");
                 contactDisp.append("1");
@@ -135,8 +129,6 @@ public class KeypadActivity extends Activity implements View.OnClickListener {
                 if (estr.equals(emergency)) {
                     contactDisp.append(" - Emergency");
                 }
-
-
                 break;
 
             case R.id.button2:
@@ -204,7 +196,6 @@ public class KeypadActivity extends Activity implements View.OnClickListener {
                 break;
 
             case R.id.buttoncall:
-
                 if (numbDisp.getText().toString().equals(emergency)) {
                     goToCall();
                 } else {
@@ -213,7 +204,6 @@ public class KeypadActivity extends Activity implements View.OnClickListener {
                     TRIES++;
                 }
                 break;
-
         }
         one.setBackgroundColor(Color.WHITE);
 
@@ -224,5 +214,7 @@ public class KeypadActivity extends Activity implements View.OnClickListener {
         LoginActivity.EDITOR.commit();
         Intent call = new Intent(this, CallActivity.class);
         startActivity(call);
+        finish();
+        MainMenuActivity.CURRENT_TRY_SCORE++;
     }
 }

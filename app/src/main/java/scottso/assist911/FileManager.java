@@ -24,6 +24,8 @@ public class FileManager  {
             outputStream.write((""+"\n").getBytes());
             outputStream.write(Integer.toString(account.getAccountTimesOpened()).getBytes());
             outputStream.write((""+"\n").getBytes());
+            outputStream.write(Integer.toString(account.getHighScore()).getBytes());
+            outputStream.write((""+"\n").getBytes());
             outputStream.close();
         } catch (FileNotFoundException e1) {
             e1.printStackTrace();
@@ -49,8 +51,9 @@ public class FileManager  {
 
             int accountTries = Integer.parseInt(bufferedReader.readLine().trim());
             int timesOpened = Integer.parseInt(bufferedReader.readLine().trim());
+            int highScore = Integer.parseInt(bufferedReader.readLine().trim());
 
-            AccountItem item = new AccountItem(username, accountTries, timesOpened);
+            AccountItem item = new AccountItem(username, accountTries, timesOpened, highScore);
 
             return item;
         } catch (FileNotFoundException e) {

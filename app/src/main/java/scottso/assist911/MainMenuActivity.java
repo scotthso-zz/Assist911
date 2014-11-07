@@ -22,8 +22,10 @@ public class MainMenuActivity extends SimKidsActivity implements View.OnClickLis
     final String[] videoArray = {"flame","smoke","passed","car","drowning","a","b"};
 
     public static int TIMES_OPENED;
+    public static int CURRENT_TRY_SCORE;
     public static boolean IS_REMOVE_TEXT_PROMPT = false;
     public static boolean IS_REMOVE_AUDIO_PROMPT = false;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,6 +69,7 @@ public class MainMenuActivity extends SimKidsActivity implements View.OnClickLis
 
         switch(v.getId()) {
             case R.id.practice_button:
+                CURRENT_TRY_SCORE = 0;
                 TIMES_OPENED++;
                 LoginActivity.EDITOR.putInt(LoginActivity.TIMES_OPENED, TIMES_OPENED);
                 LoginActivity.EDITOR.commit();

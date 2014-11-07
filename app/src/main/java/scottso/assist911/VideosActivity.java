@@ -67,5 +67,6 @@ public class VideosActivity extends SimKidsActivity implements AdapterView.OnIte
     public void goToVideoPlayer() {
         Intent videoPlayer = new Intent(this, PlayVideoActivity.class);
         startActivity(videoPlayer);
+        finish();
     }
 }

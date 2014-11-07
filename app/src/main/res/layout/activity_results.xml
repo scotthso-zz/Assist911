@@ -11,8 +11,27 @@
         android:textSize="22pt"
         android:gravity="center"
         android:id="@+id/title"
-        android:layout_gravity="center_horizontal" />
+        android:layout_gravity="center_horizontal"
+        android:layout_weight="1"/>
 
+    <TextView
+        android:id="@+id/new_high_score"
+        android:layout_width="fill_parent"
+        android:layout_height="100dp"
+        android:text="New high score!"
+        android:textSize="12pt"
+        android:gravity="center"
+        android:layout_weight="1"
+        android:visibility="gone"/>
+
+    <TextView
+        android:id="@+id/points"
+        android:layout_width="fill_parent"
+        android:layout_height="100dp"
+        android:text="Points"
+        android:textSize="12pt"
+        android:gravity="center"
+        android:layout_weight="1"/>
 
     <TextView
         android:layout_width="fill_parent"
@@ -20,7 +39,8 @@
         android:text="Tries"
         android:textSize="12pt"
         android:gravity="center"
-        android:id="@+id/tries" />
+        android:id="@+id/tries"
+        android:layout_weight="1"/>
 
     <TextView
         android:layout_width="fill_parent"
@@ -28,7 +48,8 @@
         android:text="Removed Dialog"
         android:textSize="12pt"
         android:gravity="center"
-        android:id="@+id/removed_dialog" />
+        android:id="@+id/removed_dialog"
+        android:layout_weight="1"/>
 
     <TextView
         android:layout_width="fill_parent"
@@ -36,14 +57,15 @@
         android:text="Removed Audio"
         android:textSize="12pt"
         android:gravity="center"
-        android:id="@+id/removed_audio_dialog" />
+        android:id="@+id/removed_audio_dialog"
+        android:layout_weight="1"/>
 
     <Button
         android:layout_width="fill_parent"
         android:layout_height="100dp"
         android:text="Back To Menu"
         android:textSize="22dp"
-
+        android:layout_weight="1"
         android:id="@+id/button_back" />
 
 </LinearLayout>

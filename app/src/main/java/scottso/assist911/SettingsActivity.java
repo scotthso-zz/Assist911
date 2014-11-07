@@ -69,11 +69,13 @@ public class SettingsActivity extends Activity implements View.OnClickListener {
 //            case R.id.button_showtutorial:
 //                Intent tutorialIntent = new Intent(this, TutorialActivity.class);
 //                startActivity(tutorialIntent);
+//                finish();
 //                break;
             case R.id.button_logout:
                 AccountItem account = new AccountItem(LoginActivity.PREF.getString(LoginActivity.USERNAME,""),
                         LoginActivity.PREF.getInt(LoginActivity.ACCOUNT_TRIES, 0),
-                        LoginActivity.PREF.getInt(LoginActivity.TIMES_OPENED, 0));
+                        LoginActivity.PREF.getInt(LoginActivity.TIMES_OPENED, 0),
+                        LoginActivity.PREF.getInt(LoginActivity.HIGH_SCORE, 0));
                 FileManager.saveToAccount(account, this);
                 Intent loginIntent = new Intent(this, LoginActivity.class);
                 loginIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);

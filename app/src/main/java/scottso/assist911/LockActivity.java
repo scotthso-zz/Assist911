@@ -150,5 +150,7 @@ public class LockActivity extends Activity implements TextToSpeech.OnInitListene
     public void goToDialpad() {
         Intent dial = new Intent(this, KeypadActivity.class);
         startActivity(dial);
+        finish();
+        MainMenuActivity.CURRENT_TRY_SCORE++;
     }
 }
