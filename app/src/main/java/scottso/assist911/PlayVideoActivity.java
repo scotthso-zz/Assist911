@@ -1,11 +1,14 @@
 package scottso.assist911;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.VideoView;
 
-public class PlayVideoActivity extends Activity{
+public class PlayVideoActivity extends SimKidsActivity implements View.OnClickListener{
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -19,6 +22,25 @@ public class PlayVideoActivity extends Activity{
         VideoView videoView = (VideoView) findViewById(R.id.VideoView);
         videoView.setVideoURI(Uri.parse(uri));
         videoView.start();
+
+       
+        Button back = (Button) findViewById(R.id.btn_back);
+        back.setOnClickListener(this);
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.btn_back:
+                goToVideoPlayerMenu();
+                break;
+        }
+    }
+
+    public void goToVideoPlayerMenu() {
+        Intent videoPlayer = new Intent(this, VideosActivity.class);
+        startActivity(videoPlayer);
+        finish();
     }
 
 }

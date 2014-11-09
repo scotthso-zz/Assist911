@@ -3,12 +3,34 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:fbutton="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:weightSum="1">
 
     <VideoView
-        android:layout_height="fill_parent"
-        android:layout_width="fill_parent"
+        android:layout_height="253dp"
+        android:layout_width="638dp"
         android:id="@+id/VideoView"
-        />
+        android:layout_weight="0.85" />
+
+    <info.hoang8f.widget.FButton
+        fbutton:buttonColor="@color/color_alizarin"
+        fbutton:shadowColor="@color/color_pomegranate"
+        fbutton:shadowEnabled="true"
+        fbutton:shadowHeight="10dp"
+        fbutton:cornerRadius="12dp"
+
+        android:layout_width="150dp"
+        android:layout_height="40dp"
+        android:text="BACK"
+        android:textColor="#96281B"
+        android:textSize="15pt"
+        android:gravity="center"
+        android:id="@+id/btn_back"
+        android:layout_gravity="center_horizontal"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="50dp"
+        android:layout_weight="0.1" />
+
 
 </LinearLayout>
