@@ -256,7 +256,7 @@ public class CallActivity extends Activity implements View.OnClickListener, Text
 
         intent.putExtra(RecognizerIntent.EXTRA_MAX_RESULTS, 5);
         sr.startListening(intent);
-        Log.i("111111", "11111111");
+        Log.i("111111", "Listening!!");
     }
 
     public void goToResults() {

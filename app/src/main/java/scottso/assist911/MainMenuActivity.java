@@ -109,6 +109,7 @@ public class MainMenuActivity extends SimKidsActivity implements View.OnClickLis
     public void goToSettings() {
         Intent settings = new Intent(this, ProfileActivity.class);
         startActivity(settings);
+        finish();
     }
 
     public void goToReport() {
@@ -125,4 +126,6 @@ public class MainMenuActivity extends SimKidsActivity implements View.OnClickLis
     protected void attachBaseContext(Context newBase) {
         super.attachBaseContext(new CalligraphyContextWrapper(newBase));
     }
+
+    @Override public void onBackPressed(){ moveTaskToBack(true); }
 }

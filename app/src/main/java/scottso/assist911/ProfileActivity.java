@@ -15,12 +15,16 @@ public class ProfileActivity extends Activity implements View.OnClickListener {
     private TextView tries;
     private TextView removedDialog;
     private TextView removedAudioDialog;
+    private Button returnButton;
     private Button resetButton;
     private Button logoutButton;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
+
+        returnButton = (Button) findViewById(R.id.button_return);
+        returnButton.setOnClickListener(this);
 
         resetButton = (Button) findViewById(R.id.button_reset);
         resetButton.setOnClickListener(this);
@@ -58,6 +62,10 @@ public class ProfileActivity extends Activity implements View.OnClickListener {
 
     public void onClick(View v) {
         switch (v.getId()) {
+            case R.id.button_return:
+                Intent intent = new Intent(this, MainMenuActivity.class);
+                startActivity(intent);
+                finish();
             case R.id.button_reset:
                 LoginActivity.EDITOR.clear();//TODO: what is this
                 LoginActivity.EDITOR.commit();
@@ -81,10 +89,19 @@ public class ProfileActivity extends Activity implements View.OnClickListener {
                         LoginActivity.PREF.getInt(LoginActivity.TIMES_OPENED, 0),
                         LoginActivity.PREF.getInt(LoginActivity.HIGH_SCORE, 0));
                 FileManager.saveToAccount(account, this);
-                Intent loginIntent = new Intent(this, LoginActivity.class);
-                loginIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                ////// clearing data
+                LoginActivity.EDITOR.clear();//TODO: what is this
+                LoginActivity.EDITOR.commit();
+                MainMenuActivity.TIMES_OPENED = 0;
+
+                MainMenuActivity.IS_REMOVE_TEXT_PROMPT = false;
+                MainMenuActivity.IS_REMOVE_AUDIO_PROMPT = false;
                 LoginActivity.IS_LOGGED_IN = false;
+                /////
+                Intent loginIntent = new Intent(this, LoginActivity.class);
+                loginIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 finish();
+
                 startActivity(loginIntent);
                 break;
         }

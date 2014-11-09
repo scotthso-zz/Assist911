@@ -43,8 +43,6 @@ public class LoginActivity extends SimKidsActivity {
                     login();
                 }
             });
-
-            IS_LOGGED_IN = true;
         } else {
             Intent intent = new Intent(this, MainMenuActivity.class);
             startActivity(intent);
@@ -56,6 +54,7 @@ public class LoginActivity extends SimKidsActivity {
         String username = usernameET.getText().toString();
         if (username.equals("")) {
             Toast.makeText(this, "Please enter an existing username or a new username.",Toast.LENGTH_LONG).show();
+            IS_LOGGED_IN = false;
         } else {
             AccountItem account = FileManager.findAndReadAccount(username, this);
             if (account != null) { //load information into shared preferences
@@ -79,7 +78,7 @@ public class LoginActivity extends SimKidsActivity {
             }
             Intent intent = new Intent(this, MainMenuActivity.class);
             startActivity(intent);
-            finish();
+            IS_LOGGED_IN = true;
         }
     }
 }
