@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 public class LoginActivity extends SimKidsActivity {
     private Button loginButton;
@@ -53,29 +54,32 @@ public class LoginActivity extends SimKidsActivity {
 
     void login() {
         String username = usernameET.getText().toString();
-        AccountItem account = FileManager.findAndReadAccount(username, this);
-        if(account != null) { //load information into shared preferences
-            EDITOR.putString(USERNAME, username);
-            EDITOR.putInt(TIMES_OPENED, account.getAccountTimesOpened());
-            EDITOR.putInt(ACCOUNT_TRIES, account.getAccountTries());
-            EDITOR.putInt(HIGH_SCORE, account.getHighScore());
-            EDITOR.commit();
-            Log.d("test", "Currently " + PREF.getString(USERNAME, "") + "&" + PREF.getInt(TIMES_OPENED,0)
-                                       + "&" + PREF.getInt(ACCOUNT_TRIES,0) + "&" + PREF.getInt(HIGH_SCORE,0));
-        } else { //create account
-            AccountItem accountItem = new AccountItem(username,0,0,0);
-            FileManager.saveFile(accountItem, this);
-            EDITOR.putString(USERNAME, username);
-            EDITOR.putInt(TIMES_OPENED, accountItem.getAccountTimesOpened());
-            EDITOR.putInt(ACCOUNT_TRIES, accountItem.getAccountTries());
-            EDITOR.putInt(HIGH_SCORE, accountItem.getHighScore());
-            EDITOR.commit();
-            Log.d("test", "Creating " + PREF.getString(USERNAME, "") + "&" + PREF.getInt(TIMES_OPENED,0)
-                                      + "&" + PREF.getInt(ACCOUNT_TRIES,0) + "&" + PREF.getInt(HIGH_SCORE,0));
+        if (username.equals("")) {
+            Toast.makeText(this, "Please enter an existing username or a new username.",Toast.LENGTH_LONG).show();
+        } else {
+            AccountItem account = FileManager.findAndReadAccount(username, this);
+            if (account != null) { //load information into shared preferences
+                EDITOR.putString(USERNAME, username);
+                EDITOR.putInt(TIMES_OPENED, account.getAccountTimesOpened());
+                EDITOR.putInt(ACCOUNT_TRIES, account.getAccountTries());
+                EDITOR.putInt(HIGH_SCORE, account.getHighScore());
+                EDITOR.commit();
+                Log.d("test", "Currently " + PREF.getString(USERNAME, "") + "&" + PREF.getInt(TIMES_OPENED, 0)
+                        + "&" + PREF.getInt(ACCOUNT_TRIES, 0) + "&" + PREF.getInt(HIGH_SCORE, 0));
+            } else { //create account
+                AccountItem accountItem = new AccountItem(username, 0, 0, 0);
+                FileManager.saveFile(accountItem, this);
+                EDITOR.putString(USERNAME, username);
+                EDITOR.putInt(TIMES_OPENED, accountItem.getAccountTimesOpened());
+                EDITOR.putInt(ACCOUNT_TRIES, accountItem.getAccountTries());
+                EDITOR.putInt(HIGH_SCORE, accountItem.getHighScore());
+                EDITOR.commit();
+                Log.d("test", "Creating " + PREF.getString(USERNAME, "") + "&" + PREF.getInt(TIMES_OPENED, 0)
+                        + "&" + PREF.getInt(ACCOUNT_TRIES, 0) + "&" + PREF.getInt(HIGH_SCORE, 0));
+            }
+            Intent intent = new Intent(this, MainMenuActivity.class);
+            startActivity(intent);
+            finish();
         }
-
-        Intent intent = new Intent(this, MainMenuActivity.class);
-        startActivity(intent);
-        finish();
     }
 }
