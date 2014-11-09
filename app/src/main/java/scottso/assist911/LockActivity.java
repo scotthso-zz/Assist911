@@ -102,15 +102,13 @@ public class LockActivity extends Activity implements TextToSpeech.OnInitListene
             if (result == TextToSpeech.LANG_MISSING_DATA || result == TextToSpeech.LANG_NOT_SUPPORTED) {
                 Log.e("TTS", "This Language is not supported");
             } else {
+                if(MainMenuActivity.TIMES_OPENED < 10) {
+                    speakUnlock();
+                }
             }
         } else {
             Log.e("TTS", "Initilization Failed!");
         }
-    }
-
-    private void speakPickUp() {
-        String text = "Please pick up the phone. Stay calm.";
-        tts.speak(text, TextToSpeech.QUEUE_FLUSH, null);
     }
 
     public void speakUnlock() {
@@ -134,10 +132,8 @@ public class LockActivity extends Activity implements TextToSpeech.OnInitListene
         }
         @Override
         public void onTick(long millisUntilFinished) {
-            if (millisUntilFinished/1000 == 8 && MainMenuActivity.TIMES_OPENED < 10) {
-                speakPickUp();
-            } else if (millisUntilFinished/1000 == 4 && MainMenuActivity.TIMES_OPENED < 10) {
-                speakUnlock();
+            if (millisUntilFinished/1000 == 4 && MainMenuActivity.TIMES_OPENED < 10) {
+//                speakUnlock();
             } else {
             }
         }

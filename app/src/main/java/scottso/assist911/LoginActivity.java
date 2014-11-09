@@ -78,6 +78,7 @@ public class LoginActivity extends SimKidsActivity {
             }
             Intent intent = new Intent(this, MainMenuActivity.class);
             startActivity(intent);
+            finish();
             IS_LOGGED_IN = true;
         }
     }

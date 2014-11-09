@@ -41,7 +41,7 @@ public class CallActivity extends Activity implements View.OnClickListener, Text
     int level = 1;
 
     ArrayList data;
-    private static final String TAG = "MyStt3Activity";
+    private static final String TAG = "CallActivity";
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -85,7 +85,7 @@ public class CallActivity extends Activity implements View.OnClickListener, Text
     }
 
     private void firstQuestion() {
-        String text = "911 do you need fire, ampulance or police";
+        String text = "911 do you need fire, ambulance or police";
         tts.speak(text, TextToSpeech.QUEUE_FLUSH, null);
 
         countDownTimer = new MyCountDownTimer(startTime, interval);
@@ -256,7 +256,7 @@ public class CallActivity extends Activity implements View.OnClickListener, Text
 
         intent.putExtra(RecognizerIntent.EXTRA_MAX_RESULTS, 5);
         sr.startListening(intent);
-        Log.i("111111", "Listening!!");
+        Log.i("SpeechRecog", "Listening!!");
     }
 
     public void goToResults() {

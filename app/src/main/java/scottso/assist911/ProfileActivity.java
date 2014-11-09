@@ -66,6 +66,8 @@ public class ProfileActivity extends Activity implements View.OnClickListener {
                 Intent intent = new Intent(this, MainMenuActivity.class);
                 startActivity(intent);
                 finish();
+                break;
+
             case R.id.button_reset:
                 LoginActivity.EDITOR.clear();//TODO: what is this
                 LoginActivity.EDITOR.commit();
