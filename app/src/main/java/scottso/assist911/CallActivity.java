@@ -85,7 +85,7 @@ public class CallActivity extends Activity implements View.OnClickListener, Text
     }
 
     private void firstQuestion() {
-        String text = "911 do you need police, fire or ambulance";
+        String text = "911 do you need fire, ampulance or police";
         tts.speak(text, TextToSpeech.QUEUE_FLUSH, null);
 
         countDownTimer = new MyCountDownTimer(startTime, interval);
@@ -101,7 +101,17 @@ public class CallActivity extends Activity implements View.OnClickListener, Text
     }
 
     public void locationQuestion() {
-        String text = "Where are you located?";
+        String text = "What's your address?";
+        tts.speak(text, TextToSpeech.QUEUE_FLUSH, null);
+    }
+
+    public void problemQuestion() {
+        String text = "What's the problem?";
+        tts.speak(text, TextToSpeech.QUEUE_FLUSH, null);
+    }
+
+    public void nameQuestion() {
+        String text = "What's your name?";
         tts.speak(text, TextToSpeech.QUEUE_FLUSH, null);
     }
 
@@ -111,19 +121,19 @@ public class CallActivity extends Activity implements View.OnClickListener, Text
     }
 
     public void fireQuestion() {
-        String text = "Fire team is on their way. Where are you located?";
+        String text = "Fire team is on their way. Stay there";
         tts.speak(text, TextToSpeech.QUEUE_FLUSH, null);
         hintLocationFragment.show(getFragmentManager(), "PromptDialog");
     }
 
     public void ambulanceQuestion() {
-        String text = "E M S is on their way. Where are you located?";
+        String text = "E M S is on their way. Stay there";
         tts.speak(text, TextToSpeech.QUEUE_FLUSH, null);
         hintLocationFragment.show(getFragmentManager(), "PromptDialog");
     }
 
     public void policeQuestion() {
-        String text = "Police is on their way. Where are you located?";
+        String text = "Police is on their way. Stay there";
         tts.speak(text, TextToSpeech.QUEUE_FLUSH, null);
         hintLocationFragment.show(getFragmentManager(), "PromptDialog");
     }
@@ -182,14 +192,29 @@ public class CallActivity extends Activity implements View.OnClickListener, Text
                 str += data.get(i);
             }
 
+
+
             if (String.valueOf(data.get(0)).trim().toLowerCase().contains("police")) {
+                nameQuestion();
                 locationQuestion();
+                problemQuestion();
+
+                fireQuestion();
+
                 level = 2;
             } else if (String.valueOf(data.get(0)).trim().toLowerCase().contains("ing") || String.valueOf(data.get(0)).trim().toLowerCase().contains("assed")) {
+                nameQuestion();
+                locationQuestion();
+                problemQuestion();
                 ambulanceQuestion();
+
                 level = 2;
             } else if (String.valueOf(data.get(0)).trim().toLowerCase().contains("roke") || String.valueOf(data.get(0)).trim().toLowerCase().contains("ole")) {
+                nameQuestion();
+                locationQuestion();
+                problemQuestion();
                 policeQuestion();
+
                 level = 2;
             }
 

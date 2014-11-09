@@ -34,7 +34,7 @@ public class PracticePlayVideoActivity extends SimKidsActivity implements View.O
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.btn_emergency:
-                if(VideosActivity.EMERGENCY = true) {
+                if(VideosActivity.EMERGENCY == true) {
                     goToPractice();
 
                 } else {
@@ -43,7 +43,7 @@ public class PracticePlayVideoActivity extends SimKidsActivity implements View.O
                 break;
 
             case R.id.btn_not_emergency:
-                if (VideosActivity.EMERGENCY = false) {
+                if (VideosActivity.EMERGENCY == false) {
                     goToMainMenu();
                 } else {
                     // Make method to display error
@@ -60,10 +60,10 @@ public class PracticePlayVideoActivity extends SimKidsActivity implements View.O
     }
 
     public void goToMainMenu() {
-        Toast toast = Toast.makeText(getApplicationContext(), "You are correct!", Toast.LENGTH_SHORT);
-        toast.show();
         Intent mainMenu = new Intent(this, MainMenuActivity.class);
         startActivity(mainMenu);
         finish();
+        Toast toast = Toast.makeText(getApplicationContext(), "You are correct!", Toast.LENGTH_SHORT);
+        toast.show();
     }
 }
