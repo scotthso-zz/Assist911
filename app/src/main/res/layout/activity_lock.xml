@@ -5,16 +5,17 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center_horizontal"
-    android:background="#33333333">
+    android:background="#63009aff">
 
     <net.frakbot.glowpadbackport.GlowPadView
         android:id="@+id/glow_pad_view"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginTop="-29dp"
         android:layout_marginBottom="-46dp"
         android:visibility="visible"
-        android:gravity="center"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
 
         app:targetDrawables="@array/incoming_call_widget_2way_targets"
         app:handleDrawable="@drawable/ic_in_call_touch_handle"
