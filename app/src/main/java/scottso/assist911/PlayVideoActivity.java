@@ -42,5 +42,4 @@ public class PlayVideoActivity extends SimKidsActivity implements View.OnClickLi
         startActivity(videoPlayer);
         finish();
     }
-
 }

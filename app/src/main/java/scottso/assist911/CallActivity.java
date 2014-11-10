@@ -4,9 +4,6 @@ import android.app.Activity;
 import android.app.DialogFragment;
 import android.content.Intent;
 import android.os.Bundle;
-import android.speech.RecognitionListener;
-import android.speech.RecognizerIntent;
-import android.speech.SpeechRecognizer;
 import android.speech.tts.TextToSpeech;
 import android.speech.tts.UtteranceProgressListener;
 import android.util.Log;
@@ -14,9 +11,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Locale;
 
@@ -70,8 +65,7 @@ public class CallActivity extends Activity implements View.OnClickListener, Text
         endButton.setOnClickListener(this);
         hintButton.setOnClickListener(this);
 
-
-        tts.setOnUtteranceProgressListener(new ttsUtteranceListener());
+        tts.setOnUtteranceProgressListener(new TtsUtteranceListener());
     }
 
     @Override
@@ -160,10 +154,15 @@ public class CallActivity extends Activity implements View.OnClickListener, Text
     }
 
     public void startSpeechRecognition() {
-        Intent i = new Intent(this, VoiceRecognitionActivity.class);
-        startActivity(i);
+        if(Level.FINAL != LEVEL) {
+            Intent i = new Intent(this, VoiceRecognitionActivity.class);
+            startActivity(i);
+        } else {
+            LEVEL = Level.SERVICE; // reset it
+            goToResults();
+        }
     }
-    class ttsUtteranceListener extends UtteranceProgressListener{
+    class TtsUtteranceListener extends UtteranceProgressListener{
 
         @Override
         public void onStart(String s) {

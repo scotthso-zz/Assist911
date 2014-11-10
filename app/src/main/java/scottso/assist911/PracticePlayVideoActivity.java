@@ -38,18 +38,27 @@ public class PracticePlayVideoActivity extends SimKidsActivity implements View.O
                     goToPractice();
 
                 } else {
-                    // Make method to display error
+                    MainMenuActivity.TIMES_OPENED--; // failed
+                    goToResults();
                 }
                 break;
 
             case R.id.btn_not_emergency:
                 if (VideosActivity.EMERGENCY == false) {
-                    goToMainMenu();
+                    MainMenuActivity.CURRENT_TRY_SCORE = 8; // success!
+                    goToResults();
                 } else {
-                    // Make method to display error
+                    MainMenuActivity.TIMES_OPENED--; // failed
+                    goToResults();
                 }
                 break;
         }
+    }
+
+    public void goToResults() {
+        Intent results = new Intent(this, ResultsActivity.class);
+        startActivity(results);
+        finish();
     }
 
     public void goToPractice() {

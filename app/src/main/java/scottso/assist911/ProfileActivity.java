@@ -1,13 +1,12 @@
 package scottso.assist911;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-public class ProfileActivity extends Activity implements View.OnClickListener {
+public class ProfileActivity extends SimKidsActivity implements View.OnClickListener {
 
     private TextView usernameTV;
     private TextView highScoreTV;
@@ -69,8 +68,6 @@ public class ProfileActivity extends Activity implements View.OnClickListener {
                 break;
 
             case R.id.button_reset:
-                //LoginActivity.EDITOR.clear();
-                //LoginActivity.EDITOR.commit();
                 MainMenuActivity.TIMES_OPENED = 0;
                 LoginActivity.EDITOR.putInt(LoginActivity.TIMES_OPENED, MainMenuActivity.TIMES_OPENED);
 

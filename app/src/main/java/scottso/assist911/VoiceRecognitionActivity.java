@@ -70,12 +70,12 @@ public class VoiceRecognitionActivity extends SimKidsActivity {
         }
 
         public void onResults(Bundle results) {
-            String str = new String();
+            String str = "";
             Log.d(TAG, "onResults " + results);
             data = results.getStringArrayList(SpeechRecognizer.RESULTS_RECOGNITION);
-            for (int i = 0; i < data.size(); i++) {
-                Log.d(TAG, "result " + data.get(i));
-                str += data.get(i);
+            for (Object aData : data) {
+                Log.d(TAG, "result " + aData);
+                str += aData;
             }
 
             if (CallActivity.LEVEL == CallActivity.Level.SERVICE) {
@@ -107,7 +107,6 @@ public class VoiceRecognitionActivity extends SimKidsActivity {
                         || String.valueOf(data.get(0)).trim().toLowerCase().contains("moke")
                         || String.valueOf(data.get(0)).trim().toLowerCase().contains("ire")) {
                     CallActivity.LEVEL = CallActivity.Level.FINAL;
-
                     if (VideosActivity.AMBULANCE == true) {
                         CallActivity.ambulanceQuestion();
                         VideosActivity.AMBULANCE = false;
@@ -121,17 +120,10 @@ public class VoiceRecognitionActivity extends SimKidsActivity {
                         VideosActivity.POLICE = false;
                         MainMenuActivity.CURRENT_TRY_SCORE++;
                     }
-
-//                policeQuestion();
-//                fireQuestion();
                     finish();
-
                 } else {
                     activateSpeechRecognition();
                 }
-            } else if (CallActivity.LEVEL == CallActivity.Level.FINAL) {
-                CallActivity.LEVEL = CallActivity.Level.SERVICE;
-                goToResults();
             }
         }
 
@@ -142,13 +134,6 @@ public class VoiceRecognitionActivity extends SimKidsActivity {
         public void onEvent(int eventType, Bundle params) {
             Log.d(TAG, "onEvent " + eventType);
         }
-    }
-
-    public void goToResults() {
-        Intent results = new Intent(this, ResultsActivity.class);
-        startActivity(results);
-        finish();
-        MainMenuActivity.CURRENT_TRY_SCORE++;
     }
 
     @Override

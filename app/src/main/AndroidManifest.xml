@@ -72,7 +72,8 @@
         </activity>
         <activity android:name=".VoiceRecognitionActivity"
             android:label="Assist911"
-            android:screenOrientation="portrait">
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.Transparent">
         </activity>
     </application>
 

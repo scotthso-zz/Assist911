@@ -5,14 +5,15 @@
     android:layout_height="match_parent">
 
     <TextView
+        android:id="@+id/title"
         android:layout_width="fill_parent"
         android:layout_height="100dp"
-        android:text="Results"
-        android:textSize="22pt"
+        android:text="Congratulations!"
+        android:textSize="20pt"
         android:gravity="center"
-        android:id="@+id/title"
+        android:layout_weight="1"
         android:layout_gravity="center_horizontal"
-        android:layout_weight="1"/>
+        android:visibility="visible"/>
 
     <TextView
         android:id="@+id/new_high_score"
@@ -28,7 +29,7 @@
         android:id="@+id/points"
         android:layout_width="fill_parent"
         android:layout_height="100dp"
-        android:text="Points"
+        android:text="Points: /8"
         android:textSize="12pt"
         android:gravity="center"
         android:layout_weight="1"/>

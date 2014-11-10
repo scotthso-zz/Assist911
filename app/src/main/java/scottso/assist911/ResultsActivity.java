@@ -1,13 +1,12 @@
 package scottso.assist911;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-public class ResultsActivity extends Activity implements View.OnClickListener {
+public class ResultsActivity extends SimKidsActivity implements View.OnClickListener {
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -15,6 +14,13 @@ public class ResultsActivity extends Activity implements View.OnClickListener {
 
         Button backButton = (Button) findViewById(R.id.button_back);
         backButton.setOnClickListener(this);
+
+        final TextView title = (TextView) findViewById(R.id.title);
+        if(MainMenuActivity.CURRENT_TRY_SCORE == 8) {
+            title.setText("Congratulations!");
+        } else {
+            title.setText("Game Over :(");
+        }
 
         final TextView newHighScore = (TextView) findViewById(R.id.new_high_score);
         if (MainMenuActivity.CURRENT_TRY_SCORE > LoginActivity.PREF.getInt(LoginActivity.HIGH_SCORE, 0)) {
@@ -26,10 +32,10 @@ public class ResultsActivity extends Activity implements View.OnClickListener {
         }
 
         final TextView points = (TextView) findViewById(R.id.points);
-        points.setText("Score: " + String.valueOf(MainMenuActivity.CURRENT_TRY_SCORE));
+        points.setText("Score: " + String.valueOf(MainMenuActivity.CURRENT_TRY_SCORE) + "/8");
 
         final TextView tries = (TextView) findViewById(R.id.tries);
-        tries.setText("Mistakes: " + String.valueOf(KeypadActivity.TRIES));
+        tries.setText("Dialpad Mistakes: " + String.valueOf(KeypadActivity.TRIES));
 
         final TextView removedDialog = (TextView) findViewById(R.id.removed_dialog);
         final TextView removedAudioDialog = (TextView) findViewById(R.id.removed_audio_dialog);
@@ -56,7 +62,6 @@ public class ResultsActivity extends Activity implements View.OnClickListener {
     }
 
     public void goToMenu() {
-
         Intent menu = new Intent(this, MainMenuActivity.class);
         startActivity(menu);
         finish();

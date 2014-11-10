@@ -100,10 +100,6 @@ public class MainMenuActivity extends SimKidsActivity implements View.OnClickLis
                 } else if (VideosActivity.VIDEO_NAME.equals("b")) {
                     VideosActivity.EMERGENCY = false;
                 }
-
-
-
-
                 goToVideoPlayer();
                 break;
 
