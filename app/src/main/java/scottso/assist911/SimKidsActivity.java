@@ -18,4 +18,26 @@ public class SimKidsActivity extends Activity {
     protected void attachBaseContext(Context newBase) {
         super.attachBaseContext(new CalligraphyContextWrapper(newBase));
     }
+
+    @Override
+    protected void onPause() {
+        checkLoggedIn();
+        super.onPause();
+    }
+
+    @Override
+    protected void onStop() {
+        checkLoggedIn();
+        super.onStop();
+    }
+
+    public void checkLoggedIn(){
+        if(!LoginActivity.PREF.getString(LoginActivity.USERNAME,"").equals("") &&
+                MainMenuActivity.TIMES_OPENED != 0){
+            LoginActivity.IS_LOGGED_IN = true;
+            LoginActivity.EDITOR.putBoolean("IS_LOGGED_IN",LoginActivity.IS_LOGGED_IN);
+            LoginActivity.EDITOR.putInt(LoginActivity.TIMES_OPENED,MainMenuActivity.TIMES_OPENED);
+            LoginActivity.EDITOR.commit();
+        }
+    }
 }

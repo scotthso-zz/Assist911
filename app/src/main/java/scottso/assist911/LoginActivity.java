@@ -32,7 +32,7 @@ public class LoginActivity extends SimKidsActivity {
         PREF = getApplicationContext().getSharedPreferences("MyPref", MODE_WORLD_READABLE);
         EDITOR = PREF.edit();
 
-        if (!IS_LOGGED_IN) {
+        if (!PREF.getBoolean("IS_LOGGED_IN",false)) {
             setContentView(R.layout.activity_login);
 
             usernameET = (EditText) findViewById(R.id.username);

@@ -34,11 +34,10 @@ public class FileManager  {
         }
 
         Log.d("test", "save called: " + account.getAccountName());
-        for (int i = 0; i < accountCount; i++) {
+        refreshFiles(context);
+        for (int i = 0; i < fileNames.length; i++) {
             Log.d("test", "current accounts: "+ fileNames[i]);
         }
-
-        refreshFiles(context);
     }
 
     public static AccountItem findAndReadAccount (String username, Context context) {

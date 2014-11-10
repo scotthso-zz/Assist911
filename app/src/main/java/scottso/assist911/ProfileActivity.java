@@ -39,10 +39,10 @@ public class ProfileActivity extends Activity implements View.OnClickListener {
         highScoreTV.setText("High Score: " + LoginActivity.PREF.getInt(LoginActivity.HIGH_SCORE,0));
 
         timesOpened = (TextView) findViewById(R.id.times_opened);
-        timesOpened.setText("Times Opened: " + String.valueOf(MainMenuActivity.TIMES_OPENED));
+        timesOpened.setText("Times Opened: " + LoginActivity.PREF.getInt(LoginActivity.TIMES_OPENED,0));
 
         tries = (TextView) findViewById (R.id.tries);
-        tries.setText("Tries: " + String.valueOf(KeypadActivity.TRIES));
+        tries.setText("Dial Tries: " + String.valueOf(KeypadActivity.TRIES));
 
         removedDialog = (TextView) findViewById(R.id.removed_dialog);
         removedAudioDialog = (TextView) findViewById(R.id.removed_audio_dialog);
@@ -69,9 +69,10 @@ public class ProfileActivity extends Activity implements View.OnClickListener {
                 break;
 
             case R.id.button_reset:
-                LoginActivity.EDITOR.clear();//TODO: what is this
-                LoginActivity.EDITOR.commit();
+                //LoginActivity.EDITOR.clear();
+                //LoginActivity.EDITOR.commit();
                 MainMenuActivity.TIMES_OPENED = 0;
+                LoginActivity.EDITOR.putInt(LoginActivity.TIMES_OPENED, MainMenuActivity.TIMES_OPENED);
 
                 MainMenuActivity.IS_REMOVE_TEXT_PROMPT = false;
                 MainMenuActivity.IS_REMOVE_AUDIO_PROMPT = false;
@@ -92,7 +93,7 @@ public class ProfileActivity extends Activity implements View.OnClickListener {
                         LoginActivity.PREF.getInt(LoginActivity.HIGH_SCORE, 0));
                 FileManager.saveToAccount(account, this);
                 ////// clearing data
-                LoginActivity.EDITOR.clear();//TODO: what is this
+                LoginActivity.EDITOR.clear();
                 LoginActivity.EDITOR.commit();
                 MainMenuActivity.TIMES_OPENED = 0;
 

@@ -13,7 +13,7 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class KeypadActivity extends Activity implements View.OnClickListener {
+public class KeypadActivity extends SimKidsActivity implements View.OnClickListener {
 
     private Button one, two, three, four, five, six, seven, eight, nine, zero, star, pound;
     private ImageButton delete, call;
