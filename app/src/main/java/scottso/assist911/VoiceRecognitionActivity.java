@@ -3,6 +3,7 @@ package scottso.assist911;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.speech.RecognitionListener;
 import android.speech.RecognizerIntent;
 import android.speech.SpeechRecognizer;
@@ -11,7 +12,7 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 
-public class VoiceRecognitionActivity extends Activity {
+public class VoiceRecognitionActivity extends SimKidsActivity {
 
     private static final String TAG = "VoiceRecognitionActivity";
     private SpeechRecognizer sr;
@@ -106,11 +107,25 @@ public class VoiceRecognitionActivity extends Activity {
                         || String.valueOf(data.get(0)).trim().toLowerCase().contains("moke")
                         || String.valueOf(data.get(0)).trim().toLowerCase().contains("ire")) {
                     CallActivity.LEVEL = CallActivity.Level.FINAL;
-                    CallActivity.ambulanceQuestion();
+
+                    if (VideosActivity.AMBULANCE == true) {
+                        CallActivity.ambulanceQuestion();
+                        VideosActivity.AMBULANCE = false;
+                        MainMenuActivity.CURRENT_TRY_SCORE++;
+                    } else if (VideosActivity.FIRE == true) {
+                        CallActivity.fireQuestion();
+                        VideosActivity.FIRE = false;
+                        MainMenuActivity.CURRENT_TRY_SCORE++;
+                    } else if (VideosActivity.POLICE == true) {
+                        CallActivity.policeQuestion();
+                        VideosActivity.POLICE = false;
+                        MainMenuActivity.CURRENT_TRY_SCORE++;
+                    }
+
 //                policeQuestion();
 //                fireQuestion();
                     finish();
-                    MainMenuActivity.CURRENT_TRY_SCORE++;
+
                 } else {
                     activateSpeechRecognition();
                 }

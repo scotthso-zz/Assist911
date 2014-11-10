@@ -167,7 +167,6 @@ public class CallActivity extends Activity implements View.OnClickListener, Text
 
         @Override
         public void onStart(String s) {
-
         }
 
         @Override
