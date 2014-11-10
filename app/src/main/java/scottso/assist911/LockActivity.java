@@ -20,12 +20,6 @@ public class LockActivity extends Activity implements TextToSpeech.OnInitListene
 
     private GlowPadView mGlowPadView;
 
-    private CountDownTimer countDownTimer;
-    private boolean timerHasStarted = false;
-
-    private long startTime = 10 * 1000;
-    private final long interval = 1 * 1000;
-
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lock);
@@ -68,6 +62,10 @@ public class LockActivity extends Activity implements TextToSpeech.OnInitListene
 
             @Override
             public void onTrigger(View v, int target) {
+                if (tts != null) {
+                    tts.stop();
+                    tts.shutdown();
+                }
                 goToDialpad();
                 //Toast.makeText(LockActivity.this, "Target triggered! ID=" + target, Toast.LENGTH_SHORT).show();
                // mGlowPadView.reset(true);
@@ -83,16 +81,6 @@ public class LockActivity extends Activity implements TextToSpeech.OnInitListene
                 // Do nothing
             }
         });
-
-        countDownTimer = new MyCountDownTimer(startTime, interval);
-
-        if (!timerHasStarted) {
-            countDownTimer.start();
-            timerHasStarted = true;
-        } else {
-            countDownTimer.cancel();
-            timerHasStarted = false;
-        }
     }
 
     @Override
@@ -124,23 +112,6 @@ public class LockActivity extends Activity implements TextToSpeech.OnInitListene
             tts.shutdown();
         }
         super.onDestroy();
-    }
-
-    public class MyCountDownTimer extends CountDownTimer {
-        public MyCountDownTimer(long startTime, long interval) {
-            super(startTime, interval);
-        }
-        @Override
-        public void onTick(long millisUntilFinished) {
-            if (millisUntilFinished/1000 == 4 && MainMenuActivity.TIMES_OPENED < 10) {
-//                speakUnlock();
-            } else {
-            }
-        }
-
-        @Override
-        public void onFinish() {
-        }
     }
 
     public void goToDialpad() {

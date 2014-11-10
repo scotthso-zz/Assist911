@@ -70,6 +70,10 @@
             android:label="Assist911"
             android:screenOrientation="portrait" >
         </activity>
+        <activity android:name=".VoiceRecognitionActivity"
+            android:label="Assist911"
+            android:screenOrientation="portrait">
+        </activity>
     </application>
 
     <!-- To access Google+ APIs: -->

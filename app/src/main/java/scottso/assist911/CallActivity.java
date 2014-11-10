@@ -4,11 +4,11 @@ import android.app.Activity;
 import android.app.DialogFragment;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.CountDownTimer;
 import android.speech.RecognitionListener;
 import android.speech.RecognizerIntent;
 import android.speech.SpeechRecognizer;
 import android.speech.tts.TextToSpeech;
+import android.speech.tts.UtteranceProgressListener;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -17,30 +17,36 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Locale;
 
-public class CallActivity extends Activity implements View.OnClickListener, TextToSpeech.OnInitListener {
+public class CallActivity extends Activity implements View.OnClickListener, TextToSpeech.OnInitListener{
+
+    enum Level {
+        SERVICE,
+        NAME,
+        LOCATION,
+        EMERGENCY,
+        FINAL
+    }
+
+    private static final String[] script = {"911 do you need fire, ambulance or police",
+                               "What's your name?",
+                               "What's your address?",
+                               "What's the problem?",
+                               "E M S is on their way. Stay there.",
+                               "Fire team is on their way. Stay there",
+                               "Police is on their way. Stay there",};
+
+    public static Level LEVEL = Level.SERVICE;
 
     private TextView mText;
 
-    private SpeechRecognizer sr;
-    private TextToSpeech tts;
-
-    private CountDownTimer countDownTimer;
-    private boolean timerHasStarted = false;
-
-    private long startTime = 6 * 1000;
-    private final long interval = 1 * 1000;
+    public static TextToSpeech tts;
 
     DialogFragment newFragment = new PromptCallDialog();
     DialogFragment hintProblemFragment = new HintProblemDialog();
-    DialogFragment hintLocationFragment = new HintLocationDialog();
 
-    String location;
-    String service;
-    int level = 1;
-
-    ArrayList data;
     private static final String TAG = "CallActivity";
 
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,7 +54,6 @@ public class CallActivity extends Activity implements View.OnClickListener, Text
         setContentView(R.layout.activity_call);
 
         if(MainMenuActivity.TIMES_OPENED <= 5) {
-
             newFragment.show(getFragmentManager(), "PromptDialog");
             hintProblemFragment.show(getFragmentManager(), "PromptDialog");
         }
@@ -65,8 +70,8 @@ public class CallActivity extends Activity implements View.OnClickListener, Text
         endButton.setOnClickListener(this);
         hintButton.setOnClickListener(this);
 
-        sr = SpeechRecognizer.createSpeechRecognizer(this);
-        sr.setRecognitionListener(new listener());
+
+        tts.setOnUtteranceProgressListener(new ttsUtteranceListener());
     }
 
     @Override
@@ -77,71 +82,54 @@ public class CallActivity extends Activity implements View.OnClickListener, Text
                     || result == TextToSpeech.LANG_NOT_SUPPORTED) {
                 Log.e("TTS", "This Language is not supported");
             } else {
-                firstQuestion();
+                serviceQuestion();
             }
         } else {
             Log.e("TTS", "Initialization Failed!");
         }
     }
 
-    private void firstQuestion() {
-        String text = "911 do you need fire, ambulance or police";
-        tts.speak(text, TextToSpeech.QUEUE_FLUSH, null);
-
-        countDownTimer = new MyCountDownTimer(startTime, interval);
-
-        if (!timerHasStarted) {
-            countDownTimer.start();
-            timerHasStarted = true;
-
-        } else {
-            countDownTimer.cancel();
-            timerHasStarted = false;
+    private static void speak(String text) {
+        if(text != null) {
+            HashMap<String, String> map = new HashMap<String, String>();
+            map.put(TextToSpeech.Engine.KEY_PARAM_UTTERANCE_ID, text);
+            tts.speak(text, TextToSpeech.QUEUE_FLUSH, map);
         }
     }
 
-    public void locationQuestion() {
-        String text = "What's your address?";
-        tts.speak(text, TextToSpeech.QUEUE_FLUSH, null);
+    private static void serviceQuestion() {
+//        String text = "911 do you need fire, ambulance or police";
+        speak(script[0]);
     }
 
-    public void problemQuestion() {
-        String text = "What's the problem?";
-        tts.speak(text, TextToSpeech.QUEUE_FLUSH, null);
+    public static void nameQuestion() {
+//        String text = "What's your name?";
+        speak(script[1]);
     }
 
-    public void nameQuestion() {
-        String text = "What's your name?";
-        tts.speak(text, TextToSpeech.QUEUE_FLUSH, null);
+    public static void locationQuestion() {
+//        String text = "What's your address?";
+        speak(script[2]);
     }
 
-    public void locationConfirmationQuestion() {
-        String text = "You are at" + location;
-        tts.speak(text, TextToSpeech.QUEUE_FLUSH, null);
+    public static void problemQuestion() {
+//        String text = "What's the problem?";
+        speak(script[3]);
     }
 
-    public void fireQuestion() {
-        String text = "Fire team is on their way. Stay there";
-        tts.speak(text, TextToSpeech.QUEUE_FLUSH, null);
-        hintLocationFragment.show(getFragmentManager(), "PromptDialog");
+    public static void ambulanceQuestion() {
+//        String text = "E M S is on their way. Stay there";
+        speak(script[4]);
     }
 
-    public void ambulanceQuestion() {
-        String text = "E M S is on their way. Stay there";
-        tts.speak(text, TextToSpeech.QUEUE_FLUSH, null);
-        hintLocationFragment.show(getFragmentManager(), "PromptDialog");
+    public static void fireQuestion() {
+//        String text = "Fire team is on their way. Stay there";
+        speak(script[5]);
     }
 
-    public void policeQuestion() {
-        String text = "Police is on their way. Stay there";
-        tts.speak(text, TextToSpeech.QUEUE_FLUSH, null);
-        hintLocationFragment.show(getFragmentManager(), "PromptDialog");
-    }
-
-    public void finalQuestion() {
-        String text = "We will be right there, stay calm.";
-        tts.speak(text, TextToSpeech.QUEUE_FLUSH, null);
-        hintLocationFragment.show(getFragmentManager(), "PromptDialog");
+    public static void policeQuestion() {
+//        String text = "Police is on their way. Stay there";
+        speak(script[6]);
     }
 
     @Override
@@ -154,109 +142,14 @@ public class CallActivity extends Activity implements View.OnClickListener, Text
         super.onDestroy();
     }
 
-    class listener implements RecognitionListener {
-        public void onReadyForSpeech(Bundle params) {
-            Log.d(TAG, "onReadyForSpeech");
-        }
-
-        public void onBeginningOfSpeech() {
-            Log.d(TAG, "onBeginningOfSpeech");
-        }
-
-        public void onRmsChanged(float rmsdB) {
-            Log.d(TAG, "onRmsChanged");
-        }
-
-        public void onBufferReceived(byte[] buffer) {
-            Log.d(TAG, "onBufferReceived");
-        }
-
-        public void onEndOfSpeech() {
-            Log.d(TAG, "onEndofSpeech");
-        }
-
-        public void onError(int error) {
-            Log.d(TAG, "error " + error);
-            mText.setText("error " + error);
-
-            Toast toast = Toast.makeText(getApplicationContext(), "Try Again", Toast.LENGTH_SHORT);
-            toast.show();
-        }
-
-        public void onResults(Bundle results) {
-            String str = new String();
-            Log.d(TAG, "onResults " + results);
-            data = results.getStringArrayList(SpeechRecognizer.RESULTS_RECOGNITION);
-            for (int i = 0; i < data.size(); i++) {
-                Log.d(TAG, "result " + data.get(i));
-                str += data.get(i);
-            }
-
-
-
-            if (String.valueOf(data.get(0)).trim().toLowerCase().contains("police")) {
-                nameQuestion();
-                locationQuestion();
-                problemQuestion();
-
-                fireQuestion();
-
-                level = 2;
-            } else if (String.valueOf(data.get(0)).trim().toLowerCase().contains("ing") || String.valueOf(data.get(0)).trim().toLowerCase().contains("assed")) {
-                nameQuestion();
-                locationQuestion();
-                problemQuestion();
-                ambulanceQuestion();
-
-                level = 2;
-            } else if (String.valueOf(data.get(0)).trim().toLowerCase().contains("roke") || String.valueOf(data.get(0)).trim().toLowerCase().contains("ole")) {
-                nameQuestion();
-                locationQuestion();
-                problemQuestion();
-                policeQuestion();
-
-                level = 2;
-            }
-
-            mText.setText("results: " + String.valueOf(data.get(0)));
-            //mText.setText("results: " + String.valueOf(data.size()));
-        }
-
-        public void onPartialResults(Bundle partialResults) {
-            Log.d(TAG, "onPartialResults");
-        }
-
-        public void onEvent(int eventType, Bundle params) {
-            Log.d(TAG, "onEvent " + eventType);
-        }
-    }
-
-
     public void onClick(View v) {
         if (v.getId() == R.id.btn_speak) {
-            activateSpeechRecognition();
+            startSpeechRecognition();
         } else if (v.getId() == R.id.endButton) {
-
             goToResults();
-
         } else if (v.getId() == R.id.btn_hint) {
-
-            if (level == 1) {
-                hintProblemFragment.show(getFragmentManager(), "PromptDialog");
-            } else {
-                hintLocationFragment.show(getFragmentManager(), "PromptDialog");
-            }
+            hintProblemFragment.show(getFragmentManager(), "PromptDialog");
         }
-    }
-
-    private void activateSpeechRecognition() {
-        Intent intent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
-        intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL, RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
-        intent.putExtra(RecognizerIntent.EXTRA_CALLING_PACKAGE, "voice.recognition.test");
-
-        intent.putExtra(RecognizerIntent.EXTRA_MAX_RESULTS, 5);
-        sr.startListening(intent);
-        Log.i("SpeechRecog", "Listening!!");
     }
 
     public void goToResults() {
@@ -266,26 +159,25 @@ public class CallActivity extends Activity implements View.OnClickListener, Text
         MainMenuActivity.CURRENT_TRY_SCORE++;
     }
 
+    public void startSpeechRecognition() {
+        Intent i = new Intent(this, VoiceRecognitionActivity.class);
+        startActivity(i);
+    }
+    class ttsUtteranceListener extends UtteranceProgressListener{
 
-    public class MyCountDownTimer extends CountDownTimer {
+        @Override
+        public void onStart(String s) {
 
-        public MyCountDownTimer(long startTime, long interval) {
-            super(startTime, interval);
         }
 
         @Override
-        public void onTick(long millisUntilFinished) {
-            Log.e(TAG, Long.toString(millisUntilFinished));
-            if (millisUntilFinished/1000 == 1) {
-                Log.e(TAG, "activate!!");
-                activateSpeechRecognition();
-            } else {
-
-            }
-
+        public void onDone(String s) {
+            startSpeechRecognition();
         }
+
         @Override
-        public void onFinish() {
+        public void onError(String s) {
+
         }
     }
 }
