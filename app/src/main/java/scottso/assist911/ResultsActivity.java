@@ -48,15 +48,15 @@ public class ResultsActivity extends SimKidsActivity implements View.OnClickList
         final TextView removedAudioDialog = (TextView) findViewById(R.id.removed_audio_dialog);
 
         if (MainMenuActivity.IS_REMOVE_TEXT_PROMPT == true) {
-            removedDialog.setText("Removed: TRUE");
+            removedDialog.setText("Removed Text Prompt: TRUE");
         } else {
-            removedDialog.setText("Removed: FALSE");
+            removedDialog.setText("Removed Text Prompt: FALSE");
         }
 
         if (MainMenuActivity.IS_REMOVE_AUDIO_PROMPT == true) {
-            removedAudioDialog.setText("Removed Audio: TRUE");
+            removedAudioDialog.setText("Removed Audio Prompt: TRUE");
         } else {
-            removedAudioDialog.setText("Removed Audio: FALSE");
+            removedAudioDialog.setText("Removed Audio Prompt: FALSE");
         }
     }
 

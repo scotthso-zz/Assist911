@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:fbutton="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
+
     android:background="@drawable/simkidsbg">
 
     <TextView
@@ -14,7 +16,9 @@
         android:gravity="center"
         android:layout_weight="1"
         android:layout_gravity="center_horizontal"
+
         android:visibility="visible"/>
+
 
     <TextView
         android:id="@+id/new_high_score"
@@ -23,51 +27,78 @@
         android:text="New high score!"
         android:textSize="12pt"
         android:gravity="center"
+        android:layout_below="@+id/title"
         android:layout_weight="1"
-        android:visibility="gone"/>
+        android:visibility="gone"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="0dp"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="0dp" />
 
     <TextView
         android:id="@+id/points"
         android:layout_width="fill_parent"
-        android:layout_height="100dp"
-        android:text="Points: /8"
+
+        android:layout_height="80dp"
+        android:text="Points"
+
         android:textSize="12pt"
         android:gravity="center"
-        android:layout_weight="1"/>
+        android:layout_weight="1"
+        android:layout_below="@+id/new_high_score"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
     <TextView
         android:layout_width="fill_parent"
-        android:layout_height="100dp"
+        android:layout_height="80dp"
         android:text="Tries"
         android:textSize="12pt"
         android:gravity="center"
         android:id="@+id/tries"
-        android:layout_weight="1"/>
+        android:layout_weight="1"
+        android:layout_below="@+id/points"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
     <TextView
         android:layout_width="fill_parent"
-        android:layout_height="100dp"
+        android:layout_height="80dp"
         android:text="Removed Dialog"
         android:textSize="12pt"
         android:gravity="center"
         android:id="@+id/removed_dialog"
-        android:layout_weight="1"/>
+        android:layout_weight="1"
+        android:layout_below="@+id/tries"
+        android:layout_toRightOf="@+id/new_high_score"
+        android:layout_toEndOf="@+id/new_high_score" />
 
     <TextView
         android:layout_width="fill_parent"
-        android:layout_height="100dp"
+        android:layout_height="80dp"
         android:text="Removed Audio"
         android:textSize="12pt"
         android:gravity="center"
         android:id="@+id/removed_audio_dialog"
-        android:layout_weight="1"/>
-
-    <Button
-        android:layout_width="fill_parent"
-        android:layout_height="100dp"
-        android:text="Back To Menu"
-        android:textSize="22dp"
         android:layout_weight="1"
-        android:id="@+id/button_back" />
+        android:layout_below="@+id/removed_dialog"
+        android:layout_toRightOf="@+id/new_high_score"
+        android:layout_toEndOf="@+id/new_high_score" />
 
-</LinearLayout>
+    <info.hoang8f.widget.FButton
+        fbutton:buttonColor="@color/color_alizarin"
+        fbutton:shadowColor="@color/color_pomegranate"
+        fbutton:shadowEnabled="true"
+        fbutton:shadowHeight="10dp"
+        fbutton:cornerRadius="12dp"
+
+        android:text="Menu"
+        android:textColor="#96281B"
+        android:id="@+id/button_back"
+        android:layout_gravity="center_horizontal"
+        style="@style/menu_buttons"
+
+        android:layout_below="@+id/removed_audio_dialog"
+        android:layout_centerHorizontal="true" />
+
+</RelativeLayout>
