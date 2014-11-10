@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="bottom"
+    android:gravity="center_horizontal"
     android:background="#33333333">
 
     <net.frakbot.glowpadbackport.GlowPadView
         android:id="@+id/glow_pad_view"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:layout_marginTop="-10dp"
+        android:layout_marginTop="-29dp"
         android:layout_marginBottom="-46dp"
         android:visibility="visible"
-        android:gravity="top"
+        android:gravity="center"
 
         app:targetDrawables="@array/incoming_call_widget_2way_targets"
         app:handleDrawable="@drawable/ic_in_call_touch_handle"
@@ -25,6 +25,9 @@
         app:vibrationDuration="20"
         app:feedbackCount="1"
         app:glowRadius="@dimen/glowpadview_glow_radius"
-        app:pointDrawable="@drawable/ic_lockscreen_glowdot"/>
+        app:pointDrawable="@drawable/ic_lockscreen_glowdot"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="0dp"
+        android:layout_alignParentTop="true" />
 
-</LinearLayout>
+</RelativeLayout>

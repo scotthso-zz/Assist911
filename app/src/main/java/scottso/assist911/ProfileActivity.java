@@ -99,7 +99,7 @@ public class ProfileActivity extends Activity implements View.OnClickListener {
                 MainMenuActivity.IS_REMOVE_TEXT_PROMPT = false;
                 MainMenuActivity.IS_REMOVE_AUDIO_PROMPT = false;
                 LoginActivity.IS_LOGGED_IN = false;
-                /////
+
                 Intent loginIntent = new Intent(this, LoginActivity.class);
                 loginIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 finish();
