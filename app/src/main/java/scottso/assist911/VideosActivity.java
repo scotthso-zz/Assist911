@@ -11,7 +11,11 @@ import android.widget.Spinner;
 public class VideosActivity extends SimKidsActivity implements AdapterView.OnItemSelectedListener, View.OnClickListener {
 
     public static String VIDEO_NAME;
+
     public static Boolean EMERGENCY;
+    public static Boolean FIRE = false;
+    public static Boolean POLICE = false;
+    public static Boolean AMBULANCE = false;
 
     private Spinner spinner;
 

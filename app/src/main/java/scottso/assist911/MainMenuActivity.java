@@ -3,6 +3,7 @@ package scottso.assist911;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -79,15 +80,33 @@ public class MainMenuActivity extends SimKidsActivity implements View.OnClickLis
                 int index = new Random().nextInt(videoArray.length);
                 VideosActivity.VIDEO_NAME = (videoArray[index]);
 
-                if (VideosActivity.VIDEO_NAME.equals("flame") || VideosActivity.VIDEO_NAME.equals("car") ||
-                        VideosActivity.VIDEO_NAME.equals("smoke") || VideosActivity.VIDEO_NAME.equals("passed") ||
-                        VideosActivity.VIDEO_NAME.equals("drowning"))  {
+                if (VideosActivity.VIDEO_NAME.equals("flame"))  {
                     VideosActivity.EMERGENCY = true;
-                } else if (VideosActivity.VIDEO_NAME.equals("a") || VideosActivity.VIDEO_NAME.equals("b")){
+                    VideosActivity.FIRE = true;
+                } else if (VideosActivity.VIDEO_NAME.equals("car")) {
+                    VideosActivity.EMERGENCY = true;
+                    VideosActivity.POLICE = true;
+                } else if (VideosActivity.VIDEO_NAME.equals("smoke")) {
+                    VideosActivity.EMERGENCY = true;
+                    VideosActivity.FIRE = true;
+                } else if (VideosActivity.VIDEO_NAME.equals("passed")) {
+                    VideosActivity.EMERGENCY = true;
+                    VideosActivity.AMBULANCE = true;
+                } else if (VideosActivity.VIDEO_NAME.equals("drowning")) {
+                    VideosActivity.EMERGENCY = true;
+                    VideosActivity.AMBULANCE = true;
+                } else if (VideosActivity.VIDEO_NAME.equals("a")) {
+                    VideosActivity.EMERGENCY = false;
+                } else if (VideosActivity.VIDEO_NAME.equals("b")) {
                     VideosActivity.EMERGENCY = false;
                 }
+
+
+
+
                 goToVideoPlayer();
                 break;
+
             case R.id.videos_button:
                 goToVideos();
                 System.out.println(LoginActivity.PREF.getInt(LoginActivity.TIMES_OPENED, 0));
