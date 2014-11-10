@@ -36,19 +36,18 @@ public class PracticePlayVideoActivity extends SimKidsActivity implements View.O
             case R.id.btn_emergency:
                 if(VideosActivity.EMERGENCY == true) {
                     goToPractice();
-
                 } else {
-                    MainMenuActivity.TIMES_OPENED--; // failed
                     goToResults();
                 }
                 break;
 
             case R.id.btn_not_emergency:
-                if (VideosActivity.EMERGENCY == false) {
+                if (!VideosActivity.EMERGENCY) {
                     MainMenuActivity.CURRENT_TRY_SCORE = 8; // success!
+                    LoginActivity.EDITOR.putInt(LoginActivity.CURRENT_TRY_SCORE, MainMenuActivity.CURRENT_TRY_SCORE);
+                    LoginActivity.EDITOR.commit();
                     goToResults();
                 } else {
-                    MainMenuActivity.TIMES_OPENED--; // failed
                     goToResults();
                 }
                 break;
@@ -66,13 +65,7 @@ public class PracticePlayVideoActivity extends SimKidsActivity implements View.O
         startActivity(practice);
         finish();
         MainMenuActivity.CURRENT_TRY_SCORE++;
-    }
-
-    public void goToMainMenu() {
-        Intent mainMenu = new Intent(this, MainMenuActivity.class);
-        startActivity(mainMenu);
-        finish();
-        Toast toast = Toast.makeText(getApplicationContext(), "You are correct!", Toast.LENGTH_SHORT);
-        toast.show();
+        LoginActivity.EDITOR.putInt(LoginActivity.CURRENT_TRY_SCORE, MainMenuActivity.CURRENT_TRY_SCORE);
+        LoginActivity.EDITOR.commit();
     }
 }

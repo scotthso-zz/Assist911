@@ -48,7 +48,7 @@ public class CallActivity extends Activity implements View.OnClickListener, Text
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_call);
 
-        if(MainMenuActivity.TIMES_OPENED <= 5) {
+        if(MainMenuActivity.TIMES_COMPLETED <= 5) {
             newFragment.show(getFragmentManager(), "PromptDialog");
             hintProblemFragment.show(getFragmentManager(), "PromptDialog");
         }
@@ -151,6 +151,8 @@ public class CallActivity extends Activity implements View.OnClickListener, Text
         startActivity(results);
         finish();
         MainMenuActivity.CURRENT_TRY_SCORE++;
+        LoginActivity.EDITOR.putInt(LoginActivity.CURRENT_TRY_SCORE, MainMenuActivity.CURRENT_TRY_SCORE);
+        LoginActivity.EDITOR.commit();
     }
 
     public void startSpeechRecognition() {

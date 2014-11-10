@@ -57,29 +57,28 @@
         android:text="Removed Dialog"
         android:textSize="12pt"
         android:gravity="center"
-        android:id="@+id/removed_dialog"
+        android:id="@+id/removed_dialog_prompt"
         android:layout_centerVertical="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 
     <TextView
         android:layout_width="fill_parent"
-        android:layout_height="100dp"
+        android:layout_height="wrap_content"
         android:text="Removed Audio"
         android:textSize="12pt"
         android:gravity="center"
-        android:id="@+id/removed_audio_dialog"
+        android:id="@+id/removed_audio_prompt"
+        android:layout_below="@id/removed_dialog_prompt"
+        android:layout_centerVertical="true"
         android:layout_alignParentLeft="true"
-        android:layout_marginLeft="0dp"
-        android:layout_alignParentTop="true"
-        android:layout_marginTop="825dp" />
+        android:layout_alignParentStart="true" />
 
     <Button
         android:layout_width="fill_parent"
         android:layout_height="65dp"
         android:text="Return"
         android:textSize="22dp"
-
         android:id="@+id/button_return"
         android:layout_above="@+id/button_reset"
         android:layout_alignParentLeft="true"
@@ -90,7 +89,6 @@
         android:layout_height="70dp"
         android:text="Reset"
         android:textSize="22dp"
-
         android:id="@+id/button_reset"
         android:layout_above="@+id/button_logout"
         android:layout_alignParentLeft="true"
@@ -99,7 +97,7 @@
     <Button
         android:id="@+id/button_logout"
         android:layout_width="match_parent"
-        android:layout_height="100dp"
+        android:layout_height="75dp"
         android:text="LOGOUT"
         android:textSize="30dp"
         android:layout_alignParentBottom="true"

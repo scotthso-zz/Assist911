@@ -38,21 +38,21 @@ public class ProfileActivity extends SimKidsActivity implements View.OnClickList
         highScoreTV.setText("High Score: " + LoginActivity.PREF.getInt(LoginActivity.HIGH_SCORE,0));
 
         timesOpened = (TextView) findViewById(R.id.times_opened);
-        timesOpened.setText("Times Opened: " + LoginActivity.PREF.getInt(LoginActivity.TIMES_OPENED,0));
+        timesOpened.setText("Times Completed: " + LoginActivity.PREF.getInt(LoginActivity.TIMES_COMPLETED,0));
 
         tries = (TextView) findViewById (R.id.tries);
         tries.setText("Dial Tries: " + String.valueOf(KeypadActivity.TRIES));
 
-        removedDialog = (TextView) findViewById(R.id.removed_dialog);
-        removedAudioDialog = (TextView) findViewById(R.id.removed_audio_dialog);
+        removedDialog = (TextView) findViewById(R.id.removed_dialog_prompt);
+        removedAudioDialog = (TextView) findViewById(R.id.removed_audio_prompt);
 
-        if (MainMenuActivity.IS_REMOVE_TEXT_PROMPT == true) {
-            removedDialog.setText("Removed: TRUE");
+        if (MainMenuActivity.IS_REMOVE_TEXT_PROMPT) {
+            removedDialog.setText("Removed Text: TRUE");
         } else {
-            removedDialog.setText("Removed: FALSE");
+            removedDialog.setText("Removed Text: FALSE");
         }
 
-        if (MainMenuActivity.IS_REMOVE_AUDIO_PROMPT == true) {
+        if (MainMenuActivity.IS_REMOVE_AUDIO_PROMPT) {
             removedAudioDialog.setText("Removed Audio: TRUE");
         } else {
             removedAudioDialog.setText("Removed Audio: FALSE");
@@ -68,15 +68,17 @@ public class ProfileActivity extends SimKidsActivity implements View.OnClickList
                 break;
 
             case R.id.button_reset:
-                MainMenuActivity.TIMES_OPENED = 0;
-                LoginActivity.EDITOR.putInt(LoginActivity.TIMES_OPENED, MainMenuActivity.TIMES_OPENED);
-
+                MainMenuActivity.TIMES_COMPLETED = 0;
                 MainMenuActivity.IS_REMOVE_TEXT_PROMPT = false;
                 MainMenuActivity.IS_REMOVE_AUDIO_PROMPT = false;
 
+                LoginActivity.EDITOR.putInt(LoginActivity.TIMES_COMPLETED, MainMenuActivity.TIMES_COMPLETED);
+                LoginActivity.EDITOR.putBoolean(LoginActivity.REMOVE_TEXT_PROMPT, MainMenuActivity.IS_REMOVE_TEXT_PROMPT);
+                LoginActivity.EDITOR.putBoolean(LoginActivity.REMOVE_AUDIO_PROMPT, MainMenuActivity.IS_REMOVE_AUDIO_PROMPT);
+                LoginActivity.EDITOR.commit();
+
                 finish();
                 startActivity(getIntent());
-
                 break;
 //            case R.id.button_showtutorial:
 //                Intent tutorialIntent = new Intent(this, TutorialActivity.class);
@@ -86,13 +88,13 @@ public class ProfileActivity extends SimKidsActivity implements View.OnClickList
             case R.id.button_logout:
                 AccountItem account = new AccountItem(LoginActivity.PREF.getString(LoginActivity.USERNAME,""),
                         LoginActivity.PREF.getInt(LoginActivity.ACCOUNT_TRIES, 0),
-                        LoginActivity.PREF.getInt(LoginActivity.TIMES_OPENED, 0),
+                        LoginActivity.PREF.getInt(LoginActivity.TIMES_COMPLETED, 0),
                         LoginActivity.PREF.getInt(LoginActivity.HIGH_SCORE, 0));
                 FileManager.saveToAccount(account, this);
                 ////// clearing data
                 LoginActivity.EDITOR.clear();
                 LoginActivity.EDITOR.commit();
-                MainMenuActivity.TIMES_OPENED = 0;
+                MainMenuActivity.TIMES_COMPLETED = 0;
 
                 MainMenuActivity.IS_REMOVE_TEXT_PROMPT = false;
                 MainMenuActivity.IS_REMOVE_AUDIO_PROMPT = false;

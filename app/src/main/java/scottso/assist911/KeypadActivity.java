@@ -1,6 +1,5 @@
 package scottso.assist911;
 
-import android.app.Activity;
 import android.app.DialogFragment;
 import android.content.Intent;
 import android.graphics.Color;
@@ -74,7 +73,7 @@ public class KeypadActivity extends SimKidsActivity implements View.OnClickListe
 
         call.setOnClickListener(this);
 
-        if (MainMenuActivity.TIMES_OPENED <= 5) {
+        if (MainMenuActivity.TIMES_COMPLETED <= 5) {
             DialogFragment newFragment = new PromptDialDialog();
             newFragment.show(getFragmentManager(), "PromptDialog");
         }
@@ -211,10 +210,11 @@ public class KeypadActivity extends SimKidsActivity implements View.OnClickListe
 
     public void goToCall() {
         LoginActivity.EDITOR.putInt(LoginActivity.ACCOUNT_TRIES, TRIES);
-        LoginActivity.EDITOR.commit();
         Intent call = new Intent(this, CallActivity.class);
         startActivity(call);
         finish();
         MainMenuActivity.CURRENT_TRY_SCORE++;
+        LoginActivity.EDITOR.putInt(LoginActivity.CURRENT_TRY_SCORE, MainMenuActivity.CURRENT_TRY_SCORE);
+        LoginActivity.EDITOR.commit();
     }
 }

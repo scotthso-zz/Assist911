@@ -3,7 +3,6 @@ package scottso.assist911;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.provider.MediaStore;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -22,7 +21,7 @@ public class MainMenuActivity extends SimKidsActivity implements View.OnClickLis
 
     final String[] videoArray = {"flame","smoke","passed","car","drowning","a","b"};
 
-    public static int TIMES_OPENED;
+    public static int TIMES_COMPLETED;
     public static int CURRENT_TRY_SCORE;
     public static boolean IS_REMOVE_TEXT_PROMPT = false;
     public static boolean IS_REMOVE_AUDIO_PROMPT = false;
@@ -46,7 +45,7 @@ public class MainMenuActivity extends SimKidsActivity implements View.OnClickLis
         mReportButton = (Button) this.findViewById(R.id.report_button);
         mReportButton.setOnClickListener(this);
 
-        TIMES_OPENED = LoginActivity.PREF.getInt(LoginActivity.TIMES_OPENED, 0);
+        TIMES_COMPLETED = LoginActivity.PREF.getInt(LoginActivity.TIMES_COMPLETED, 0);
         IS_REMOVE_TEXT_PROMPT = LoginActivity.PREF.getBoolean(LoginActivity.REMOVE_TEXT_PROMPT, false);
         IS_REMOVE_AUDIO_PROMPT = LoginActivity.PREF.getBoolean(LoginActivity.REMOVE_AUDIO_PROMPT, false);
     }
@@ -71,11 +70,8 @@ public class MainMenuActivity extends SimKidsActivity implements View.OnClickLis
         switch(v.getId()) {
             case R.id.practice_button:
                 CURRENT_TRY_SCORE = 0;
-                TIMES_OPENED++;
-                LoginActivity.EDITOR.putInt(LoginActivity.TIMES_OPENED, TIMES_OPENED);
+                LoginActivity.EDITOR.putInt(LoginActivity.CURRENT_TRY_SCORE, CURRENT_TRY_SCORE);
                 LoginActivity.EDITOR.commit();
-
-                System.out.println(LoginActivity.PREF.getInt(LoginActivity.TIMES_OPENED, 0));
 
                 int index = new Random().nextInt(videoArray.length);
                 VideosActivity.VIDEO_NAME = (videoArray[index]);
@@ -105,7 +101,7 @@ public class MainMenuActivity extends SimKidsActivity implements View.OnClickLis
 
             case R.id.videos_button:
                 goToVideos();
-                System.out.println(LoginActivity.PREF.getInt(LoginActivity.TIMES_OPENED, 0));
+                System.out.println(LoginActivity.PREF.getInt(LoginActivity.TIMES_COMPLETED, 0));
                 break;
             case R.id.profile_button:
                 goToSettings();

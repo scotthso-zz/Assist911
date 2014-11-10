@@ -86,6 +86,8 @@ public class VoiceRecognitionActivity extends SimKidsActivity {
                     CallActivity.LEVEL = CallActivity.Level.NAME;
                     finish();
                     MainMenuActivity.CURRENT_TRY_SCORE++;
+                    LoginActivity.EDITOR.putInt(LoginActivity.CURRENT_TRY_SCORE, MainMenuActivity.CURRENT_TRY_SCORE);
+                    LoginActivity.EDITOR.commit();
                 }  else {
                     activateSpeechRecognition();
                 }
@@ -94,11 +96,15 @@ public class VoiceRecognitionActivity extends SimKidsActivity {
                 CallActivity.LEVEL = CallActivity.Level.LOCATION;
                 finish();
                 MainMenuActivity.CURRENT_TRY_SCORE++;
+                LoginActivity.EDITOR.putInt(LoginActivity.CURRENT_TRY_SCORE, MainMenuActivity.CURRENT_TRY_SCORE);
+                LoginActivity.EDITOR.commit();
             } else if (CallActivity.LEVEL == CallActivity.Level.LOCATION) {
                 CallActivity.problemQuestion();
                 CallActivity.LEVEL = CallActivity.Level.EMERGENCY;
                 finish();
                 MainMenuActivity.CURRENT_TRY_SCORE++;
+                LoginActivity.EDITOR.putInt(LoginActivity.CURRENT_TRY_SCORE, MainMenuActivity.CURRENT_TRY_SCORE);
+                LoginActivity.EDITOR.commit();
             } else if (CallActivity.LEVEL == CallActivity.Level.EMERGENCY) {
                 if (String.valueOf(data.get(0)).trim().toLowerCase().contains("ole")
                         || String.valueOf(data.get(0)).trim().toLowerCase().contains("ing")
@@ -107,19 +113,21 @@ public class VoiceRecognitionActivity extends SimKidsActivity {
                         || String.valueOf(data.get(0)).trim().toLowerCase().contains("moke")
                         || String.valueOf(data.get(0)).trim().toLowerCase().contains("ire")) {
                     CallActivity.LEVEL = CallActivity.Level.FINAL;
-                    if (VideosActivity.AMBULANCE == true) {
+                    if (VideosActivity.AMBULANCE) {
                         CallActivity.ambulanceQuestion();
                         VideosActivity.AMBULANCE = false;
                         MainMenuActivity.CURRENT_TRY_SCORE++;
-                    } else if (VideosActivity.FIRE == true) {
+                    } else if (VideosActivity.FIRE) {
                         CallActivity.fireQuestion();
                         VideosActivity.FIRE = false;
                         MainMenuActivity.CURRENT_TRY_SCORE++;
-                    } else if (VideosActivity.POLICE == true) {
+                    } else if (VideosActivity.POLICE) {
                         CallActivity.policeQuestion();
                         VideosActivity.POLICE = false;
                         MainMenuActivity.CURRENT_TRY_SCORE++;
                     }
+                    LoginActivity.EDITOR.putInt(LoginActivity.CURRENT_TRY_SCORE, MainMenuActivity.CURRENT_TRY_SCORE);
+                    LoginActivity.EDITOR.commit();
                     finish();
                 } else {
                     activateSpeechRecognition();

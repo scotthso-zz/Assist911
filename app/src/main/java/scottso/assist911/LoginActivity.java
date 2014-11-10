@@ -14,12 +14,14 @@ public class LoginActivity extends SimKidsActivity {
     private EditText usernameET;
 
     public static final String USERNAME = "USERNAME";
-    public static final String TIMES_OPENED = "TIMES_OPENED";
+    public static final String TIMES_COMPLETED = "TIMES_COMPLETED";
     public static final String ACCOUNT_TRIES = "ACCOUNT_TRIES";
     public static final String HIGH_SCORE = "HIGH_SCORE";
 
     public static final String REMOVE_TEXT_PROMPT = "REMOVE_TEXT_PROMPT";
     public static final String REMOVE_AUDIO_PROMPT = "REMOVE_AUDIO_PROMPT";
+
+    public static final String CURRENT_TRY_SCORE = "CURRENT_TRY_SCORE";
 
     public static Boolean IS_LOGGED_IN = false;
 
@@ -59,21 +61,21 @@ public class LoginActivity extends SimKidsActivity {
             AccountItem account = FileManager.findAndReadAccount(username, this);
             if (account != null) { //load information into shared preferences
                 EDITOR.putString(USERNAME, username);
-                EDITOR.putInt(TIMES_OPENED, account.getAccountTimesOpened());
+                EDITOR.putInt(TIMES_COMPLETED, account.getAccountTimesOpened());
                 EDITOR.putInt(ACCOUNT_TRIES, account.getAccountTries());
                 EDITOR.putInt(HIGH_SCORE, account.getHighScore());
                 EDITOR.commit();
-                Log.d("test", "Currently " + PREF.getString(USERNAME, "") + "&" + PREF.getInt(TIMES_OPENED, 0)
+                Log.d("test", "Currently " + PREF.getString(USERNAME, "") + "&" + PREF.getInt(TIMES_COMPLETED, 0)
                         + "&" + PREF.getInt(ACCOUNT_TRIES, 0) + "&" + PREF.getInt(HIGH_SCORE, 0));
             } else { //create account
                 AccountItem accountItem = new AccountItem(username, 0, 0, 0);
                 FileManager.saveFile(accountItem, this);
                 EDITOR.putString(USERNAME, username);
-                EDITOR.putInt(TIMES_OPENED, accountItem.getAccountTimesOpened());
+                EDITOR.putInt(TIMES_COMPLETED, accountItem.getAccountTimesOpened());
                 EDITOR.putInt(ACCOUNT_TRIES, accountItem.getAccountTries());
                 EDITOR.putInt(HIGH_SCORE, accountItem.getHighScore());
                 EDITOR.commit();
-                Log.d("test", "Creating " + PREF.getString(USERNAME, "") + "&" + PREF.getInt(TIMES_OPENED, 0)
+                Log.d("test", "Creating " + PREF.getString(USERNAME, "") + "&" + PREF.getInt(TIMES_COMPLETED, 0)
                         + "&" + PREF.getInt(ACCOUNT_TRIES, 0) + "&" + PREF.getInt(HIGH_SCORE, 0));
             }
             Intent intent = new Intent(this, MainMenuActivity.class);

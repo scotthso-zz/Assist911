@@ -1,6 +1,5 @@
 package scottso.assist911;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -18,8 +17,16 @@ public class ResultsActivity extends SimKidsActivity implements View.OnClickList
         final TextView title = (TextView) findViewById(R.id.title);
         if(MainMenuActivity.CURRENT_TRY_SCORE == 8) {
             title.setText("Congratulations!");
+            MainMenuActivity.TIMES_COMPLETED++;
+            LoginActivity.EDITOR.putInt(LoginActivity.TIMES_COMPLETED, MainMenuActivity.TIMES_COMPLETED);
+            LoginActivity.EDITOR.commit();
         } else {
             title.setText("Game Over :(");
+            if(MainMenuActivity.TIMES_COMPLETED != 0) {
+                MainMenuActivity.TIMES_COMPLETED--; // failed
+                LoginActivity.EDITOR.putInt(LoginActivity.TIMES_COMPLETED, MainMenuActivity.TIMES_COMPLETED);
+                LoginActivity.EDITOR.commit();
+            }
         }
 
         final TextView newHighScore = (TextView) findViewById(R.id.new_high_score);
@@ -62,8 +69,11 @@ public class ResultsActivity extends SimKidsActivity implements View.OnClickList
     }
 
     public void goToMenu() {
-        Intent menu = new Intent(this, MainMenuActivity.class);
-        startActivity(menu);
+//        Intent menu = new Intent(this, MainMenuActivity.class);
+//        startActivity(menu);
+        MainMenuActivity.CURRENT_TRY_SCORE = 0;
+        LoginActivity.EDITOR.putInt(LoginActivity.CURRENT_TRY_SCORE, MainMenuActivity.CURRENT_TRY_SCORE);
+        LoginActivity.EDITOR.commit();
         finish();
     }
 }

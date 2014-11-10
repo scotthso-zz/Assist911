@@ -33,10 +33,10 @@ public class SimKidsActivity extends Activity {
 
     public void checkLoggedIn(){
         if(!LoginActivity.PREF.getString(LoginActivity.USERNAME,"").equals("") &&
-                MainMenuActivity.TIMES_OPENED != 0){
+                MainMenuActivity.TIMES_COMPLETED != 0){
             LoginActivity.IS_LOGGED_IN = true;
             LoginActivity.EDITOR.putBoolean("IS_LOGGED_IN",LoginActivity.IS_LOGGED_IN);
-            LoginActivity.EDITOR.putInt(LoginActivity.TIMES_OPENED,MainMenuActivity.TIMES_OPENED);
+            LoginActivity.EDITOR.putInt(LoginActivity.TIMES_COMPLETED,MainMenuActivity.TIMES_COMPLETED);
             LoginActivity.EDITOR.commit();
         }
     }
