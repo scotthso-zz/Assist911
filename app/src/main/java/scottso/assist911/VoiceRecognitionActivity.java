@@ -113,7 +113,8 @@ public class VoiceRecognitionActivity extends SimKidsActivity {
                     VideosActivity.POLICE = false;
                     saveIncrementAndExit();
                 } else if (VideosActivity.AMBULANCE && (said.contains("drown") ||
-                                                        said.contains("assed"))){
+                                                        said.contains("assed") ||
+                                                        said.contains("hok") )){
                     CallActivity.LEVEL = CallActivity.Level.FINAL;
                     CallActivity.ambulanceQuestion();
                     VideosActivity.AMBULANCE = false;
@@ -128,6 +129,9 @@ public class VoiceRecognitionActivity extends SimKidsActivity {
                     if (tries != 3) {
                         activateSpeechRecognition();
                     } else {
+                        VideosActivity.POLICE = false;
+                        VideosActivity.AMBULANCE = false;
+                        VideosActivity.FIRE = false;
                         tries = 0;
                         CallActivity.LEVEL = CallActivity.Level.FINAL;
                         CallActivity.gameOver();
