@@ -35,6 +35,8 @@ public class KeypadActivity extends SimKidsActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_keypad);
 
+        TRIES = 0;
+
         one = (Button) findViewById(R.id.button1);
         two = (Button) findViewById(R.id.button2);
         three = (Button) findViewById(R.id.button3);
@@ -201,6 +203,13 @@ public class KeypadActivity extends SimKidsActivity implements View.OnClickListe
                     Toast toast = Toast.makeText(getApplicationContext(), "Try Again", Toast.LENGTH_SHORT);
                     toast.show();
                     TRIES++;
+                    LoginActivity.EDITOR.putInt(LoginActivity.ACCOUNT_TRIES, TRIES);
+                    LoginActivity.EDITOR.commit();
+                    if (TRIES == 3) {
+                        goToResults();
+                        LoginActivity.EDITOR.putInt(LoginActivity.ACCOUNT_TRIES, TRIES);
+                        LoginActivity.EDITOR.commit();
+                    }
                 }
                 break;
         }
@@ -216,5 +225,12 @@ public class KeypadActivity extends SimKidsActivity implements View.OnClickListe
         MainMenuActivity.CURRENT_TRY_SCORE++;
         LoginActivity.EDITOR.putInt(LoginActivity.CURRENT_TRY_SCORE, MainMenuActivity.CURRENT_TRY_SCORE);
         LoginActivity.EDITOR.commit();
+    }
+
+    public void goToResults(){
+        TRIES = 0;
+        Intent i = new Intent(this, ResultsActivity.class);
+        startActivity(i);
+        finish();
     }
 }

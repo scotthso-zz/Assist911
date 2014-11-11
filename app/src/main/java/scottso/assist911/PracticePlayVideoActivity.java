@@ -15,6 +15,8 @@ public class PracticePlayVideoActivity extends SimKidsActivity implements View.O
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_practice_play_video);
 
+        KeypadActivity.TRIES = 0;
+        
         Button ok = (Button)findViewById(R.id.btn_emergency);
         ok.setOnClickListener(this);
 
@@ -34,7 +36,7 @@ public class PracticePlayVideoActivity extends SimKidsActivity implements View.O
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.btn_emergency:
-                if(VideosActivity.EMERGENCY == true) {
+                if(VideosActivity.EMERGENCY) {
                     goToPractice();
                 } else {
                     goToResults();

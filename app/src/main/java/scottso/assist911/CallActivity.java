@@ -31,7 +31,9 @@ public class CallActivity extends Activity implements View.OnClickListener, Text
                                "What's the problem?",
                                "E M S is on their way. Stay there.",
                                "Fire team is on their way. Stay there",
-                               "Police is on their way. Stay there",};
+                               "Police is on their way. Stay there",
+                               "Try again.",
+                               "Game over."};
 
     public static Level LEVEL = Level.SERVICE;
 
@@ -47,6 +49,8 @@ public class CallActivity extends Activity implements View.OnClickListener, Text
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_call);
+
+        LEVEL = Level.SERVICE;
 
         if(MainMenuActivity.TIMES_COMPLETED <= 5) {
             newFragment.show(getFragmentManager(), "PromptDialog");
@@ -124,6 +128,14 @@ public class CallActivity extends Activity implements View.OnClickListener, Text
     public static void policeQuestion() {
 //        String text = "Police is on their way. Stay there";
         speak(script[6]);
+    }
+
+    public static void tryAgain(){
+        speak(script[7]);
+    }
+
+    public static void gameOver(){
+        speak(script[8]);
     }
 
     @Override
