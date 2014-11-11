@@ -9,7 +9,7 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="200px"
-        android:text="Press the button to unlock"
+        android:text="Slide to unlock"
         android:textSize="12pt"
         android:gravity="center"
         android:id="@+id/textView"/>

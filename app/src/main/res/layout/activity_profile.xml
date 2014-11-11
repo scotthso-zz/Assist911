@@ -1,15 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:fbutton="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/simkidsbg">
+ >
 
     <TextView
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:text="Username"
-        android:textSize="16pt"
+        android:textSize="20pt"
         android:gravity="center"
         android:id="@+id/display_username"
         android:layout_marginTop="30dp"
@@ -42,7 +43,7 @@
 
     <TextView
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
         android:text="Tries"
         android:textSize="12pt"
         android:gravity="center"
@@ -54,18 +55,18 @@
 
     <TextView
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
         android:text="Removed Dialog"
         android:textSize="12pt"
         android:gravity="center"
         android:id="@+id/removed_dialog_prompt"
-        android:layout_centerVertical="true"
+        android:layout_below="@+id/tries"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 
     <TextView
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
         android:text="Removed Audio"
         android:textSize="12pt"
         android:gravity="center"
@@ -75,31 +76,58 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 
-    <Button
+    <info.hoang8f.widget.FButton
+        fbutton:buttonColor="@color/color_emerald"
+        fbutton:shadowColor="@color/color_nephritis"
+        fbutton:shadowEnabled="true"
+        fbutton:shadowHeight="8dp"
+        fbutton:cornerRadius="12dp"
+
         android:layout_width="fill_parent"
         android:layout_height="65dp"
-        android:text="Return"
-        android:textSize="22dp"
+        android:text="BACK"
+        android:textColor="#1E824C"
         android:id="@+id/button_return"
+        android:layout_gravity="center"
+        style="@style/menu_buttons"
         android:layout_above="@+id/button_reset"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 
-    <Button
+
+    <info.hoang8f.widget.FButton
+
+        fbutton:buttonColor="@color/color_concrete"
+        fbutton:shadowColor="@color/color_asbestos"
+        fbutton:shadowEnabled="true"
+        fbutton:shadowHeight="8dp"
+        fbutton:cornerRadius="12dp"
+
+        style="@style/menu_buttons"
         android:layout_width="fill_parent"
         android:layout_height="70dp"
-        android:text="Reset"
-        android:textSize="22dp"
+        android:text="RESET"
+        android:textColor="#3B3B3B"
+        android:textSize="30dp"
         android:id="@+id/button_reset"
         android:layout_above="@+id/button_logout"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 
-    <Button
+    <info.hoang8f.widget.FButton
+
+        fbutton:buttonColor="@color/color_alizarin"
+        fbutton:shadowColor="@color/color_pomegranate"
+        fbutton:shadowEnabled="true"
+        fbutton:shadowHeight="8dp"
+        fbutton:cornerRadius="12dp"
+
+        style="@style/menu_buttons"
         android:id="@+id/button_logout"
         android:layout_width="match_parent"
         android:layout_height="75dp"
         android:text="LOGOUT"
+        android:textColor="#96281B"
         android:textSize="30dp"
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
