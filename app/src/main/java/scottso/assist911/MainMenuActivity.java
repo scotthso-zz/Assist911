@@ -21,6 +21,7 @@ public class MainMenuActivity extends SimKidsActivity implements View.OnClickLis
 
     final String[] videoArray = {"flame","smoke","passed","car","drowning","a","b"};
 
+    public static int NUM_TRIES = 0;
     public static int TIMES_COMPLETED;
     public static int CURRENT_TRY_SCORE;
     public static boolean IS_REMOVE_TEXT_PROMPT = false;

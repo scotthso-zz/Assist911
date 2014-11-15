@@ -8,44 +8,29 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/textView1"
+        android:id="@+id/callStatus"
         android:text="Dialing 911"
+        android:background="#000"
+        android:textColor="#fff"
         android:textSize="26pt"
         android:layout_weight="0.03" />
 
     <ImageView
         android:layout_width="fill_parent"
-        android:layout_height="270dp"
+        android:layout_height="370dp"
         android:background="#000"
         android:id="@+id/imageView"
-        android:layout_weight="0.03" />
+        android:layout_weight="1" />
 
-    <Button
-        style="?android:attr/buttonStyleSmall"
-        android:layout_width="90dp"
-        android:layout_height="wrap_content"
-        android:text="Hint"
-        android:id="@+id/btn_hint"
-        android:layout_gravity="center_horizontal" />
+
 
     <ImageButton
-        android:layout_width="fill_parent"
+        android:layout_width="match_parent"
         android:layout_height="90dp"
         android:src="@drawable/ic_action_call"
         android:textColor="#fff"
         android:textSize="20pt"
         android:background="#EF4836"
-        android:id="@+id/endButton"
-        android:layout_weight="0.03" />
-
-    <ImageButton
-        android:layout_width="100dp"
-        android:layout_height="90dp"
-        android:src="@drawable/ic_action_mic"
-        android:textColor="#fff"
-        android:textSize="20pt"
-        android:background="#E49"
-        android:id="@+id/btn_speak"
-        android:layout_weight="0.03" />
+        android:id="@+id/endButton" />
 
 </LinearLayout>

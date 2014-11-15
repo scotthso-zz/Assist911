@@ -7,10 +7,9 @@
     android:weightSum="1">
 
     <VideoView
-        android:layout_height="253dp"
-        android:layout_width="638dp"
-        android:id="@+id/VideoView"
-        android:layout_weight="0.85" />
+        android:layout_height="371dp"
+        android:layout_width="match_parent"
+        android:id="@+id/VideoView" />
 
     <info.hoang8f.widget.FButton
         fbutton:buttonColor="@color/color_alizarin"

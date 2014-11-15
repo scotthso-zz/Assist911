@@ -17,6 +17,7 @@ import java.util.Locale;
 
 public class CallActivity extends Activity implements View.OnClickListener, TextToSpeech.OnInitListener{
 
+
     enum Level {
         SERVICE,
         NAME,
@@ -25,7 +26,7 @@ public class CallActivity extends Activity implements View.OnClickListener, Text
         FINAL
     }
 
-    private static final String[] script = {"911 do you need fire, ambulance or police",
+    private static final String[] script = {"Nine one one do you need fire, ambulance or police",
                                "What's your name?",
                                "What's your address?",
                                "What's the problem?",
@@ -37,7 +38,7 @@ public class CallActivity extends Activity implements View.OnClickListener, Text
 
     public static Level LEVEL = Level.SERVICE;
 
-    private TextView mText;
+    public TextView mText;
 
     public static TextToSpeech tts;
 
@@ -60,14 +61,14 @@ public class CallActivity extends Activity implements View.OnClickListener, Text
         tts = new TextToSpeech(this, this);
 
         ImageButton endButton = (ImageButton) findViewById(R.id.endButton);
-        ImageButton speakButton = (ImageButton) findViewById(R.id.btn_speak);
-        Button hintButton = (Button) findViewById(R.id.btn_hint);
+        //ImageButton speakButton = (ImageButton) findViewById(R.id.btn_speak);
+        //Button hintButton = (Button) findViewById(R.id.btn_hint);
 
-        mText = (TextView) findViewById(R.id.textView1);
+        mText = (TextView) findViewById(R.id.callStatus);
 
-        speakButton.setOnClickListener(this);
+        //speakButton.setOnClickListener(this);
         endButton.setOnClickListener(this);
-        hintButton.setOnClickListener(this);
+        //hintButton.setOnClickListener(this);
 
         tts.setOnUtteranceProgressListener(new TtsUtteranceListener());
     }
@@ -80,7 +81,8 @@ public class CallActivity extends Activity implements View.OnClickListener, Text
                     || result == TextToSpeech.LANG_NOT_SUPPORTED) {
                 Log.e("TTS", "This Language is not supported");
             } else {
-                serviceQuestion();
+                serviceQuestion(mText);
+
             }
         } else {
             Log.e("TTS", "Initialization Failed!");
@@ -95,9 +97,11 @@ public class CallActivity extends Activity implements View.OnClickListener, Text
         }
     }
 
-    private static void serviceQuestion() {
+    private static void serviceQuestion(TextView mText) {
 //        String text = "911 do you need fire, ambulance or police";
         speak(script[0]);
+        mText.setText("911");
+     
     }
 
     public static void nameQuestion() {
@@ -149,13 +153,22 @@ public class CallActivity extends Activity implements View.OnClickListener, Text
     }
 
     public void onClick(View v) {
-        if (v.getId() == R.id.btn_speak) {
-            startSpeechRecognition();
-        } else if (v.getId() == R.id.endButton) {
-            goToResults();
-        } else if (v.getId() == R.id.btn_hint) {
-            hintProblemFragment.show(getFragmentManager(), "PromptDialog");
+        //if (v.getId() == R.id.btn_speak) {
+        //  startSpeechRecognition();
+        if (v.getId() == R.id.endButton) {
+            endCall();
+            //} else if (v.getId() == R.id.btn_hint) {
+            //hintProblemFragment.show(getFragmentManager(), "PromptDialog");
+            //}
         }
+    }
+
+    public void endCall() {
+        Intent results = new Intent(this, ResultsActivity.class);
+        startActivity(results);
+        finish();
+        LoginActivity.EDITOR.putInt(LoginActivity.CURRENT_TRY_SCORE, MainMenuActivity.CURRENT_TRY_SCORE);
+        LoginActivity.EDITOR.commit();
     }
 
     public void goToResults() {

@@ -7,7 +7,7 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="200px"
-        android:text="Press the speech button and answer the verbal prompts"
+        android:text="Reply to the verbal prompts"
         android:textSize="12pt"
         android:gravity="center"
         android:id="@+id/textView"/>

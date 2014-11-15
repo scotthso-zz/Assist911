@@ -15,8 +15,6 @@ public class VoiceRecognitionActivity extends SimKidsActivity {
     private static final String TAG = "VoiceRecognitionActivity";
     private SpeechRecognizer sr;
 
-    private static int tries;
-
     ArrayList data;
 
     @Override
@@ -37,6 +35,7 @@ public class VoiceRecognitionActivity extends SimKidsActivity {
         intent.putExtra(RecognizerIntent.EXTRA_MAX_RESULTS, 5);
         sr.startListening(intent);
         Log.i("SpeechRecog", "Listening!!");
+        Log.i("SpeechRecog", "TRIES: " + MainMenuActivity.NUM_TRIES);
     }
 
     class speechRecogListener implements RecognitionListener {
@@ -70,7 +69,7 @@ public class VoiceRecognitionActivity extends SimKidsActivity {
         }
 
         public void onResults(Bundle results) {
-            tries++;
+            MainMenuActivity.NUM_TRIES++;
             String str = "";
             Log.d(TAG, "onResults " + results);
             data = results.getStringArrayList(SpeechRecognizer.RESULTS_RECOGNITION);
@@ -89,10 +88,10 @@ public class VoiceRecognitionActivity extends SimKidsActivity {
                     CallActivity.LEVEL = CallActivity.Level.NAME;
                     saveIncrementAndExit();
                 } else {
-                    if (tries != 3) {
+                    if (MainMenuActivity.NUM_TRIES != 3) {
                         activateSpeechRecognition();
                     } else {
-                        tries = 0;
+                        MainMenuActivity.NUM_TRIES = 0;
                         CallActivity.LEVEL = CallActivity.Level.FINAL;
                         CallActivity.gameOver();
                         finish();
@@ -126,13 +125,13 @@ public class VoiceRecognitionActivity extends SimKidsActivity {
                     VideosActivity.FIRE = false;
                     saveIncrementAndExit();
                 } else {
-                    if (tries != 3) {
+                    if (MainMenuActivity.NUM_TRIES != 3) {
                         activateSpeechRecognition();
                     } else {
                         VideosActivity.POLICE = false;
                         VideosActivity.AMBULANCE = false;
                         VideosActivity.FIRE = false;
-                        tries = 0;
+                        MainMenuActivity.NUM_TRIES = 0;
                         CallActivity.LEVEL = CallActivity.Level.FINAL;
                         CallActivity.gameOver();
                         finish();
@@ -154,8 +153,9 @@ public class VoiceRecognitionActivity extends SimKidsActivity {
         MainMenuActivity.CURRENT_TRY_SCORE++;
         LoginActivity.EDITOR.putInt(LoginActivity.CURRENT_TRY_SCORE, MainMenuActivity.CURRENT_TRY_SCORE);
         LoginActivity.EDITOR.commit();
+        MainMenuActivity.NUM_TRIES = 0;
         finish();
-        tries = 0;
+
     }
 
     @Override

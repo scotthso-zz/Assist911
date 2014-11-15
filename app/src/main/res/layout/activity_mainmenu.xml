@@ -21,8 +21,8 @@
             android:id="@+id/textView"
             android:layout_width="fill_parent"
             android:layout_height="80dp"
-            android:text="SIM KIDS"
-            android:textSize="30pt"
+            android:text="911 SIM KIDS"
+            android:textSize="25pt"
             android:gravity="center"
 
             android:layout_alignParentLeft="true"
