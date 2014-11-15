@@ -3,6 +3,7 @@ package scottso.assist911.Activities;
 import android.app.Activity;
 import android.app.DialogFragment;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.speech.tts.TextToSpeech;
 import android.speech.tts.UtteranceProgressListener;
@@ -84,7 +85,7 @@ public class CallActivity extends Activity implements View.OnClickListener, Text
                     || result == TextToSpeech.LANG_NOT_SUPPORTED) {
                 Log.e("TTS", "This Language is not supported");
             } else {
-                serviceQuestion(mText);
+                serviceQuestion();
 
             }
         } else {
@@ -100,11 +101,10 @@ public class CallActivity extends Activity implements View.OnClickListener, Text
         }
     }
 
-    private static void serviceQuestion(TextView mText) {
+    private static void serviceQuestion() {
 //        String text = "911 do you need fire, ambulance or police";
         speak(script[0]);
-        mText.setText("911");
-     
+
     }
 
     public static void nameQuestion() {
@@ -184,6 +184,7 @@ public class CallActivity extends Activity implements View.OnClickListener, Text
     }
 
     public void startSpeechRecognition() {
+
         if(Level.FINAL != LEVEL) {
             Intent i = new Intent(this, VoiceRecognitionActivity.class);
             startActivity(i);
@@ -191,6 +192,10 @@ public class CallActivity extends Activity implements View.OnClickListener, Text
             LEVEL = Level.SERVICE; // reset it
             goToResults();
         }
+    }
+    public void changeColour() {
+        mText.setText("911");
+        mText.setBackgroundColor(Color.GREEN);
     }
     class TtsUtteranceListener extends UtteranceProgressListener{
 

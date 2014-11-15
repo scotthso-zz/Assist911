@@ -108,7 +108,7 @@ public class VoiceRecognitionActivity extends SimKidsActivity {
                 CallActivity.LEVEL = CallActivity.Level.EMERGENCY;
                 saveIncrementAndExit();
             } else if (CallActivity.LEVEL == CallActivity.Level.EMERGENCY) {
-                if (VideosActivity.POLICE && said.contains("ole")){
+                if (VideosActivity.POLICE && said.contains("ole") && said.contains("roke")){
                     CallActivity.LEVEL = CallActivity.Level.FINAL;
                     CallActivity.policeQuestion();
                     VideosActivity.POLICE = false;
