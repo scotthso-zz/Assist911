@@ -11,11 +11,13 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
+import java.util.HashSet;
 
 public class FileManager  {
 
     public static String[] fileNames;
     public static int accountCount;
+    public static HashSet<String> accountNames = new HashSet<String>();
 
     public static void saveFile(AccountItem account, Context context) {
         try {
@@ -32,6 +34,8 @@ public class FileManager  {
         } catch (IOException e1) {
             e1.printStackTrace();
         }
+
+        accountNames.add(account.getAccountName());
 
         Log.d("test", "save called: " + account.getAccountName());
         refreshFiles(context);
@@ -77,6 +81,7 @@ public class FileManager  {
 
     public static void deleteFile(String username, Context context) {
         context.deleteFile(username);
+        accountNames.remove(username);
         refreshFiles(context);
         Log.d("test", "delete called: " + username);
     }

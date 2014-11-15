@@ -11,7 +11,7 @@
     <EditText
         android:id="@+id/new_username"
         android:hint="Username"
-        android:textAllCaps="true"
+        android:inputType="textCapCharacters"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
@@ -23,7 +23,7 @@
     <EditText
         android:id="@+id/address"
         android:hint="Address"
-        android:inputType="textPostalAddress"
+        android:inputType="textCapCharacters"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 

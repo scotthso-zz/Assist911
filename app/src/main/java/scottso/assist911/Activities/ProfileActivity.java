@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import scottso.assist911.AccountItem;
 import scottso.assist911.FileManager;
@@ -138,17 +139,23 @@ public class ProfileActivity extends SimKidsActivity implements View.OnClickList
                 .setView(yourCustomView)
                 .setPositiveButton("OK", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int whichButton) {
-                        newAddress = etName.getText().toString();
-                        refreshAddress();
-                        LoginActivity.EDITOR.putString(LoginActivity.ADDRESS, newAddress);
-                        LoginActivity.EDITOR.commit();
+                        String address = etName.getText().toString();
+                        refreshAddress(address);
                     }
                 })
                 .setNegativeButton("Cancel", null).create();
         dialog.show();
     }
 
-    private void refreshAddress() {
-        addressTV.setText("Address: " + newAddress);
+    private void refreshAddress(String address) {
+        if (!address.equals("")) {
+            address = address.trim();
+            newAddress = address;
+            addressTV.setText("Address: " + newAddress);
+            LoginActivity.EDITOR.putString(LoginActivity.ADDRESS, newAddress);
+            LoginActivity.EDITOR.commit();
+        } else {
+            Toast.makeText(this, "Address was not changed.",Toast.LENGTH_LONG).show();
+        }
     }
 }
