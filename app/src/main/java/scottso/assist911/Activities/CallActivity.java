@@ -1,4 +1,4 @@
-package scottso.assist911;
+package scottso.assist911.Activities;
 
 import android.app.Activity;
 import android.app.DialogFragment;
@@ -8,12 +8,15 @@ import android.speech.tts.TextToSpeech;
 import android.speech.tts.UtteranceProgressListener;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
 import java.util.HashMap;
 import java.util.Locale;
+
+import scottso.assist911.Dialogs.HintProblemDialog;
+import scottso.assist911.Dialogs.PromptCallDialog;
+import scottso.assist911.R;
 
 public class CallActivity extends Activity implements View.OnClickListener, TextToSpeech.OnInitListener{
 

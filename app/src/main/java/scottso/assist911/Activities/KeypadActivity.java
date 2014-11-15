@@ -1,4 +1,4 @@
-package scottso.assist911;
+package scottso.assist911.Activities;
 
 import android.app.DialogFragment;
 import android.content.Intent;
@@ -11,6 +11,10 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import scottso.assist911.Dialogs.PromptDialDialog;
+import scottso.assist911.R;
+import scottso.assist911.SimKidsActivity;
 
 public class KeypadActivity extends SimKidsActivity implements View.OnClickListener {
 

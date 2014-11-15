@@ -1,4 +1,4 @@
-package scottso.assist911;
+package scottso.assist911.Activities;
 
 import android.app.Activity;
 import android.app.DialogFragment;
@@ -11,6 +11,11 @@ import android.view.View;
 import net.frakbot.glowpadbackport.GlowPadView;
 
 import java.util.Locale;
+
+import scottso.assist911.Dialogs.AudioPromptRemovedDialog;
+import scottso.assist911.Dialogs.PromptRemovedDialog;
+import scottso.assist911.Dialogs.PromptUnlockDialog;
+import scottso.assist911.R;
 
 public class LockActivity extends Activity implements TextToSpeech.OnInitListener {
 

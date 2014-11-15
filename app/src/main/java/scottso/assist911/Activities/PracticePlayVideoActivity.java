@@ -1,12 +1,14 @@
-package scottso.assist911;
+package scottso.assist911.Activities;
 
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.Toast;
 import android.widget.VideoView;
+
+import scottso.assist911.R;
+import scottso.assist911.SimKidsActivity;
 
 public class PracticePlayVideoActivity extends SimKidsActivity implements View.OnClickListener {
 

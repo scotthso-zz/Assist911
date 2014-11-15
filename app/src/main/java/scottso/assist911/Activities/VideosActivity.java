@@ -1,4 +1,4 @@
-package scottso.assist911;
+package scottso.assist911.Activities;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -7,6 +7,9 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
+
+import scottso.assist911.R;
+import scottso.assist911.SimKidsActivity;
 
 public class VideosActivity extends SimKidsActivity implements AdapterView.OnItemSelectedListener, View.OnClickListener {
 

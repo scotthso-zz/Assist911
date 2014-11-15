@@ -1,4 +1,4 @@
-package scottso.assist911;
+package scottso.assist911.Activities;
 
 import android.content.Context;
 import android.content.Intent;
@@ -10,6 +10,8 @@ import android.widget.Button;
 
 import java.util.Random;
 
+import scottso.assist911.R;
+import scottso.assist911.SimKidsActivity;
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
 public class MainMenuActivity extends SimKidsActivity implements View.OnClickListener{

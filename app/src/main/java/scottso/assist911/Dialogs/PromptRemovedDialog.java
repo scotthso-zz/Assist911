@@ -1,4 +1,4 @@
-package scottso.assist911;
+package scottso.assist911.Dialogs;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -8,20 +8,21 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 
-public class PromptDialDialog extends DialogFragment {
+import scottso.assist911.R;
 
-    @Override
+public class PromptRemovedDialog extends DialogFragment {
+
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         LayoutInflater inflater = getActivity().getLayoutInflater();
 
-        View v = inflater.inflate(R.layout.dialog_prompt_dial, null);
+        View v = inflater.inflate(R.layout.dialog_prompt_removed, null);
         builder.setView(v);
 
         builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int id) {
-                PromptDialDialog.this.getDialog().cancel();
+                PromptRemovedDialog.this.getDialog().cancel();
             }
 
         });

@@ -1,10 +1,15 @@
-package scottso.assist911;
+package scottso.assist911.Activities;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+
+import scottso.assist911.AccountItem;
+import scottso.assist911.FileManager;
+import scottso.assist911.R;
+import scottso.assist911.SimKidsActivity;
 
 public class ProfileActivity extends SimKidsActivity implements View.OnClickListener {
 

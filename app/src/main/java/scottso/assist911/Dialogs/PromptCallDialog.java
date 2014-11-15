@@ -1,4 +1,4 @@
-package scottso.assist911;
+package scottso.assist911.Dialogs;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -7,6 +7,8 @@ import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
+
+import scottso.assist911.R;
 
 public class PromptCallDialog extends DialogFragment {
 

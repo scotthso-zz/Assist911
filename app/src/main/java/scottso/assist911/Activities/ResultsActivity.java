@@ -1,9 +1,12 @@
-package scottso.assist911;
+package scottso.assist911.Activities;
 
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+
+import scottso.assist911.R;
+import scottso.assist911.SimKidsActivity;
 
 public class ResultsActivity extends SimKidsActivity implements View.OnClickListener {
 

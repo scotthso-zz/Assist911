@@ -1,4 +1,4 @@
-package scottso.assist911;
+package scottso.assist911.Activities;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,6 +9,8 @@ import android.util.Log;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+
+import scottso.assist911.SimKidsActivity;
 
 public class VoiceRecognitionActivity extends SimKidsActivity {
 

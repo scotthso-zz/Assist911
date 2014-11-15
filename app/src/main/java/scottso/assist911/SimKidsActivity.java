@@ -4,6 +4,8 @@ import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
 
+import scottso.assist911.Activities.LoginActivity;
+import scottso.assist911.Activities.MainMenuActivity;
 import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 

@@ -1,7 +1,10 @@
-package scottso.assist911;
+package scottso.assist911.Activities;
 
 import android.os.Bundle;
 import android.widget.TextView;
+
+import scottso.assist911.R;
+import scottso.assist911.SimKidsActivity;
 
 public class ReportActivity extends SimKidsActivity {
 
