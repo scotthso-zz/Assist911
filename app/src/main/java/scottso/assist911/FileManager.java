@@ -28,6 +28,8 @@ public class FileManager  {
             outputStream.write((""+"\n").getBytes());
             outputStream.write(Integer.toString(account.getHighScore()).getBytes());
             outputStream.write((""+"\n").getBytes());
+            outputStream.write(account.getAddress().getBytes());
+            outputStream.write((""+"\n").getBytes());
             outputStream.close();
         } catch (FileNotFoundException e1) {
             e1.printStackTrace();
