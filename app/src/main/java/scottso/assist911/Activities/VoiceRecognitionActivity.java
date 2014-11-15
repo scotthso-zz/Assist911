@@ -15,21 +15,34 @@ import scottso.assist911.SimKidsActivity;
 public class VoiceRecognitionActivity extends SimKidsActivity {
 
     private static final String TAG = "VoiceRecognitionActivity";
+
+    public static VoiceRecognitionActivity mActivity;
+
     private SpeechRecognizer sr;
+    private SpeechRecogListener mListener;
 
     ArrayList data;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        mActivity = this;
 
         sr = SpeechRecognizer.createSpeechRecognizer(this);
-        sr.setRecognitionListener(new speechRecogListener());
+        sr.setRecognitionListener(getSpeechRecognizerListener());
         activateSpeechRecognition();
     }
 
+    private SpeechRecogListener getSpeechRecognizerListener() {
+        if (mListener == null)
+        {
+            mListener = new SpeechRecogListener();
+        }
+        return mListener;
+    }
+
     private void activateSpeechRecognition() {
-        sr.setRecognitionListener(new speechRecogListener());
+        sr.setRecognitionListener(getSpeechRecognizerListener());
         Intent intent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
         intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL, RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
         intent.putExtra(RecognizerIntent.EXTRA_CALLING_PACKAGE, "voice.recognition.test");
@@ -40,7 +53,7 @@ public class VoiceRecognitionActivity extends SimKidsActivity {
         Log.i("SpeechRecog", "TRIES: " + MainMenuActivity.NUM_TRIES);
     }
 
-    class speechRecogListener implements RecognitionListener {
+    class SpeechRecogListener implements RecognitionListener {
         public void onReadyForSpeech(Bundle params) {
             Log.d(TAG, "onReadyForSpeech");
         }
@@ -96,6 +109,11 @@ public class VoiceRecognitionActivity extends SimKidsActivity {
                         MainMenuActivity.NUM_TRIES = 0;
                         CallActivity.LEVEL = CallActivity.Level.FINAL;
                         CallActivity.gameOver();
+                        sr.cancel();
+                        if(sr!=null) {
+                            sr.destroy();
+                            Log.d("SpeechRecog", "Destroyed!");
+                        }
                         finish();
                     }
                 }
@@ -104,11 +122,30 @@ public class VoiceRecognitionActivity extends SimKidsActivity {
                 CallActivity.LEVEL = CallActivity.Level.LOCATION;
                 saveIncrementAndExit();
             } else if (CallActivity.LEVEL == CallActivity.Level.LOCATION) {
-                CallActivity.problemQuestion();
-                CallActivity.LEVEL = CallActivity.Level.EMERGENCY;
-                saveIncrementAndExit();
+                int size = CallActivity.ADDRESS_ARRAY[1].length();
+                String substr = CallActivity.ADDRESS_ARRAY[1].substring(0,size/2).toLowerCase();
+                if (said.contains(substr)) {
+                    CallActivity.problemQuestion();
+                    CallActivity.LEVEL = CallActivity.Level.EMERGENCY;
+                    saveIncrementAndExit();
+                } else {
+                    if (MainMenuActivity.NUM_TRIES != 3) {
+                        activateSpeechRecognition();
+                    } else {
+                        MainMenuActivity.NUM_TRIES = 0;
+                        CallActivity.LEVEL = CallActivity.Level.FINAL;
+                        CallActivity.gameOver();
+                        sr.cancel();
+                        if(sr!=null) {
+                            sr.destroy();
+                            Log.d("SpeechRecog", "Destroyed!");
+                        }
+                        finish();
+                    }
+                }
             } else if (CallActivity.LEVEL == CallActivity.Level.EMERGENCY) {
-                if (VideosActivity.POLICE && said.contains("ole") && said.contains("roke")){
+                if (VideosActivity.POLICE && (said.contains("ole") || said.contains("roke") ||
+                                                said.contains("reak"))){
                     CallActivity.LEVEL = CallActivity.Level.FINAL;
                     CallActivity.policeQuestion();
                     VideosActivity.POLICE = false;
@@ -136,6 +173,11 @@ public class VoiceRecognitionActivity extends SimKidsActivity {
                         MainMenuActivity.NUM_TRIES = 0;
                         CallActivity.LEVEL = CallActivity.Level.FINAL;
                         CallActivity.gameOver();
+                        sr.cancel();
+                        if(sr!=null) {
+                            sr.destroy();
+                            Log.d("SpeechRecog", "Destroyed!");
+                        }
                         finish();
                     }
                 }
@@ -156,15 +198,19 @@ public class VoiceRecognitionActivity extends SimKidsActivity {
         LoginActivity.EDITOR.putInt(LoginActivity.CURRENT_TRY_SCORE, MainMenuActivity.CURRENT_TRY_SCORE);
         LoginActivity.EDITOR.commit();
         MainMenuActivity.NUM_TRIES = 0;
+        sr.cancel();
         finish();
+    }
 
+    public static VoiceRecognitionActivity getInstance() {
+        return mActivity;
     }
 
     @Override
-    protected void onDestroy() {
-        if(sr!=null)
-        {
+    public void onDestroy() {
+        if(sr!=null) {
             sr.destroy();
+            Log.d("SpeechRecog", "Destroyed!");
         }
         super.onDestroy();
     }

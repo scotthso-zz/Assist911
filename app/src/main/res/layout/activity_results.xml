@@ -14,36 +14,29 @@
         android:text="Congratulations!"
         android:textSize="20pt"
         android:gravity="center"
-        android:layout_weight="1"
         android:layout_gravity="center_horizontal"
 
         android:visibility="visible"/>
 
-
     <TextView
         android:id="@+id/new_high_score"
         android:layout_width="fill_parent"
-        android:layout_height="100dp"
-        android:text="New high score!"
-        android:textSize="12pt"
+        android:layout_height="30dp"
+        android:text="New High Score!"
+        android:textSize="10pt"
         android:gravity="center"
-        android:layout_below="@+id/title"
-        android:layout_weight="1"
         android:visibility="gone"
+        android:layout_below="@+id/title"
         android:layout_alignParentLeft="true"
-        android:layout_marginLeft="0dp"
-   />
+        android:layout_alignParentStart="true" />
 
     <TextView
         android:id="@+id/points"
         android:layout_width="fill_parent"
-
         android:layout_height="80dp"
         android:text="Points"
-
         android:textSize="12pt"
         android:gravity="center"
-        android:layout_weight="1"
         android:layout_below="@+id/new_high_score"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
@@ -55,7 +48,6 @@
         android:textSize="12pt"
         android:gravity="center"
         android:id="@+id/tries"
-        android:layout_weight="1"
         android:layout_below="@+id/points"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
@@ -64,25 +56,19 @@
         android:layout_width="fill_parent"
         android:layout_height="80dp"
         android:text="Removed Dialog"
-        android:textSize="12pt"
+        android:textSize="10pt"
         android:gravity="center"
         android:id="@+id/removed_dialog"
-        android:layout_weight="1"
-        android:layout_below="@+id/tries"
-        android:layout_toRightOf="@+id/new_high_score"
-        android:layout_toEndOf="@+id/new_high_score" />
+        android:layout_below="@+id/tries"/>
 
     <TextView
         android:layout_width="fill_parent"
         android:layout_height="80dp"
         android:text="Removed Audio"
-        android:textSize="12pt"
+        android:textSize="10pt"
         android:gravity="center"
         android:id="@+id/removed_audio_dialog"
-        android:layout_weight="1"
-        android:layout_below="@+id/removed_dialog"
-        android:layout_toRightOf="@+id/new_high_score"
-        android:layout_toEndOf="@+id/new_high_score" />
+        android:layout_below="@+id/removed_dialog"/>
 
     <info.hoang8f.widget.FButton
         fbutton:buttonColor="@color/color_alizarin"

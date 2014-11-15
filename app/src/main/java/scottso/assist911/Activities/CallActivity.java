@@ -39,6 +39,7 @@ public class CallActivity extends Activity implements View.OnClickListener, Text
                                "Police is on their way. Stay there",
                                "Try again.",
                                "Game over."};
+    public static String[] ADDRESS_ARRAY = LoginActivity.PREF.getString(LoginActivity.ADDRESS,"").split(" ");
 
     public static Level LEVEL = Level.SERVICE;
 
@@ -159,6 +160,7 @@ public class CallActivity extends Activity implements View.OnClickListener, Text
         //if (v.getId() == R.id.btn_speak) {
         //  startSpeechRecognition();
         if (v.getId() == R.id.endButton) {
+            closeVoiceActivity();
             endCall();
             //} else if (v.getId() == R.id.btn_hint) {
             //hintProblemFragment.show(getFragmentManager(), "PromptDialog");
@@ -190,9 +192,17 @@ public class CallActivity extends Activity implements View.OnClickListener, Text
             startActivity(i);
         } else {
             LEVEL = Level.SERVICE; // reset it
+            closeVoiceActivity();
             goToResults();
         }
     }
+
+    public void closeVoiceActivity() {
+        if(VoiceRecognitionActivity.getInstance()!=null) {
+            VoiceRecognitionActivity.getInstance().finish();
+        }
+    }
+
     public void changeColour() {
         mText.setText("911");
         mText.setBackgroundColor(Color.GREEN);
