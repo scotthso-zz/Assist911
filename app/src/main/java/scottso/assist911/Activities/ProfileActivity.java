@@ -1,9 +1,13 @@
 package scottso.assist911.Activities;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import scottso.assist911.AccountItem;
@@ -13,43 +17,44 @@ import scottso.assist911.SimKidsActivity;
 
 public class ProfileActivity extends SimKidsActivity implements View.OnClickListener {
 
-    private TextView usernameTV;
-    private TextView highScoreTV;
-    private TextView timesOpened;
-    private TextView tries;
-    private TextView removedDialog;
-    private TextView removedAudioDialog;
-    private Button returnButton;
-    private Button resetButton;
-    private Button logoutButton;
+    private TextView addressTV;
+
+    private String newAddress = "";
+
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
 
-        returnButton = (Button) findViewById(R.id.button_return);
+        final Button editAddressButton = (Button) findViewById(R.id.button_edit_address);
+        editAddressButton.setOnClickListener(this);
+
+        final Button returnButton = (Button) findViewById(R.id.button_return);
         returnButton.setOnClickListener(this);
 
-        resetButton = (Button) findViewById(R.id.button_reset);
+        final Button resetButton = (Button) findViewById(R.id.button_reset);
         resetButton.setOnClickListener(this);
 
-        logoutButton = (Button) findViewById(R.id.button_logout);
+        final Button logoutButton = (Button) findViewById(R.id.button_logout);
         logoutButton.setOnClickListener(this);
 
-        usernameTV = (TextView) findViewById(R.id.display_username);
+        final TextView usernameTV = (TextView) findViewById(R.id.display_username);
         usernameTV.setText("Username: " + LoginActivity.PREF.getString(LoginActivity.USERNAME,""));
 
-        highScoreTV = (TextView) findViewById(R.id.high_score);
+        addressTV = (TextView) findViewById(R.id.current_address);
+        addressTV.setText("Address: " + LoginActivity.PREF.getString(LoginActivity.ADDRESS, ""));
+
+        final TextView highScoreTV = (TextView) findViewById(R.id.high_score);
         highScoreTV.setText("High Score: " + LoginActivity.PREF.getInt(LoginActivity.HIGH_SCORE,0));
 
-        timesOpened = (TextView) findViewById(R.id.times_opened);
+        final TextView timesOpened = (TextView) findViewById(R.id.times_opened);
         timesOpened.setText("Times Completed: " + LoginActivity.PREF.getInt(LoginActivity.TIMES_COMPLETED,0));
 
-        tries = (TextView) findViewById (R.id.tries);
+        final TextView tries = (TextView) findViewById (R.id.tries);
         tries.setText("Dial Tries: " + String.valueOf(KeypadActivity.TRIES));
 
-        removedDialog = (TextView) findViewById(R.id.removed_dialog_prompt);
-        removedAudioDialog = (TextView) findViewById(R.id.removed_audio_prompt);
+        final TextView removedDialog = (TextView) findViewById(R.id.removed_dialog_prompt);
+        final TextView removedAudioDialog = (TextView) findViewById(R.id.removed_audio_prompt);
 
         if (MainMenuActivity.IS_REMOVE_TEXT_PROMPT) {
             removedDialog.setText("Removed Text: TRUE");
@@ -66,6 +71,10 @@ public class ProfileActivity extends SimKidsActivity implements View.OnClickList
 
     public void onClick(View v) {
         switch (v.getId()) {
+            case R.id.button_edit_address:
+                showDialog();
+                break;
+
             case R.id.button_return:
                 Intent intent = new Intent(this, MainMenuActivity.class);
                 startActivity(intent);
@@ -91,11 +100,7 @@ public class ProfileActivity extends SimKidsActivity implements View.OnClickList
 //                finish();
 //                break;
             case R.id.button_logout:
-                AccountItem account = new AccountItem(LoginActivity.PREF.getString(LoginActivity.USERNAME,""),
-                        LoginActivity.PREF.getInt(LoginActivity.ACCOUNT_TRIES, 0),
-                        LoginActivity.PREF.getInt(LoginActivity.TIMES_COMPLETED, 0),
-                        LoginActivity.PREF.getInt(LoginActivity.HIGH_SCORE, 0));
-                FileManager.saveToAccount(account, this);
+                saveAccount();
                 ////// clearing data
                 LoginActivity.EDITOR.clear();
                 LoginActivity.EDITOR.commit();
@@ -112,5 +117,38 @@ public class ProfileActivity extends SimKidsActivity implements View.OnClickList
                 startActivity(loginIntent);
                 break;
         }
+    }
+
+    private void saveAccount() {
+        AccountItem account = new AccountItem(LoginActivity.PREF.getString(LoginActivity.USERNAME,""),
+                LoginActivity.PREF.getInt(LoginActivity.ACCOUNT_TRIES, 0),
+                LoginActivity.PREF.getInt(LoginActivity.TIMES_COMPLETED, 0),
+                LoginActivity.PREF.getInt(LoginActivity.HIGH_SCORE, 0),
+                LoginActivity.PREF.getString(LoginActivity.ADDRESS,""));
+        FileManager.saveToAccount(account, this);
+    }
+
+    private void showDialog() {
+        LayoutInflater inflater = LayoutInflater.from(ProfileActivity.this);
+        final View yourCustomView = inflater.inflate(R.layout.dialog_edit_address, null);
+
+        final TextView etName = (EditText) yourCustomView.findViewById(R.id.edit_address);
+        AlertDialog dialog = new AlertDialog.Builder(ProfileActivity.this)
+                .setTitle("Enter the new address")
+                .setView(yourCustomView)
+                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int whichButton) {
+                        newAddress = etName.getText().toString();
+                        refreshAddress();
+                        LoginActivity.EDITOR.putString(LoginActivity.ADDRESS, newAddress);
+                        LoginActivity.EDITOR.commit();
+                    }
+                })
+                .setNegativeButton("Cancel", null).create();
+        dialog.show();
+    }
+
+    private void refreshAddress() {
+        addressTV.setText("Address: " + newAddress);
     }
 }

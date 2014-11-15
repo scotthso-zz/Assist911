@@ -51,8 +51,9 @@ public class FileManager  {
             int accountTries = Integer.parseInt(bufferedReader.readLine().trim());
             int timesOpened = Integer.parseInt(bufferedReader.readLine().trim());
             int highScore = Integer.parseInt(bufferedReader.readLine().trim());
+            String address = String.valueOf(bufferedReader.readLine().trim());
 
-            AccountItem item = new AccountItem(username, accountTries, timesOpened, highScore);
+            AccountItem item = new AccountItem(username, accountTries, timesOpened, highScore, address);
 
             return item;
         } catch (FileNotFoundException e) {

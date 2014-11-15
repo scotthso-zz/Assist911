@@ -75,6 +75,10 @@
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.NoDisplay">
         </activity>
+        <activity android:name=".Activities.SignUpActivity"
+            android:label="Assist911"
+            android:screenOrientation="portrait">
+        </activity>
     </application>
 
     <!-- To access Google+ APIs: -->

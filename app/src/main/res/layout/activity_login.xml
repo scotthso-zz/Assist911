@@ -58,4 +58,26 @@
 
         android:layout_centerHorizontal="true"/>
 
+    <info.hoang8f.widget.FButton
+        fbutton:buttonColor="@color/color_emerald"
+        fbutton:shadowColor="@color/color_nephritis"
+        fbutton:shadowEnabled="true"
+        fbutton:shadowHeight="8dp"
+        fbutton:cornerRadius="12dp"
+
+        android:id="@+id/button_new_user"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:text="NEW USER?"
+        android:textSize="12pt"
+        android:textColor="#1E824C"
+        android:layout_gravity="center"
+
+        style="@style/TextViewCustomFont"
+
+        android:layout_marginTop="50dp"
+        android:layout_below="@id/button_login"
+
+        android:layout_centerHorizontal="true"/>
+
 </RelativeLayout>

@@ -3,14 +3,13 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:fbutton="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent"
- >
+    android:layout_height="match_parent">
 
     <TextView
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:text="Username"
-        android:textSize="20pt"
+        android:textSize="18pt"
         android:gravity="center"
         android:id="@+id/display_username"
         android:layout_marginTop="30dp"
@@ -18,10 +17,10 @@
         android:layout_alignParentStart="true" />
 
     <TextView
-        android:id="@+id/high_score"
+        android:id="@+id/current_address"
         android:layout_width="fill_parent"
-        android:layout_height="50dp"
-        android:text="High Score"
+        android:layout_height="40dp"
+        android:text="Address"
         android:textSize="12pt"
         android:gravity="center"
         android:layout_below="@+id/display_username"
@@ -30,8 +29,20 @@
         />
 
     <TextView
+        android:id="@+id/high_score"
         android:layout_width="fill_parent"
-        android:layout_height="50dp"
+        android:layout_height="40dp"
+        android:text="High Score"
+        android:textSize="12pt"
+        android:gravity="center"
+        android:layout_below="@+id/current_address"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        />
+
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="40dp"
         android:text="Times Opened"
         android:textSize="12pt"
         android:gravity="center"
@@ -43,19 +54,18 @@
 
     <TextView
         android:layout_width="fill_parent"
-        android:layout_height="50dp"
+        android:layout_height="40dp"
         android:text="Tries"
         android:textSize="12pt"
         android:gravity="center"
         android:id="@+id/tries"
-
         android:layout_below="@+id/times_opened"
         android:layout_alignParentLeft="true"
         />
 
     <TextView
         android:layout_width="fill_parent"
-        android:layout_height="50dp"
+        android:layout_height="40dp"
         android:text="Removed Dialog"
         android:textSize="12pt"
         android:gravity="center"
@@ -66,7 +76,7 @@
 
     <TextView
         android:layout_width="fill_parent"
-        android:layout_height="50dp"
+        android:layout_height="40dp"
         android:text="Removed Audio"
         android:textSize="12pt"
         android:gravity="center"
@@ -75,6 +85,13 @@
         android:layout_centerVertical="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
+
+    <Button
+        android:id="@+id/button_edit_address"
+        android:text="Edit Address"
+        android:layout_below="@id/removed_audio_prompt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
 
     <info.hoang8f.widget.FButton
         fbutton:buttonColor="@color/color_emerald"
@@ -90,7 +107,7 @@
         android:id="@+id/button_return"
         android:layout_gravity="center"
         style="@style/menu_buttons"
-        android:layout_below="@id/removed_audio_prompt"
+        android:layout_below="@id/button_edit_address"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_marginRight="10dp"
