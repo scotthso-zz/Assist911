@@ -4,6 +4,7 @@
     <string name="app_name">911SimKids</string>
 
     <string-array name="videos_array">
+        <item>Instructional Video</item>
         <item>Flames</item>
         <item>Smoke</item>
         <item>Car Thief</item>

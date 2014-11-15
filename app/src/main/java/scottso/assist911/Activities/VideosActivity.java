@@ -51,7 +51,9 @@ public class VideosActivity extends SimKidsActivity implements AdapterView.OnIte
     public void onClick(View v) {
         switch(v.getId()) {
             case R.id.btn_watch:
-                if (String.valueOf(spinner.getSelectedItem()).equals("Flames")) {
+                if (String.valueOf(spinner.getSelectedItem()).equals("Instructional Video")) {
+                    VIDEO_NAME = "instructional";
+                } else if (String.valueOf(spinner.getSelectedItem()).equals("Flames")) {
                     VIDEO_NAME = "flame";
                 } else if (String.valueOf(spinner.getSelectedItem()).equals("Smoke")) {
                     VIDEO_NAME = "smoke";
