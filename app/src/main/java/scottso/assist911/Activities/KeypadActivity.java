@@ -4,7 +4,6 @@ import android.app.DialogFragment;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.os.CountDownTimer;
 
 import android.view.View;
 import android.widget.Button;
@@ -26,11 +25,11 @@ public class KeypadActivity extends SimKidsActivity implements View.OnClickListe
 
     private final String emergency = "911";
 
-    private CountDownTimer countDownTimer;
-    private boolean timerHasStarted = false;
+//    private CountDownTimer countDownTimer;
+//    private boolean timerHasStarted = false;
 
-    private long startTime = 8 * 1000;
-    private final long interval = 1 * 1000;
+//    private long startTime = 8 * 1000;
+//    private final long interval = 1 * 1000;
 
     public int clickCount = 0;
 
@@ -81,47 +80,48 @@ public class KeypadActivity extends SimKidsActivity implements View.OnClickListe
 
         call.setOnClickListener(this);
 
-        if (MainMenuActivity.TIMES_COMPLETED <= 5) {
+        if (visualPrompts()) {
             DialogFragment newFragment = new PromptDialDialog();
             newFragment.show(getFragmentManager(), "PromptDialog");
+            nine.setBackgroundColor(Color.rgb(247, 202, 24));
         }
 
-        countDownTimer = new MyCountDownTimer(startTime, interval);
-
-        if (!timerHasStarted) {
-            countDownTimer.start();
-            timerHasStarted = true;
-        } else {
-            countDownTimer.cancel();
-            timerHasStarted = false;
-        }
+//        countDownTimer = new MyCountDownTimer(startTime, interval);
+//
+//        if (!timerHasStarted) {
+//            countDownTimer.start();
+//            timerHasStarted = true;
+//        } else {
+//            countDownTimer.cancel();
+//            timerHasStarted = false;
+//        }
     }
 
-    public class MyCountDownTimer extends CountDownTimer {
-        public MyCountDownTimer(long startTime, long interval) {
-            super(startTime, interval);
-        }
-
-        @Override
-        public void onTick(long millisUntilFinished) {
-
-            if (millisUntilFinished/1000 == 6) {
-               // nine.setBackgroundColor(Color.rgb(247, 202, 24));
-            } else if (millisUntilFinished/1000 == 5) {
-               // nine.setBackgroundColor(Color.WHITE);
-               // one.setBackgroundColor(Color.rgb(247, 202, 24));
-            } else if (millisUntilFinished/1000 == 3) {
-               // one.setBackgroundColor(Color.WHITE);
-            } else if (millisUntilFinished/1000 == 2) {
-               // one.setBackgroundColor(Color.rgb(247, 202, 24));
-            }
-        }
-
-        @Override
-        public void onFinish() {
-            one.setBackgroundColor(Color.WHITE);
-        }
-    }
+//    public class MyCountDownTimer extends CountDownTimer {
+//        public MyCountDownTimer(long startTime, long interval) {
+//            super(startTime, interval);
+//        }
+//
+//        @Override
+//        public void onTick(long millisUntilFinished) {
+//
+//            if (millisUntilFinished/1000 == 6) {
+//               // nine.setBackgroundColor(Color.rgb(247, 202, 24));
+//            } else if (millisUntilFinished/1000 == 5) {
+//               // nine.setBackgroundColor(Color.WHITE);
+//               // one.setBackgroundColor(Color.rgb(247, 202, 24));
+//            } else if (millisUntilFinished/1000 == 3) {
+//               // one.setBackgroundColor(Color.WHITE);
+//            } else if (millisUntilFinished/1000 == 2) {
+//               // one.setBackgroundColor(Color.rgb(247, 202, 24));
+//            }
+//        }
+//
+//        @Override
+//        public void onFinish() {
+//            one.setBackgroundColor(Color.WHITE);
+//        }
+//    }
 
     @Override
     public void onClick(View view) {
@@ -129,15 +129,16 @@ public class KeypadActivity extends SimKidsActivity implements View.OnClickListe
             case R.id.button1:
                 numbDisp.append("1");
                 contactDisp.append("1");
-                one.setBackgroundColor(Color.rgb(238, 238, 238));
+                if(visualPrompts()) {
+                    one.setBackgroundColor(Color.rgb(247, 202, 24));
+                }
 
                 String estr = contactDisp.getText().toString().trim();
 
                 if (estr.equals(emergency)) {
                     contactDisp.append(" - Emergency");
+                    one.setBackgroundColor(Color.WHITE);
                 }
-
-                one.setBackgroundColor(Color.rgb(247, 202, 24));
                 break;
 
             case R.id.button2:
@@ -178,8 +179,12 @@ public class KeypadActivity extends SimKidsActivity implements View.OnClickListe
             case R.id.button9:
                 numbDisp.append("9");
                 contactDisp.append("9");
-
-                one.setBackgroundColor(Color.rgb(247, 202, 24));
+                if(visualPrompts()) {
+                    one.setBackgroundColor(Color.rgb(247, 202, 24));
+                }
+                nine.setBackgroundColor(Color.WHITE);
+                //one.setBackgroundColor(Color.rgb(247, 202, 24));
+                // one.setBackgroundColor(Color.WHITE);
                 break;
 
             case R.id.buttonzero:
@@ -223,10 +228,14 @@ public class KeypadActivity extends SimKidsActivity implements View.OnClickListe
                 }
                 break;
         }
-        one.setBackgroundColor(Color.WHITE);
-
     }
 
+    public boolean visualPrompts() {
+        if(MainMenuActivity.TIMES_COMPLETED > 5) {
+            return false;
+        }
+        return true;
+    }
     public void goToCall() {
         LoginActivity.EDITOR.putInt(LoginActivity.ACCOUNT_TRIES, TRIES);
         Intent call = new Intent(this, CallActivity.class);
