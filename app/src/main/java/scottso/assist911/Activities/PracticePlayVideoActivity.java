@@ -65,7 +65,7 @@ public class PracticePlayVideoActivity extends SimKidsActivity implements View.O
     }
 
     public void goToPractice() {
-        Intent practice = new Intent(this, LockActivity.class);
+        Intent practice = new Intent(this, PasswordActivity.class);
         startActivity(practice);
         finish();
         MainMenuActivity.CURRENT_TRY_SCORE++;

@@ -61,6 +61,10 @@ public class ResultsActivity extends SimKidsActivity implements View.OnClickList
         } else {
             removedAudioDialog.setText("Removed Audio Prompt: FALSE");
         }
+
+        VideosActivity.AMBULANCE = false;
+        VideosActivity.FIRE = false;
+        VideosActivity.POLICE = false;
     }
 
     public void onClick(View v) {

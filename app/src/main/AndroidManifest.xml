@@ -53,6 +53,11 @@
             android:screenOrientation="portrait" >
         </activity>
         <activity
+            android:name=".Activities.PasswordActivity"
+            android:screenOrientation="portrait"
+            android:label="@string/app_name" >
+        </activity>
+        <activity
             android:name=".Activities.ProfileActivity"
             android:label="Assist911"
             android:screenOrientation="portrait" >
