@@ -45,8 +45,7 @@ public class ProfileActivity extends SimKidsActivity implements View.OnClickList
         addressTV = (TextView) findViewById(R.id.current_address);
         addressTV.setText("Address: " + LoginActivity.PREF.getString(LoginActivity.ADDRESS, ""));
 
-        final TextView highScoreTV = (TextView) findViewById(R.id.high_score);
-        highScoreTV.setText("High Score: " + LoginActivity.PREF.getInt(LoginActivity.HIGH_SCORE,0));
+
 
         final TextView timesOpened = (TextView) findViewById(R.id.times_opened);
         timesOpened.setText("Times Completed: " + LoginActivity.PREF.getInt(LoginActivity.TIMES_COMPLETED,0));

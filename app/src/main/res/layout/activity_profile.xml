@@ -9,7 +9,7 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:text="Username"
-        android:textSize="18pt"
+        android:textSize="16pt"
         android:gravity="center"
         android:id="@+id/display_username"
         android:layout_marginTop="30dp"
@@ -21,20 +21,21 @@
         android:layout_width="fill_parent"
         android:layout_height="40dp"
         android:text="Address"
-        android:textSize="12pt"
+        android:textSize="10pt"
         android:gravity="center"
         android:layout_below="@+id/display_username"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         />
 
+
     <TextView
-        android:id="@+id/high_score"
         android:layout_width="fill_parent"
         android:layout_height="40dp"
-        android:text="High Score"
-        android:textSize="12pt"
+        android:text="Times Opened"
+        android:textSize="10pt"
         android:gravity="center"
+        android:id="@+id/times_opened"
         android:layout_below="@+id/current_address"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
@@ -43,20 +44,8 @@
     <TextView
         android:layout_width="fill_parent"
         android:layout_height="40dp"
-        android:text="Times Opened"
-        android:textSize="12pt"
-        android:gravity="center"
-        android:id="@+id/times_opened"
-        android:layout_below="@+id/high_score"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        />
-
-    <TextView
-        android:layout_width="fill_parent"
-        android:layout_height="40dp"
         android:text="Tries"
-        android:textSize="12pt"
+        android:textSize="10pt"
         android:gravity="center"
         android:id="@+id/tries"
         android:layout_below="@+id/times_opened"
@@ -86,12 +75,24 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 
-    <Button
+    <info.hoang8f.widget.FButton
+
+        fbutton:buttonColor="@color/color_emerald"
+        fbutton:shadowColor="@color/color_nephritis"
+        fbutton:shadowEnabled="true"
+        fbutton:shadowHeight="8dp"
+        fbutton:cornerRadius="12dp"
+
         android:id="@+id/button_edit_address"
-        android:text="Edit Address"
+        android:text="EDIT ADDRESS"
+        android:textSize="30dp"
+        android:textColor="#1E824C"
         android:layout_below="@id/removed_audio_prompt"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="65dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="10dp"
+        android:layout_marginLeft="10dp"/>
 
     <info.hoang8f.widget.FButton
         fbutton:buttonColor="@color/color_emerald"
@@ -104,6 +105,7 @@
         android:layout_height="65dp"
         android:text="BACK"
         android:textColor="#1E824C"
+        android:textSize="30dp"
         android:id="@+id/button_return"
         android:layout_gravity="center"
         style="@style/menu_buttons"
@@ -124,7 +126,7 @@
 
         style="@style/menu_buttons"
         android:layout_width="fill_parent"
-        android:layout_height="70dp"
+        android:layout_height="65dp"
         android:text="RESET"
         android:textColor="#3B3B3B"
         android:textSize="30dp"
@@ -146,7 +148,7 @@
         style="@style/menu_buttons"
         android:id="@+id/button_logout"
         android:layout_width="match_parent"
-        android:layout_height="75dp"
+        android:layout_height="65dp"
         android:text="LOGOUT"
         android:textColor="#96281B"
         android:textSize="30dp"

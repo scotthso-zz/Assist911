@@ -32,6 +32,8 @@ public class KeypadActivity extends SimKidsActivity implements View.OnClickListe
     private long startTime = 8 * 1000;
     private final long interval = 1 * 1000;
 
+    public int clickCount = 0;
+
     public static int TRIES;
 
     @Override
@@ -104,14 +106,14 @@ public class KeypadActivity extends SimKidsActivity implements View.OnClickListe
         public void onTick(long millisUntilFinished) {
 
             if (millisUntilFinished/1000 == 6) {
-                nine.setBackgroundColor(Color.rgb(247, 202, 24));
+               // nine.setBackgroundColor(Color.rgb(247, 202, 24));
             } else if (millisUntilFinished/1000 == 5) {
-                nine.setBackgroundColor(Color.WHITE);
-                one.setBackgroundColor(Color.rgb(247, 202, 24));
+               // nine.setBackgroundColor(Color.WHITE);
+               // one.setBackgroundColor(Color.rgb(247, 202, 24));
             } else if (millisUntilFinished/1000 == 3) {
-                one.setBackgroundColor(Color.WHITE);
+               // one.setBackgroundColor(Color.WHITE);
             } else if (millisUntilFinished/1000 == 2) {
-                one.setBackgroundColor(Color.rgb(247, 202, 24));
+               // one.setBackgroundColor(Color.rgb(247, 202, 24));
             }
         }
 
@@ -134,6 +136,8 @@ public class KeypadActivity extends SimKidsActivity implements View.OnClickListe
                 if (estr.equals(emergency)) {
                     contactDisp.append(" - Emergency");
                 }
+
+                one.setBackgroundColor(Color.rgb(247, 202, 24));
                 break;
 
             case R.id.button2:
@@ -174,6 +178,8 @@ public class KeypadActivity extends SimKidsActivity implements View.OnClickListe
             case R.id.button9:
                 numbDisp.append("9");
                 contactDisp.append("9");
+
+                one.setBackgroundColor(Color.rgb(247, 202, 24));
                 break;
 
             case R.id.buttonzero:
