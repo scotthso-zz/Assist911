@@ -17,7 +17,7 @@
         android:layout_alignParentLeft="true"
         android:layout_marginLeft="0dp"
         android:layout_alignParentTop="true"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="60dp"
 
         style="@style/TextViewCustomFont"
         />
@@ -45,11 +45,10 @@
 
         android:id="@+id/button_login"
         android:layout_width="120dp"
-        android:layout_height="wrap_content"
+        android:layout_height="60dp"
         android:text="LOGIN"
         android:textSize="12pt"
         android:textColor="#1E824C"
-        android:layout_gravity="center"
 
         style="@style/TextViewCustomFont"
 
@@ -59,23 +58,23 @@
         android:layout_centerHorizontal="true"/>
 
     <info.hoang8f.widget.FButton
-        fbutton:buttonColor="@color/color_emerald"
-        fbutton:shadowColor="@color/color_nephritis"
+        fbutton:buttonColor="#59ABE3"
+        fbutton:shadowColor="#4183D7"
         fbutton:shadowEnabled="true"
         fbutton:shadowHeight="8dp"
         fbutton:cornerRadius="12dp"
 
         android:id="@+id/button_new_user"
         android:layout_width="200dp"
-        android:layout_height="wrap_content"
-        android:text="NEW USER?"
+        android:layout_height="60dp"
+        android:text="NEW USER"
         android:textSize="12pt"
-        android:textColor="#1E824C"
+        android:textColor="#446CB3"
         android:layout_gravity="center"
 
         style="@style/TextViewCustomFont"
 
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="35dp"
         android:layout_below="@id/button_login"
 
         android:layout_centerHorizontal="true"/>
