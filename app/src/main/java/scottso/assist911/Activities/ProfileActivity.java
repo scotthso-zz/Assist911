@@ -11,6 +11,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import me.grantland.widget.AutofitHelper;
 import scottso.assist911.AccountItem;
 import scottso.assist911.FileManager;
 import scottso.assist911.R;
@@ -43,7 +44,9 @@ public class ProfileActivity extends SimKidsActivity implements View.OnClickList
         usernameTV.setText("Username: " + LoginActivity.PREF.getString(LoginActivity.USERNAME,""));
 
         addressTV = (TextView) findViewById(R.id.current_address);
+        AutofitHelper.create(addressTV);
         addressTV.setText("Address: " + LoginActivity.PREF.getString(LoginActivity.ADDRESS, ""));
+
 
 
 

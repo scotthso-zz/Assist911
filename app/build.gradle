@@ -27,5 +27,6 @@ dependencies {
     compile 'info.hoang8f:fbutton:1.0.5'
     compile 'uk.co.chrisjenx:calligraphy:1.1.+'
     compile 'net.frakbot.glowpadbackport:glowpadbackport:2.1.0'
+    compile 'me.grantland:autofittextview:0.2.+'
 
 }

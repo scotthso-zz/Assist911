@@ -81,6 +81,7 @@
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" exported="" name="fbutton-1.0.5" level="project" />
     <orderEntry type="library" exported="" name="play-services-4.2.42" level="project" />
+    <orderEntry type="library" exported="" name="autofittextview-0.2.0" level="project" />
     <orderEntry type="library" exported="" name="support-v4-19.1.0" level="project" />
     <orderEntry type="library" exported="" name="calligraphy-1.1.0" level="project" />
     <orderEntry type="library" exported="" name="glowpadbackport-2.1.0" level="project" />

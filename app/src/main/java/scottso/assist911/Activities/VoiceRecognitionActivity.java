@@ -122,7 +122,7 @@ public class VoiceRecognitionActivity extends SimKidsActivity {
                 CallActivity.LEVEL = CallActivity.Level.LOCATION;
                 saveIncrementAndExit();
             } else if (CallActivity.LEVEL == CallActivity.Level.LOCATION) {
-                int size = CallActivity.ADDRESS_ARRAY[1].length();
+                 int size = CallActivity.ADDRESS_ARRAY[1].length();
                 String substr = CallActivity.ADDRESS_ARRAY[1].substring(0,size/2).toLowerCase();
                 if (said.contains(substr)) {
                     CallActivity.problemQuestion();

@@ -35,7 +35,7 @@ public class CallActivity extends Activity implements View.OnClickListener, Text
                                "What's your address?",
                                "What's the problem?",
                                "E M S is on their way. Stay there.",
-                               "Fire team is on their way. Stay there",
+                               "Fire team is on their way. Exit the building and go to a safe place.",
                                "Police is on their way. Stay there",
                                "Try again.",
                                "Game over."};
