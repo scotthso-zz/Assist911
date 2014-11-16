@@ -47,9 +47,6 @@ public class ProfileActivity extends SimKidsActivity implements View.OnClickList
         AutofitHelper.create(addressTV);
         addressTV.setText("Address: " + LoginActivity.PREF.getString(LoginActivity.ADDRESS, ""));
 
-
-
-
         final TextView timesOpened = (TextView) findViewById(R.id.times_opened);
         timesOpened.setText("Times Completed: " + LoginActivity.PREF.getInt(LoginActivity.TIMES_COMPLETED,0));
 
