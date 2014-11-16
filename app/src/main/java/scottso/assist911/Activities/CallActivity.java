@@ -8,7 +8,7 @@ import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.CountDownTimer;
-import android.os.Environment;
+import android.os.SystemClock;
 import android.speech.tts.TextToSpeech;
 import android.speech.tts.UtteranceProgressListener;
 import android.util.Log;
@@ -16,6 +16,7 @@ import android.view.View;
 import android.widget.Chronometer;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import java.util.HashMap;
@@ -53,6 +54,8 @@ public class CallActivity extends Activity implements View.OnClickListener, Text
 
     private TextView mText;
     private ImageView mVehicle;
+    private Chronometer mChronometer;
+    private LinearLayout mDial;
 
     public static TextToSpeech tts;
 
@@ -64,7 +67,7 @@ public class CallActivity extends Activity implements View.OnClickListener, Text
     public static boolean SPOKEN = false;
     private boolean prompts = false;
 
-    private long startTime = 9 * 1000;
+    private long startTime = 14 * 1000;
     private final long interval = 1 * 1000;
 
     private MediaPlayer mpDialTone;
@@ -91,6 +94,8 @@ public class CallActivity extends Activity implements View.OnClickListener, Text
 
         mText = (TextView) findViewById(R.id.callStatus);
         mVehicle = (ImageView) findViewById(R.id.vehicle_image);
+        mChronometer = (Chronometer) findViewById(R.id.chronometer);
+        mDial = (LinearLayout) findViewById(R.id.dialling);
 
         int soundResource = getResources().
                 getIdentifier("dialtone", "raw", getPackageName());
@@ -99,10 +104,6 @@ public class CallActivity extends Activity implements View.OnClickListener, Text
         mpDialTone = MediaPlayer.create(this, Uri.parse(uri));
         mpDialTone.setLooping(true);
 
-
-
-
-
         tts.setOnUtteranceProgressListener(new TtsUtteranceListener());
 
         if (prompts) {
@@ -110,6 +111,7 @@ public class CallActivity extends Activity implements View.OnClickListener, Text
 
             if (!timerHasStarted) {
                 countDownTimer.start();
+                mpDialTone.start();
                 timerHasStarted = true;
             } else {
                 countDownTimer.cancel();
@@ -126,9 +128,6 @@ public class CallActivity extends Activity implements View.OnClickListener, Text
                     || result == TextToSpeech.LANG_NOT_SUPPORTED) {
                 Log.e("TTS", "This Language is not supported");
             } else {
-                mpDialTone.start();
-                serviceQuestion();
-                startChronometer();
             }
         } else {
             Log.e("TTS", "Initialization Failed!");
@@ -208,6 +207,10 @@ public class CallActivity extends Activity implements View.OnClickListener, Text
         stopChronometer();
         Intent results = new Intent(this, ResultsActivity.class);
         startActivity(results);
+        if (tts != null) {
+            tts.stop();
+            tts.shutdown();
+        }
         finish();
         LoginActivity.EDITOR.putInt(LoginActivity.CURRENT_TRY_SCORE, MainMenuActivity.CURRENT_TRY_SCORE);
         LoginActivity.EDITOR.commit();
@@ -240,16 +243,12 @@ public class CallActivity extends Activity implements View.OnClickListener, Text
     }
 
     public void startChronometer() {
-        ((Chronometer) findViewById(R.id.chronometer)).start();
+        mChronometer.setBase(SystemClock.elapsedRealtime());
+        mChronometer.start();
     }
 
     public void stopChronometer() {
-        ((Chronometer) findViewById(R.id.chronometer)).stop();
-    }
-
-    public void changeColour() {
-        mText.setText("911");
-        mText.setBackgroundColor(Color.GREEN);
+        mChronometer.stop();
     }
 
     public void displayPicture() {
@@ -272,7 +271,15 @@ public class CallActivity extends Activity implements View.OnClickListener, Text
 
         @Override
         public void onTick(long millisUntilFinished) {
-            if (millisUntilFinished/1000 == 3) {
+            if (millisUntilFinished/1000 == 9) {
+                mDial.setBackgroundColor(Color.rgb(50,205,50));
+                mText.setText(" 911");
+                mpDialTone.stop();
+                serviceQuestion();
+                startChronometer();
+                mChronometer.setVisibility(View.VISIBLE);
+            }
+            if (millisUntilFinished/1000 == 5) {
                 if(!SPOKEN) {
                     displayPicture();
                 }

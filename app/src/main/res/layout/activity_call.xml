@@ -6,29 +6,29 @@
     android:background="#000">
 
     <LinearLayout
+        android:id="@+id/dialling"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="horizontal"
         android:layout_weight="3">
 
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/callStatus"
             android:text="Dialing 911"
-            android:background="#000"
             android:textColor="#fff"
             android:textSize="26pt"
             android:layout_weight="1" />
 
         <Chronometer
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/chronometer"
-            android:background="#000"
+            android:visibility="invisible"
             android:textColor="#fff"
             android:textSize="12pt"
-            android:layout_weight="1"
+            android:layout_weight="4"
             android:paddingBottom="10dp"
             android:gravity="center"/>
     </LinearLayout>
