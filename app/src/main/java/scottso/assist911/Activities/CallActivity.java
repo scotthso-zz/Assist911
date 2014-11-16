@@ -10,6 +10,7 @@ import android.speech.tts.TextToSpeech;
 import android.speech.tts.UtteranceProgressListener;
 import android.util.Log;
 import android.view.View;
+import android.widget.Chronometer;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -110,7 +111,7 @@ public class CallActivity extends Activity implements View.OnClickListener, Text
                 Log.e("TTS", "This Language is not supported");
             } else {
                 serviceQuestion();
-
+                startChronometer();
             }
         } else {
             Log.e("TTS", "Initialization Failed!");
@@ -187,6 +188,7 @@ public class CallActivity extends Activity implements View.OnClickListener, Text
     }
 
     public void endCall() {
+        stopChronometer();
         Intent results = new Intent(this, ResultsActivity.class);
         startActivity(results);
         finish();
@@ -218,6 +220,14 @@ public class CallActivity extends Activity implements View.OnClickListener, Text
         if(VoiceRecognitionActivity.getInstance()!=null) {
             VoiceRecognitionActivity.getInstance().finish();
         }
+    }
+
+    public void startChronometer() {
+        ((Chronometer) findViewById(R.id.chronometer)).start();
+    }
+
+    public void stopChronometer() {
+        ((Chronometer) findViewById(R.id.chronometer)).stop();
     }
 
     public void changeColour() {
