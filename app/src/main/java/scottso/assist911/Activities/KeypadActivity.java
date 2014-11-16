@@ -5,17 +5,28 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 
+import android.os.CountDownTimer;
+import android.speech.tts.TextToSpeech;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.Locale;
+
 import scottso.assist911.Dialogs.PromptDialDialog;
 import scottso.assist911.R;
 import scottso.assist911.SimKidsActivity;
 
-public class KeypadActivity extends SimKidsActivity implements View.OnClickListener {
+public class KeypadActivity extends SimKidsActivity implements View.OnClickListener, TextToSpeech.OnInitListener {
+
+    private TextToSpeech tts;
+    private CountDownTimer countDownTimer;
+    private boolean timerHasStarted = false;
+    private long startTime = 2 * 1000;
+    private final long interval = 1 * 1000;
 
     private Button one, two, three, four, five, six, seven, eight, nine, zero, star, pound;
     private ImageButton delete, call;
@@ -24,6 +35,7 @@ public class KeypadActivity extends SimKidsActivity implements View.OnClickListe
     private TextView numbDisp;
 
     private final String emergency = "911";
+    private int doneDialling = 0;
 
     public int clickCount = 0;
 
@@ -33,6 +45,8 @@ public class KeypadActivity extends SimKidsActivity implements View.OnClickListe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_keypad);
+
+        tts = new TextToSpeech(this, this);
 
         TRIES = 0;
 
@@ -79,6 +93,8 @@ public class KeypadActivity extends SimKidsActivity implements View.OnClickListe
             newFragment.show(getFragmentManager(), "PromptDialog");
             nine.setBackgroundColor(Color.rgb(247, 202, 24));
         }
+
+        startTimer();
     }
 
     @Override
@@ -90,7 +106,10 @@ public class KeypadActivity extends SimKidsActivity implements View.OnClickListe
                 if(visualPrompts()) {
                     one.setBackgroundColor(Color.rgb(247, 202, 24));
                 }
-
+                doneDialling++;
+                countDownTimer.cancel();
+                timerHasStarted = false;
+                startTimer();
                 String estr = contactDisp.getText().toString().trim();
 
                 if (estr.equals(emergency)) {
@@ -140,9 +159,12 @@ public class KeypadActivity extends SimKidsActivity implements View.OnClickListe
                 if(visualPrompts()) {
                     one.setBackgroundColor(Color.rgb(247, 202, 24));
                 }
+
+                doneDialling++;
+                countDownTimer.cancel();
+                timerHasStarted=false;
+                startTimer();
                 nine.setBackgroundColor(Color.WHITE);
-                //one.setBackgroundColor(Color.rgb(247, 202, 24));
-                // one.setBackgroundColor(Color.WHITE);
                 break;
 
             case R.id.buttonzero:
@@ -194,6 +216,28 @@ public class KeypadActivity extends SimKidsActivity implements View.OnClickListe
         }
         return true;
     }
+
+    public boolean audioPrompts() {
+        if(MainMenuActivity.TIMES_COMPLETED < 10) {
+            return true;
+        }
+        return false;
+    }
+
+    public void startTimer() {
+        if (audioPrompts()) {
+            countDownTimer = new MyCountDownTimer(startTime, interval);
+
+            if (!timerHasStarted) {
+                countDownTimer.start();
+                timerHasStarted = true;
+            } else {
+                countDownTimer.cancel();
+                timerHasStarted = false;
+            }
+        }
+    }
+
     public void goToCall() {
         LoginActivity.EDITOR.putInt(LoginActivity.ACCOUNT_TRIES, TRIES);
         Intent call = new Intent(this, CallActivity.class);
@@ -209,5 +253,59 @@ public class KeypadActivity extends SimKidsActivity implements View.OnClickListe
         Intent i = new Intent(this, ResultsActivity.class);
         startActivity(i);
         finish();
+    }
+
+    public void speakDial9() {
+        String text = "Dial 9";
+        tts.speak(text, TextToSpeech.QUEUE_FLUSH, null);
+    }
+
+    public void speakDial1() {
+        String text = "Dial 1";
+        tts.speak(text, TextToSpeech.QUEUE_FLUSH, null);
+    }
+
+    @Override
+    public void onInit(int status) {
+        if (status == TextToSpeech.SUCCESS) {
+            int result = tts.setLanguage(Locale.US);
+            if (result == TextToSpeech.LANG_MISSING_DATA || result == TextToSpeech.LANG_NOT_SUPPORTED) {
+                Log.e("TTS", "This Language is not supported");
+            } else {
+            }
+        } else {
+            Log.e("TTS", "Initilization Failed!");
+        }
+    }
+
+    @Override
+    public void onDestroy() {
+        // Don't forget to shutdown tts!
+        if (tts != null) {
+            tts.stop();
+            tts.shutdown();
+        }
+        super.onDestroy();
+    }
+
+    public class MyCountDownTimer extends CountDownTimer {
+        public MyCountDownTimer(long startTime, long interval) {
+            super(startTime, interval);
+        }
+
+        @Override
+        public void onTick(long millisUntilFinished) {
+        }
+
+        @Override
+        public void onFinish() {
+            if(audioPrompts()) {
+                if (doneDialling == 0) {
+                    speakDial9();
+                } else if (doneDialling == 1 || doneDialling == 2) {
+                    speakDial1();
+                }
+            }
+        }
     }
 }

@@ -106,17 +106,15 @@ public class CallActivity extends Activity implements View.OnClickListener, Text
 
         tts.setOnUtteranceProgressListener(new TtsUtteranceListener());
 
-        if (prompts) {
-            countDownTimer = new MyCountDownTimer(startTime, interval);
+        countDownTimer = new MyCountDownTimer(startTime, interval);
 
-            if (!timerHasStarted) {
-                countDownTimer.start();
-                mpDialTone.start();
-                timerHasStarted = true;
-            } else {
-                countDownTimer.cancel();
-                timerHasStarted = false;
-            }
+        if (!timerHasStarted) {
+            countDownTimer.start();
+            mpDialTone.start();
+            timerHasStarted = true;
+        } else {
+            countDownTimer.cancel();
+            timerHasStarted = false;
         }
     }
 
@@ -279,7 +277,7 @@ public class CallActivity extends Activity implements View.OnClickListener, Text
                 startChronometer();
                 mChronometer.setVisibility(View.VISIBLE);
             }
-            if (millisUntilFinished/1000 == 5) {
+            if (millisUntilFinished/1000 == 5 && prompts) {
                 if(!SPOKEN) {
                     displayPicture();
                 }
