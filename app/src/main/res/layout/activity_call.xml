@@ -3,6 +3,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#000"
     android:weightSum="1">
 
     <TextView
@@ -13,16 +14,14 @@
         android:background="#000"
         android:textColor="#fff"
         android:textSize="26pt"
-        android:layout_weight="0.03" />
+        android:layout_weight="0.01"/>
 
     <ImageView
+        android:id="@+id/vehicle_image"
         android:layout_width="fill_parent"
-        android:layout_height="370dp"
-        android:background="#000"
-        android:id="@+id/imageView"
-        android:layout_weight="1" />
-
-
+        android:layout_height="fill_parent"
+        android:visibility="invisible"
+        android:layout_weight="1"/>
 
     <ImageButton
         android:layout_width="match_parent"

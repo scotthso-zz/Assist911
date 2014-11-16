@@ -84,6 +84,7 @@ public class VoiceRecognitionActivity extends SimKidsActivity {
         }
 
         public void onResults(Bundle results) {
+            CallActivity.SPOKEN = true;
             MainMenuActivity.NUM_TRIES++;
             String str = "";
             Log.d(TAG, "onResults " + results);
@@ -158,7 +159,8 @@ public class VoiceRecognitionActivity extends SimKidsActivity {
                     VideosActivity.AMBULANCE = false;
                     saveIncrementAndExit();
                 } else if (VideosActivity.FIRE && (said.contains("ire") ||
-                                                   said.contains("moke"))){
+                                                   said.contains("moke") ||
+                                                   said.contains("ame"))) {
                     CallActivity.LEVEL = CallActivity.Level.FINAL;
                     CallActivity.fireQuestion();
                     VideosActivity.FIRE = false;

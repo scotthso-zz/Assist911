@@ -25,12 +25,6 @@ public class KeypadActivity extends SimKidsActivity implements View.OnClickListe
 
     private final String emergency = "911";
 
-//    private CountDownTimer countDownTimer;
-//    private boolean timerHasStarted = false;
-
-//    private long startTime = 8 * 1000;
-//    private final long interval = 1 * 1000;
-
     public int clickCount = 0;
 
     public static int TRIES;
@@ -85,43 +79,7 @@ public class KeypadActivity extends SimKidsActivity implements View.OnClickListe
             newFragment.show(getFragmentManager(), "PromptDialog");
             nine.setBackgroundColor(Color.rgb(247, 202, 24));
         }
-
-//        countDownTimer = new MyCountDownTimer(startTime, interval);
-//
-//        if (!timerHasStarted) {
-//            countDownTimer.start();
-//            timerHasStarted = true;
-//        } else {
-//            countDownTimer.cancel();
-//            timerHasStarted = false;
-//        }
     }
-
-//    public class MyCountDownTimer extends CountDownTimer {
-//        public MyCountDownTimer(long startTime, long interval) {
-//            super(startTime, interval);
-//        }
-//
-//        @Override
-//        public void onTick(long millisUntilFinished) {
-//
-//            if (millisUntilFinished/1000 == 6) {
-//               // nine.setBackgroundColor(Color.rgb(247, 202, 24));
-//            } else if (millisUntilFinished/1000 == 5) {
-//               // nine.setBackgroundColor(Color.WHITE);
-//               // one.setBackgroundColor(Color.rgb(247, 202, 24));
-//            } else if (millisUntilFinished/1000 == 3) {
-//               // one.setBackgroundColor(Color.WHITE);
-//            } else if (millisUntilFinished/1000 == 2) {
-//               // one.setBackgroundColor(Color.rgb(247, 202, 24));
-//            }
-//        }
-//
-//        @Override
-//        public void onFinish() {
-//            one.setBackgroundColor(Color.WHITE);
-//        }
-//    }
 
     @Override
     public void onClick(View view) {

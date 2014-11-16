@@ -5,11 +5,13 @@ import android.app.DialogFragment;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.speech.tts.TextToSpeech;
 import android.speech.tts.UtteranceProgressListener;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.HashMap;
@@ -21,6 +23,7 @@ import scottso.assist911.R;
 
 public class CallActivity extends Activity implements View.OnClickListener, TextToSpeech.OnInitListener{
 
+    private static final String TAG = "CallActivity";
 
     enum Level {
         SERVICE,
@@ -39,43 +42,63 @@ public class CallActivity extends Activity implements View.OnClickListener, Text
                                "Police is on their way. Stay there",
                                "Try again.",
                                "Game over."};
+
     public static String[] ADDRESS_ARRAY = LoginActivity.PREF.getString(LoginActivity.ADDRESS,"").split(" ");
 
     public static Level LEVEL = Level.SERVICE;
 
-    public TextView mText;
+    private TextView mText;
+    private ImageView mVehicle;
 
     public static TextToSpeech tts;
 
     DialogFragment newFragment = new PromptCallDialog();
     DialogFragment hintProblemFragment = new HintProblemDialog();
 
-    private static final String TAG = "CallActivity";
+    private CountDownTimer countDownTimer;
+    private boolean timerHasStarted = false;
+    public static boolean SPOKEN = false;
+    private boolean prompts = false;
+
+    private long startTime = 9 * 1000;
+    private final long interval = 1 * 1000;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_call);
 
+        SPOKEN = false;
         LEVEL = Level.SERVICE;
 
         if(MainMenuActivity.TIMES_COMPLETED <= 5) {
+            prompts = true;
             newFragment.show(getFragmentManager(), "PromptDialog");
             hintProblemFragment.show(getFragmentManager(), "PromptDialog");
+        } else {
+            prompts = false;
         }
 
         tts = new TextToSpeech(this, this);
 
-        ImageButton endButton = (ImageButton) findViewById(R.id.endButton);
-        //ImageButton speakButton = (ImageButton) findViewById(R.id.btn_speak);
-        //Button hintButton = (Button) findViewById(R.id.btn_hint);
+        final ImageButton endButton = (ImageButton) findViewById(R.id.endButton);
+        endButton.setOnClickListener(this);
 
         mText = (TextView) findViewById(R.id.callStatus);
-
-        //speakButton.setOnClickListener(this);
-        endButton.setOnClickListener(this);
-        //hintButton.setOnClickListener(this);
+        mVehicle = (ImageView) findViewById(R.id.vehicle_image);
 
         tts.setOnUtteranceProgressListener(new TtsUtteranceListener());
+
+        if (prompts) {
+            countDownTimer = new MyCountDownTimer(startTime, interval);
+
+            if (!timerHasStarted) {
+                countDownTimer.start();
+                timerHasStarted = true;
+            } else {
+                countDownTimer.cancel();
+                timerHasStarted = false;
+            }
+        }
     }
 
     @Override
@@ -103,38 +126,38 @@ public class CallActivity extends Activity implements View.OnClickListener, Text
     }
 
     private static void serviceQuestion() {
-//        String text = "911 do you need fire, ambulance or police";
+//      "911 do you need fire, ambulance or police";
         speak(script[0]);
 
     }
 
     public static void nameQuestion() {
-//        String text = "What's your name?";
+//      "What's your name?";
         speak(script[1]);
     }
 
     public static void locationQuestion() {
-//        String text = "What's your address?";
+//      "What's your address?";
         speak(script[2]);
     }
 
     public static void problemQuestion() {
-//        String text = "What's the problem?";
+//      "What's the problem?";
         speak(script[3]);
     }
 
     public static void ambulanceQuestion() {
-//        String text = "E M S is on their way. Stay there";
+//      "E M S is on their way. Stay there";
         speak(script[4]);
     }
 
     public static void fireQuestion() {
-//        String text = "Fire team is on their way. Stay there";
+//      Fire team is on their way. Stay there";
         speak(script[5]);
     }
 
     public static void policeQuestion() {
-//        String text = "Police is on their way. Stay there";
+//      "Police is on their way. Stay there";
         speak(script[6]);
     }
 
@@ -157,14 +180,9 @@ public class CallActivity extends Activity implements View.OnClickListener, Text
     }
 
     public void onClick(View v) {
-        //if (v.getId() == R.id.btn_speak) {
-        //  startSpeechRecognition();
         if (v.getId() == R.id.endButton) {
             closeVoiceActivity();
             endCall();
-            //} else if (v.getId() == R.id.btn_hint) {
-            //hintProblemFragment.show(getFragmentManager(), "PromptDialog");
-            //}
         }
     }
 
@@ -186,7 +204,6 @@ public class CallActivity extends Activity implements View.OnClickListener, Text
     }
 
     public void startSpeechRecognition() {
-
         if(Level.FINAL != LEVEL) {
             Intent i = new Intent(this, VoiceRecognitionActivity.class);
             startActivity(i);
@@ -207,6 +224,42 @@ public class CallActivity extends Activity implements View.OnClickListener, Text
         mText.setText("911");
         mText.setBackgroundColor(Color.GREEN);
     }
+
+    public void displayPicture() {
+        //if (LEVEL == CallActivity.Level.SERVICE) {
+            if (VideosActivity.POLICE){
+                mVehicle.setImageResource(R.drawable.police);
+            } else if (VideosActivity.AMBULANCE){
+                mVehicle.setImageResource(R.drawable.ambulance);
+            } else if (VideosActivity.FIRE){
+                mVehicle.setImageResource(R.drawable.fire);
+            }
+            mVehicle.setVisibility(View.VISIBLE);
+       // }
+    }
+
+    public class MyCountDownTimer extends CountDownTimer {
+        public MyCountDownTimer(long startTime, long interval) {
+            super(startTime, interval);
+        }
+
+        @Override
+        public void onTick(long millisUntilFinished) {
+            if (millisUntilFinished/1000 == 3) {
+                if(!SPOKEN) {
+                    displayPicture();
+                }
+            }
+        }
+
+        @Override
+        public void onFinish() {
+            if(SPOKEN) {
+                mVehicle.setVisibility(View.INVISIBLE);
+            }
+        }
+    }
+
     class TtsUtteranceListener extends UtteranceProgressListener{
 
         @Override
