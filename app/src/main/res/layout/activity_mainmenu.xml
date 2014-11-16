@@ -33,6 +33,21 @@
             style="@style/TextViewCustomFont"
             />
 
+        <info.hoang8f.widget.FButton
+            fbutton:buttonColor="#59ABE3"
+            fbutton:shadowColor="#4183D7"
+            fbutton:shadowEnabled="true"
+            fbutton:shadowHeight="10dp"
+            fbutton:cornerRadius="12dp"
+
+            android:text="INSTRUCTION"
+            android:textColor="#2C3E50"
+            android:id="@+id/instruction_button"
+            android:layout_gravity="center"
+            android:layout_marginTop="95dp"
+            style="@style/menu_buttons"
+            android:layout_centerHorizontal="true" />
+
        <info.hoang8f.widget.FButton
            fbutton:buttonColor="@color/color_emerald"
            fbutton:shadowColor="@color/color_nephritis"
@@ -44,7 +59,7 @@
            android:textColor="#1E824C"
            android:id="@+id/practice_button"
            android:layout_gravity="center"
-           android:layout_marginTop="95dp"
+           android:layout_marginTop="185dp"
            style="@style/menu_buttons"
            android:layout_centerHorizontal="true" />
 
@@ -59,7 +74,7 @@
             android:textColor="#96281B"
             android:id="@+id/videos_button"
             android:layout_gravity="center"
-            android:layout_marginTop="200dp"
+            android:layout_marginTop="275dp"
             style="@style/menu_buttons"
             android:layout_centerHorizontal="true"
             />
@@ -75,7 +90,7 @@
             android:textColor="#3B3B3B"
             android:id="@+id/profile_button"
             android:layout_gravity="center"
-            android:layout_marginTop="305dp"
+            android:layout_marginTop="365dp"
             style="@style/menu_buttons"
             android:layout_centerHorizontal="true" />
 
@@ -90,7 +105,7 @@
             android:textColor="#34495E"
             android:id="@+id/report_button"
             android:layout_gravity="center"
-            android:layout_marginTop="410dp"
+            android:layout_marginTop="455dp"
             style="@style/menu_buttons"
             android:layout_centerHorizontal="true" />
 

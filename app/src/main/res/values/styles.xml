@@ -25,7 +25,7 @@
     <style name="menu_buttons">
         <item name ="android:textColor">@color/text_color</item>
         <item name ="android:textSize">16pt</item>
-        <item name ="android:layout_height">100dp</item>
+        <item name ="android:layout_height">80dp</item>
         <item name ="android:layout_width">300dp</item>
         <item name="fontPath">fonts/Montserrat-Regular.ttf</item>
     </style>

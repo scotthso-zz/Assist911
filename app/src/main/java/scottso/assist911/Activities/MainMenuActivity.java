@@ -16,6 +16,7 @@ import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
 public class MainMenuActivity extends SimKidsActivity implements View.OnClickListener{
 
+    private Button mInstructionalButton;
     private Button mPractiseButton;
     private Button mVideosButton;
     private Button mSettingsButton;
@@ -35,6 +36,9 @@ public class MainMenuActivity extends SimKidsActivity implements View.OnClickLis
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_mainmenu);
+
+        mInstructionalButton = (Button) this.findViewById(R.id.instruction_button);
+        mInstructionalButton.setOnClickListener(this);
 
         mPractiseButton = (Button) this.findViewById(R.id.practice_button);
         mPractiseButton.setOnClickListener(this);
@@ -71,6 +75,11 @@ public class MainMenuActivity extends SimKidsActivity implements View.OnClickLis
     public void onClick(View v) {
 
         switch(v.getId()) {
+
+            case R.id.instruction_button:
+                goToInstructions();
+                break;
+
             case R.id.practice_button:
                 CURRENT_TRY_SCORE = 0;
                 LoginActivity.EDITOR.putInt(LoginActivity.CURRENT_TRY_SCORE, CURRENT_TRY_SCORE);
@@ -113,6 +122,11 @@ public class MainMenuActivity extends SimKidsActivity implements View.OnClickLis
                 goToReport();
                 break;
         }
+    }
+
+    public void goToInstructions() {
+        Intent instruction = new Intent(this, InstructionActivity.class);
+        startActivity(instruction);
     }
 
     public void goToVideos() {
