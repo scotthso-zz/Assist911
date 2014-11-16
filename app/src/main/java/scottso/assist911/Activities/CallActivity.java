@@ -4,8 +4,11 @@ import android.app.Activity;
 import android.app.DialogFragment;
 import android.content.Intent;
 import android.graphics.Color;
+import android.media.MediaPlayer;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.os.Environment;
 import android.speech.tts.TextToSpeech;
 import android.speech.tts.UtteranceProgressListener;
 import android.util.Log;
@@ -64,6 +67,8 @@ public class CallActivity extends Activity implements View.OnClickListener, Text
     private long startTime = 9 * 1000;
     private final long interval = 1 * 1000;
 
+    private MediaPlayer mpDialTone;
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_call);
@@ -86,6 +91,17 @@ public class CallActivity extends Activity implements View.OnClickListener, Text
 
         mText = (TextView) findViewById(R.id.callStatus);
         mVehicle = (ImageView) findViewById(R.id.vehicle_image);
+
+        int soundResource = getResources().
+                getIdentifier("dialtone", "raw", getPackageName());
+        String uri = "android.resource://" + getPackageName() + "/" + soundResource;
+
+        mpDialTone = MediaPlayer.create(this, Uri.parse(uri));
+        mpDialTone.setLooping(true);
+
+
+
+
 
         tts.setOnUtteranceProgressListener(new TtsUtteranceListener());
 
@@ -110,6 +126,7 @@ public class CallActivity extends Activity implements View.OnClickListener, Text
                     || result == TextToSpeech.LANG_NOT_SUPPORTED) {
                 Log.e("TTS", "This Language is not supported");
             } else {
+                mpDialTone.start();
                 serviceQuestion();
                 startChronometer();
             }
